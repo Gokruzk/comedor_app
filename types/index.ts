@@ -50,12 +50,12 @@ export interface DiningReservation {
 }
 
 export interface Menu {
-  id_menu: number;
+  id_menu?: number;
   id_menu_type: number;
   id_meal_time: number;
   menu_title: string;
   menu_description: string;
-  status: boolean;
+  status?: boolean;
   price: number;
 }
 
@@ -108,10 +108,14 @@ export interface UserState {
   removeSession: () => void;
 }
 
-export interface Params {
+export interface Params_Menu {
   params: {
-    labId: string;
+    id_menu: string;
   };
+}
+
+export interface UpdateMenuForm{
+  id_menu: string
 }
 
 export interface ButtonProps {

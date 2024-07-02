@@ -1,44 +1,41 @@
 "use client";
+
 import Link from "next/link";
 import {
   QueryClient,
   QueryClientProvider,
   useMutation,
-  useQuery,
 } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { Menu, Params_Menu, UpdateMenuForm, User } from "@/types";
+import { Menu, User } from "@/types";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useForm } from "react-hook-form";
-import { getMenu, updateMenu } from "@/api/foodAPI";
-import { useEffect, useState } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { addMenu } from "@/api/foodAPI";
 
 const queryClient = new QueryClient();
 
-export default function UpMenu({ params }: Params_Menu) {
-  const { id_menu } = params;
+export default function AddMenu() {
   return (
     <QueryClientProvider client={queryClient}>
-      <UpdateMenu id_menu={id_menu} />
+      <AgregarMenu />
     </QueryClientProvider>
   );
 }
 
-const UpdateMenu = ({ id_menu }: UpdateMenuForm) => {
+const AgregarMenu = () => {
   const router = useRouter();
-  const { register, handleSubmit } = useForm();
-  const [selectedTime, setSelectedTime] = useState(0);
 
-  const updateThisMenu = async (formdata: any) => {
+  const { register, handleSubmit } = useForm();
+
+  const addNewMenu = async (formdata: any) => {
     const id_menu_type = formdata.id_menu_type;
-    const id_meal_time = selectedTime;
+    const id_meal_time = formdata.timetable;
     const menu_title = formdata.menu_title as string;
     const menu_description = formdata.menu_description as string;
     const price = formdata.price;
 
     const menu: Menu = {
-      id_menu: Number(id_menu),
       id_menu_type: id_menu_type,
       id_meal_time: id_meal_time,
       menu_title: menu_title,
@@ -46,29 +43,10 @@ const UpdateMenu = ({ id_menu }: UpdateMenuForm) => {
       price: price,
     };
 
-    updateMenuMutation.mutate({
+    addMenuMutation.mutate({
       ...menu,
     });
   };
-
-  const {
-    isLoading,
-    data: menu,
-    isError,
-    error,
-  } = useQuery({
-    queryKey: ["menu", id_menu],
-    queryFn: () => getMenu(id_menu),
-  });
-
-  console.log(menu?.data.meal_time.id_meal_time);
-
-  useEffect(() => {
-    if (menu) {
-      setSelectedTime(menu.data.meal_time.id_meal_time);
-    }
-  }, [menu]);
-
   const showToastMessage = (mensaje: string, type: "success" | "error") => {
     if (type === "success") {
       toast.success(mensaje);
@@ -80,11 +58,11 @@ const UpdateMenu = ({ id_menu }: UpdateMenuForm) => {
     }
   };
 
-  const updateMenuMutation = useMutation({
-    mutationFn: updateMenu,
+  const addMenuMutation = useMutation({
+    mutationFn: addMenu,
     onSuccess: (data) => {
       if (data.status === 200) {
-        showToastMessage("Menú actualizado correctamente", "success");
+        showToastMessage("Menú agregado correctamente", "success");
       } else {
         showToastMessage(`${data.error}`, "error");
       }
@@ -95,23 +73,6 @@ const UpdateMenu = ({ id_menu }: UpdateMenuForm) => {
     },
   });
 
-  if (isLoading)
-    return (
-      <main className="bg-gray-50 dark:bg-gray-900">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-          Loading...
-        </div>
-      </main>
-    );
-  else if (isError)
-    return (
-      <main className="bg-gray-50 dark:bg-gray-900">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-          Error {error.message}
-        </div>
-      </main>
-    );
-
   return (
     <main className="bg-gray-50 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -119,18 +80,18 @@ const UpdateMenu = ({ id_menu }: UpdateMenuForm) => {
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <p className="text-sm font-light text-gray-500 dark:text-gray-400">
               <Link
-                href={"/comidas"}
+                href={"/"}
                 className="font-medium text-primary-600 hover:underline dark:text-primary-500"
               >
                 {"<-"} Regresar
               </Link>
             </p>
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-              Actualizar menú de comida
+              Agregar menu de comida
             </h1>
             <form
               className="space-y-4 md:space-y-6"
-              onSubmit={handleSubmit(updateThisMenu)}
+              onSubmit={handleSubmit(addNewMenu)}
             >
               <div>
                 <label
@@ -144,7 +105,6 @@ const UpdateMenu = ({ id_menu }: UpdateMenuForm) => {
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Título del menú"
                   required
-                  defaultValue={menu?.data.menu.menu_title}
                   {...register("menu_title")}
                 />
                 <label
@@ -158,7 +118,6 @@ const UpdateMenu = ({ id_menu }: UpdateMenuForm) => {
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Descripción del menú"
                   required
-                  defaultValue={menu?.data.menu.menu_description}
                   {...register("menu_description")}
                 />
 
@@ -176,7 +135,6 @@ const UpdateMenu = ({ id_menu }: UpdateMenuForm) => {
                   placeholder="Precio"
                   required
                   min={1}
-                  defaultValue={menu?.data.menu.price}
                   {...register("price")}
                 />
               </div>
@@ -191,9 +149,7 @@ const UpdateMenu = ({ id_menu }: UpdateMenuForm) => {
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 {...register("id_menu_type")}
               >
-                <option value={menu?.data.menu_type.id_menu_type}>
-                  {menu?.data.menu_type.menu_type}
-                </option>
+                <option defaultValue={"Tipo de usuario"}>Tipo de menú</option>
                 <option value={1}>Normal</option>
                 <option value={2}>Vegetariano</option>
                 <option value={3}>Vegano</option>
@@ -214,8 +170,7 @@ const UpdateMenu = ({ id_menu }: UpdateMenuForm) => {
                     id="6am-12-am"
                     value={1}
                     className="hidden peer"
-                    checked={selectedTime === 1}
-                    onChange={() => setSelectedTime(1)}
+                    {...register("timetable")}
                   />
                   <label
                     htmlFor="6am-12-am"
@@ -230,8 +185,7 @@ const UpdateMenu = ({ id_menu }: UpdateMenuForm) => {
                     id="12am-13pm"
                     value={2}
                     className="hidden peer"
-                    checked={selectedTime === 2}
-                    onChange={() => setSelectedTime(2)}
+                    {...register("timetable")}
                   />
                   <label
                     htmlFor="12am-13pm"
@@ -246,8 +200,7 @@ const UpdateMenu = ({ id_menu }: UpdateMenuForm) => {
                     id="18-21-pm"
                     value={3}
                     className="hidden peer"
-                    checked={selectedTime === 3}
-                    onChange={() => setSelectedTime(3)}
+                    {...register("timetable")}
                   />
                   <label
                     htmlFor="18-21-pm"
@@ -261,7 +214,7 @@ const UpdateMenu = ({ id_menu }: UpdateMenuForm) => {
                 type="submit"
                 className="bg-blue-500 hover:bg-blue-700 w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
               >
-                Actualizar
+                Registrar
               </button>
             </form>
           </div>
