@@ -1,5 +1,5 @@
 import LinkButton from "@/components/LinkButton";
-import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -10,7 +10,8 @@ export default function Home() {
         {/*seccion para la imagen de presentacion*/ }
         <div className="row-span-2 ">
           <div className="m-28">
-            <img src="https://univercimas.com/wp-content/uploads/2021/04/Escuela-Superior-Politecnica-de-Chimborazo-ESPOCH.png" alt="" />
+            {/* imgs are in public folder */}
+            <Image width={500} height={500} src="/ESPOCH.png" alt="" />
           </div>
         </div>
 
@@ -30,7 +31,7 @@ export default function Home() {
           
         </div>
         <div className="m-10 mb-8 mt-2 pt-60">
-          <LinkButton href="/register" style="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xl px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900" title="REGISTRARSE"/>
+          <LinkButton href="/registro" style="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xl px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900" title="REGISTRARSE"/>
           <LinkButton href="/login" style="focus:outline-none text-white bg-green-700 hover:bg-green-200 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-xl px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" title="INICIAR ->"/>
         </div>
       </div>
