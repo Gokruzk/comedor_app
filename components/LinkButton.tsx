@@ -10,3 +10,4 @@ export default function LinkButton({ title, href, style }: LinkButtonProps) {
     </Link>
   );
 }
+
