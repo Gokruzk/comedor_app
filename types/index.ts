@@ -57,8 +57,6 @@ export interface Menu {
   menu_description: string;
   status: boolean;
   price: number;
-  menu_type: MenuType;
-  meal_time: MealTime;
 }
 
 export interface MenuType {
@@ -71,6 +69,12 @@ export interface MealTime {
   meal_time: string;
   init_hour: string;
   end_hour: string;
+}
+
+export interface MenuItem {
+  menu: Menu;
+  menu_type: MenuType;
+  meal_time: MealTime;
 }
 
 export interface ReserveStatus {
