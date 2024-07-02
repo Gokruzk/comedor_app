@@ -1,6 +1,7 @@
 "use client";
 
 import LinkButton from "@/components/LinkButton";
+import { APP_NAME } from "@/constants";
 import useStore from "@/store/auth/authStore";
 import { UserResponse } from "@/types";
 import axios, { AxiosError } from "axios";
@@ -44,7 +45,7 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
             >
               {/* <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Flowbite Logo" /> */}
               <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                RESERVASNAME
+                {APP_NAME}
               </span>
             </a>
             <button

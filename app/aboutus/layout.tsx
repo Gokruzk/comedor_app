@@ -1,38 +1,12 @@
 "use client";
+
 import LinkButton from "@/components/LinkButton";
 import { APP_NAME } from "@/constants";
-import useStore from "@/store/auth/authStore";
 import { UserResponse } from "@/types";
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 
 const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
-  const router = useRouter();
-  const authUser = useStore((state) => state.authUser);
-  const [isSuccess, setIsSuccess] = useState<boolean>(false);
-
-  useEffect(() => {
-    (async () => {
-      const { user, error } = await getUserSession();
-      if (error) {
-        router.push("/login");
-      } else if (user) {
-        authUser(user);
-        router.push("/profile");
-      }
-      //If the user is logged
-      setIsSuccess(true);
-    })();
-  }, [router, authUser]);
-
-  if (!isSuccess) {
-    return (
-      <main>
-        <p>Loading...</p>
-      </main>
-    );
-  }
   return (
     <main>
       <header>
@@ -85,9 +59,16 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
                 </li>
                 <li>
                   <LinkButton
+                    href="/login"
+                    style="alingn-center block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                    title="Iniciar sesión"
+                  />
+                </li>
+                <li>
+                  <LinkButton
                     href="/aboutus"
                     style="alingn-center block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                    title="Nosotros"
+                    title="Acerca de"
                   />
                 </li>
               </ul>
