@@ -94,12 +94,12 @@ export const auth = async (user: UserLogin) => {
       });
       return { status: 200, token: token };
     } else {
-      return { status: 404, error: "Invalid username or password" };
+      return { status: 404, error: "Usuario o contraseña incorrecta" };
     }
   } catch (error) {
     console.error("Error during authentication");
   }
-  return { status: 404, error: "Invalid username or password" };
+  return { status: 404, error: "Usuario o contraseña incorrecta" };
 };
 
 export const logout = () => {

@@ -8,6 +8,8 @@ import {
 } from "@tanstack/react-query";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const queryClient = new QueryClient();
 
@@ -33,14 +35,24 @@ function LoginForm() {
       ...user,
     });
   };
+  const showToastMessage = (mensaje: string, type: "success" | "error") => {
+    if (type === "success") {
+      toast.success(mensaje);
+      setTimeout(() => {
+        router.push("/perfil");
+      }, 1500);
+    } else {
+      toast.error(mensaje);
+    }
+  };
+
   const addUserMutation = useMutation({
     mutationFn: auth,
     onSuccess: (data) => {
       if (data.status === 200) {
-        alert("Login successfully");
-        router.push("/perfil");
+        showToastMessage("Inicio de sesión exitoso", "success");
       } else {
-        alert(`Authentication failed, ${data.error}`);
+        showToastMessage(`Error de autenticación, ${data.error}`, "error");
       }
     },
     onError: (error) => {
@@ -184,6 +196,7 @@ function LoginForm() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </main>
   );
 }

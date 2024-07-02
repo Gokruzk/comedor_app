@@ -7,10 +7,10 @@ import {
   useMutation,
 } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { Menu, User } from "@/types";
+import { Menu } from "@/types";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { addMenu } from "@/api/foodAPI";
 
 const queryClient = new QueryClient();
