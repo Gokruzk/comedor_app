@@ -53,7 +53,7 @@ const RegisterForm = () => {
     if (type === "success") {
       toast.success(mensaje);
       setTimeout(() => {
-        router.push("/profile");
+        router.push("/perfil");
       }, 1500);
     } else {
       toast.error(mensaje);

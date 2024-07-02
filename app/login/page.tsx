@@ -38,7 +38,7 @@ function LoginForm() {
     onSuccess: (data) => {
       if (data.status === 200) {
         alert("Login successfully");
-        router.push("/profile");
+        router.push("/perfil");
       } else {
         alert(`Authentication failed, ${data.error}`);
       }
@@ -165,7 +165,7 @@ function LoginForm() {
               <p className="text-sm font-light text-gray-500 dark:text-gray-400 text-center">
                 ¿No tienes una cuenta todavía?{" "}
                 <Link
-                  href={"/register"}
+                  href={"/registro"}
                   className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                 >
                   Registrarse
@@ -174,7 +174,7 @@ function LoginForm() {
 
               <p className="text-sm font-light text-gray-500 dark:text-gray-400 text-center">
                 <Link
-                  href={"/recovery"}
+                  href={"/recuperar"}
                   className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                 >
                   Recuperar Contraseña
