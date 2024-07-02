@@ -63,7 +63,6 @@ const RegisterForm = () => {
   const addUserMutation = useMutation({
     mutationFn: addUser,
     onSuccess: (data) => {
-      console.log(data.status);
       if (data.status === 200) {
         showToastMessage("Usuario registrado correctamente", "success");
       } else {
@@ -72,7 +71,7 @@ const RegisterForm = () => {
     },
     onError: (error) => {
       console.log(error);
-      alert("An error occurred during registering");
+      showToastMessage(`${error}`, "error");
     },
   });
 
