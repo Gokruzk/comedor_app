@@ -108,10 +108,14 @@ export interface UserState {
   removeSession: () => void;
 }
 
-export interface Params {
+export interface Params_Menu {
   params: {
-    labId: string;
+    id_menu: string;
   };
+}
+
+export interface UpdateMenuForm{
+  id_menu: string
 }
 
 export interface ButtonProps {

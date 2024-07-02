@@ -101,9 +101,9 @@ function Comidas() {
               </p>
               <div className="flex space-x-2">
                 <LinkButton
-                  href={`/comidas/${menu.menu.id_menu}`}
+                  href={`/comprar_menu/${menu.menu.id_menu}`}
                   style="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                  title="Reservar ->"
+                  title="Comprar ->"
                 />
                 <LinkButton
                   href={`/comidas/${menu.menu.id_menu}`}
