@@ -6,10 +6,14 @@ import { useEffect, useState } from "react";
 import axios, { AxiosError } from "axios";
 import { APP_NAME } from "@/constants";
 import { UserResponse } from "@/types";
+import LogoutButton from "@/components/LogoutButton";
+import userStore from "@/store/auth/userStore";
+import { logout } from "@/api/userAPI";
 
 const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const authUser = useStore((state) => state.authUser);
+  const { removeSession } = userStore();
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
   useEffect(() => {
@@ -25,6 +29,16 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
       setIsSuccess(true);
     })();
   }, [router, authUser]);
+
+    const handleLogout = () => {
+      const result = logout();
+      if (result.status === 200) {
+        removeSession();
+        router.push("/login");
+      } else {
+        console.error(result.error);
+      }
+    };
 
   if (!isSuccess) {
     return (
@@ -81,6 +95,13 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
                     href="/"
                     style="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent"
                     title="Inicio"
+                  />
+                </li>
+                <li>
+                  <LogoutButton
+                    style="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent"
+                    title="Cerrar sesión"
+                    onClick={handleLogout}
                   />
                 </li>
                 <li>

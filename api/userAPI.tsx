@@ -102,21 +102,21 @@ export const auth = async (user: UserLogin) => {
   return { status: 404, error: "Invalid username or password" };
 };
 
-// export const logout = () => {
-//   try {
-//     cookies().set({
-//       name: COOKIE_NAME,
-//       value: "",
-//       httpOnly: true,
-//       sameSite: "strict",
-//       path: "/",
-//     });
-//     return { status: 200 };
-//   } catch (error) {
-//     console.error("Error during authentication", error);
-//   }
-//   return { status: 404, error: "Invalid username or password" };
-// };
+export const logout = () => {
+  try {
+    cookies().set({
+      name: COOKIE_NAME,
+      value: "",
+      httpOnly: true,
+      sameSite: "strict",
+      path: "/",
+    });
+    return { status: 200 };
+  } catch (error) {
+    console.error("Error during authentication", error);
+  }
+  return { status: 404, error: "Invalid username or password" };
+};
 
 export async function decrypt(input: string): Promise<any> {
   const { payload } = await jwtVerify(input, key, {
