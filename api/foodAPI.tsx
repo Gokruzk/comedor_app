@@ -68,7 +68,6 @@ export const addMenu = async (menu: Menu) => {
 export const updateMenu = async (menu: Menu) => {
   try {
     const res = await foodAPI.put(`/menus/${menu.id_menu}`, menu);
-    console.log(res);
     if (res.status == 200) {
       return { status: 200 };
     } else {
@@ -86,10 +85,10 @@ export const deleteFood = async (id_menu: string) => {
     if (res.status == 200) {
       return { status: 200, data: res.data };
     } else {
-      return { status: 400, error: "The user does not exist" };
+      return { status: 400, error: "El menú no existe" };
     }
   } catch (error) {
     console.log(error);
   }
-  return { status: 400, error: "The user does not exist" };
+  return { status: 400, error: "El menú no existe" };
 };

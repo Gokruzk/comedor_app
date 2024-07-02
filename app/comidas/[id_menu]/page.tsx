@@ -12,6 +12,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "react-hook-form";
 import { getMenu, updateMenu } from "@/api/foodAPI";
+import { useEffect, useState } from "react";
 
 const queryClient = new QueryClient();
 
@@ -27,10 +28,11 @@ export default function UpMenu({ params }: Params_Menu) {
 const UpdateMenu = ({ id_menu }: UpdateMenuForm) => {
   const router = useRouter();
   const { register, handleSubmit } = useForm();
+  const [selectedTime, setSelectedTime] = useState(0);
 
   const updateThisMenu = async (formdata: any) => {
     const id_menu_type = formdata.id_menu_type;
-    const id_meal_time = formdata.timetable;
+    const id_meal_time = selectedTime;
     const menu_title = formdata.menu_title as string;
     const menu_description = formdata.menu_description as string;
     const price = formdata.price;
@@ -58,6 +60,14 @@ const UpdateMenu = ({ id_menu }: UpdateMenuForm) => {
     queryKey: ["menu", id_menu],
     queryFn: () => getMenu(id_menu),
   });
+
+  console.log(menu?.data.meal_time.id_meal_time);
+
+  useEffect(() => {
+    if (menu) {
+      setSelectedTime(menu.data.meal_time.id_meal_time);
+    }
+  }, [menu]);
 
   const showToastMessage = (mensaje: string, type: "success" | "error") => {
     if (type === "success") {
@@ -204,10 +214,8 @@ const UpdateMenu = ({ id_menu }: UpdateMenuForm) => {
                     id="6am-12-am"
                     value={1}
                     className="hidden peer"
-                    defaultChecked={
-                      menu?.data.meal_time.init_hour === "6:30:00"
-                    }
-                    {...register("timetable")}
+                    checked={selectedTime === 1}
+                    onChange={() => setSelectedTime(1)}
                   />
                   <label
                     htmlFor="6am-12-am"
@@ -222,10 +230,8 @@ const UpdateMenu = ({ id_menu }: UpdateMenuForm) => {
                     id="12am-13pm"
                     value={2}
                     className="hidden peer"
-                    defaultChecked={
-                      menu?.data.meal_time.init_hour === "12:00:00"
-                    }
-                    {...register("timetable")}
+                    checked={selectedTime === 2}
+                    onChange={() => setSelectedTime(2)}
                   />
                   <label
                     htmlFor="12am-13pm"
@@ -240,10 +246,8 @@ const UpdateMenu = ({ id_menu }: UpdateMenuForm) => {
                     id="18-21-pm"
                     value={3}
                     className="hidden peer"
-                    defaultChecked={
-                      menu?.data.meal_time.init_hour === "18:00:00"
-                    }
-                    {...register("timetable")}
+                    checked={selectedTime === 3}
+                    onChange={() => setSelectedTime(3)}
                   />
                   <label
                     htmlFor="18-21-pm"
