@@ -1,4 +1,4 @@
-import { User } from "@/types";
+import { Menu, User } from "@/types";
 import axios from "axios";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -23,20 +23,19 @@ export const getMenus = async () => {
   return { status: 400, error: "The user does not exist" };
 };
 
-export const addUser = async (user: User) => {
+export const addMenu = async (menu: Menu) => {
+  console.log(menu)
   try {
-    const res = await foodAPI.post("/users", user);
+    const res = await foodAPI.post("/menus", menu);
     if (res.status == 200) {
-      const userlogin = { email: user.email, password: user.hash_password };
-      const res = await foodAPI.post("/login", userlogin);
       return { status: 200 };
     } else {
-      return { status: 401, error: "Error en el registro del usuario" };
+      return { status: 401, error: "Error en la creación del menú" };
     }
   } catch (error) {
-    console.error("Error en el registro del usuario", error);
+    console.error("Error en la creación del menú", error);
   }
-  return { status: 401, error: "Error en el registro del usuario" };
+  return { status: 401, error: "Error en la creación del menú" };
 };
 
 // export const updateUser = async (usuario: string, user: User) => {

@@ -50,12 +50,12 @@ export interface DiningReservation {
 }
 
 export interface Menu {
-  id_menu: number;
+  id_menu?: number;
   id_menu_type: number;
   id_meal_time: number;
   menu_title: string;
   menu_description: string;
-  status: boolean;
+  status?: boolean;
   price: number;
 }
 
