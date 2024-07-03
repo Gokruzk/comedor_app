@@ -127,11 +127,18 @@ export interface ButtonProps {
 export interface LinkButtonProps {
   title: string;
   href: string;
-  style: string;
+  style?: string;
 }
 
 export interface DeleteButtonProps {
   title: string;
   style: string;
   onClick(): void;
+}
+
+export interface NavBarProps {
+  title: string;
+  href: string;
+  nbuttons?: number
+  linkbuttons?: LinkButtonProps[]
 }
