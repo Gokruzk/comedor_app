@@ -75,8 +75,31 @@ function Comidas() {
     );
 
   return (
-    <main className="bg-gray-50 dark:bg-gray-900">
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
+      <nav className="w-64 bg-white dark:bg-gray-800 shadow-md h-screen p-4">
+        <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+          <LinkButton
+            title="<- Regresar"
+            href="/perfil"
+            style="font-medium text-primary-600 hover:underline dark:text-primary-500"
+          />
+        </p>
+        <ul className="mt-8">
+          <li className="mb-4">
+            <LinkButton
+              href="/agregar_menu"
+              style="py-2.5 px-5 ml-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              title="Agregar menú"
+            />
+            {/* <LinkButton
+              href={`/comidas`}
+              style="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              title="Comidas"
+            /> */}
+          </li>
+        </ul>
+      </nav>
+      <div className="flex-grow flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {menus?.data.map((menu: MenuItem) => (
             <div
@@ -122,18 +145,6 @@ function Comidas() {
               </div>
             </div>
           ))}
-        </div>
-        <div className="px-9 py-5 ml-3">
-          <LinkButton
-            href="/perfil"
-            style="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-            title="Regresar"
-          />
-          <LinkButton
-            href="/agregar_menu"
-            style="py-2.5 px-5 ml-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-            title="Agregar menú"
-          />
         </div>
       </div>
       <ToastContainer />
