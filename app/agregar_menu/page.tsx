@@ -42,7 +42,7 @@ const AgregarMenu = () => {
       menu_description: menu_description,
       price: price,
     };
-
+    
     addMenuMutation.mutate({
       ...menu,
     });
@@ -137,10 +137,9 @@ const AgregarMenu = () => {
                   min={1}
                   {...register("price")}
                 />
-              </div>
               <label
                 htmlFor="id_menu_type"
-                className="block text-sm font-bold text-gray-900 dark:text-white"
+                className="block mt-4 mb-2 text-sm font-bold text-gray-900 dark:text-white"
               >
                 Tipo de menú
               </label>
@@ -160,7 +159,7 @@ const AgregarMenu = () => {
                 datepicker-autoselect-today
                 className="mx-auto sm:mx-0 flex justify-center [&>div>div]:shadow-none [&>div>div]:bg-gray-50 [&_div>button]:bg-gray-50"
               ></div>
-              <label className="text-sm font-bold text-gray-900 dark:text-white mb-2 block">
+              <label className="mt-4 text-sm font-bold text-gray-900 dark:text-white mb-2 block">
                 Seleccionar el horario en el que menú estará disponible
               </label>
               <ul id="timetable" className="grid w-full grid-cols-3 gap-2 mb-5">
@@ -210,6 +209,7 @@ const AgregarMenu = () => {
                   </label>
                 </li>
               </ul>
+              </div>
               <button
                 type="submit"
                 className="bg-blue-500 hover:bg-blue-700 w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"

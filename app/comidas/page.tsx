@@ -265,13 +265,14 @@ function Comidas() {
   const availables_menus: MenuItem[] = [];
   const unavailables_menus: MenuItem[] = [];
 
-  menus?.data.forEach((menu: MenuItem) => {
-    if (menu.menu.status === true) {
-      availables_menus.push(menu);
-    } else {
-      unavailables_menus.push(menu);
-    }
-  });
+  console.log(menus)
+  // menus?.data.forEach((menu: MenuItem) => {
+  //   if (menu.menu.status === true) {
+  //     availables_menus.push(menu);
+  //   } else {
+  //     unavailables_menus.push(menu);
+  //   }
+  // });
 
   const showToastMessage = (mensaje: string, type: "success" | "error") => {
     if (type === "success") {

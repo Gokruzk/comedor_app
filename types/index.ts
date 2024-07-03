@@ -129,3 +129,9 @@ export interface LinkButtonProps {
   href: string;
   style: string;
 }
+
+export interface DeleteButtonProps {
+  title: string;
+  style: string;
+  onClick(): void;
+}

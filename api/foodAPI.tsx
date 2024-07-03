@@ -1,5 +1,5 @@
 import { Menu, User } from "@/types";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -15,12 +15,18 @@ export const getMenus = async () => {
     if (res.status == 200) {
       return { status: 200, data: res.data };
     } else {
-      return { status: 400, error: "The user does not exist" };
+      return { status: 400, error: "Error consultando menús" };
     }
-  } catch (error) {
-    console.log(error);
+  } catch (error: unknown) {
+    if(axios.isAxiosError(error)){
+      return {
+        status: error.response?.status,
+        errors: error.response,
+        detail: error.response?.data.detail,
+      };
+    }
   }
-  return { status: 400, error: "The user does not exist" };
+  return { status: 400, error: "Error consultando menús" };
 };
 
 export const getMenusUser = async () => {
@@ -31,8 +37,14 @@ export const getMenusUser = async () => {
     } else {
       return { status: 400, error: "The user does not exist" };
     }
-  } catch (error) {
-    console.log(error);
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      return {
+        status: error.response?.status,
+        errors: error.response,
+        detail: error.response?.data.detail,
+      };
+    }
   }
   return { status: 400, error: "The user does not exist" };
 };
@@ -45,8 +57,14 @@ export const getMenu = async (id_menu: string) => {
     } else {
       return { status: 400, error: "El menú no existe" };
     }
-  } catch (error) {
-    console.log(error);
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      return {
+        status: error.response?.status,
+        errors: error.response,
+        detail: error.response?.data.detail,
+      };
+    }
   }
   return { status: 400, error: "El menú no existe" };
 };
@@ -59,8 +77,14 @@ export const addMenu = async (menu: Menu) => {
     } else {
       return { status: 401, error: "Error en la creación del menú" };
     }
-  } catch (error) {
-    console.error("Error en la creación del menú", error);
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      return {
+        status: error.response?.status,
+        errors: error.response,
+        detail: error.response?.data.detail,
+      };
+    }
   }
   return { status: 401, error: "Error en la creación del menú" };
 };
@@ -73,8 +97,14 @@ export const updateMenu = async (menu: Menu) => {
     } else {
       return { status: 401, error: "Error en la actualización del menú" };
     }
-  } catch (error) {
-    console.error("Error en la actualización del menú", error);
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      return {
+        status: error.response?.status,
+        errors: error.response,
+        detail: error.response?.data.detail,
+      };
+    }
   }
   return { status: 401, error: "Error en la actualización del menú" };
 };
@@ -87,8 +117,14 @@ export const deleteFood = async (id_menu: string) => {
     } else {
       return { status: 400, error: "El menú no existe" };
     }
-  } catch (error) {
-    console.log(error);
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      return {
+        status: error.response?.status,
+        errors: error.response,
+        detail: error.response?.data.detail,
+      };
+    }
   }
   return { status: 400, error: "El menú no existe" };
 };
