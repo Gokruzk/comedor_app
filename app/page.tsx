@@ -1,9 +1,10 @@
 import LinkButton from "@/components/LinkButton";
 import Image from "next/image";
 
+//bg-gradient-to-r from-red-700 from-10% to-white to-60% 
 export default function Home() {
   return (
-    <main className="text-black bg-gradient-to-r from-red-700 from-10% to-white to-60%">
+    <main className="text-black ">
       {/*contenedor de las iamgenes y los botones para agregar */}
       <div className="grid grid-rows-2 grid-flow-col">
 
