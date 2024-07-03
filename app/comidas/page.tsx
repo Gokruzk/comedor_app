@@ -43,14 +43,6 @@ function Comidas() {
   const availables_menus: MenuItem[] = [];
   const unavailables_menus: MenuItem[] = [];
 
-  menus?.data.map((menu: MenuItem) => {
-    if (menu.menu.status === true) {
-      availables_menus.push(menu);
-    } else {
-      unavailables_menus.push(menu);
-    }
-  });
-
   const showToastMessage = (mensaje: string, type: "success" | "error") => {
     if (type === "success") {
       toast.success(mensaje);
@@ -87,8 +79,17 @@ function Comidas() {
         <div className="flex-grow flex items-center justify-center">
           <div className="text-center">No hay menús</div>
         </div>
+        <ToastContainer />
       </main>
     );
+  } else {
+    menus?.data.map((menu: MenuItem) => {
+      if (menu.menu.status === true) {
+        availables_menus.push(menu);
+      } else {
+        unavailables_menus.push(menu);
+      }
+    });
   }
 
   if (isLoading) {
@@ -103,6 +104,7 @@ function Comidas() {
         <div className="flex-grow flex items-center justify-center">
           <div className="text-center">Loading...</div>
         </div>
+        <ToastContainer />
       </main>
     );
   } else if (isError) {
@@ -117,6 +119,7 @@ function Comidas() {
         <div className="flex-grow flex items-center justify-center">
           <div className="text-center">Error {error.message}</div>
         </div>
+        <ToastContainer />
       </main>
     );
   }
@@ -237,6 +240,7 @@ function Comidas() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </main>
   );
 }
