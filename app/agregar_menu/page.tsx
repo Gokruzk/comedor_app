@@ -42,7 +42,7 @@ const AgregarMenu = () => {
       menu_description: menu_description,
       price: price,
     };
-
+    
     addMenuMutation.mutate({
       ...menu,
     });
