@@ -15,12 +15,12 @@ export const getMenus = async () => {
     if (res.status == 200) {
       return { status: 200, data: res.data };
     } else {
-      return { status: 400, error: "The user does not exist" };
+      return { status: 400, error: "Error consultando menús" };
     }
   } catch (error) {
     console.log(error);
   }
-  return { status: 400, error: "The user does not exist" };
+  return { status: 400, error: "Error consultando menús" };
 };
 
 export const getMenusUser = async () => {

@@ -10,7 +10,7 @@ import LogoutButton from "@/components/LogoutButton";
 import userStore from "@/store/auth/userStore";
 import { logout } from "@/api/userAPI";
 
-const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
+const FoodLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const authUser = useStore((state) => state.authUser);
   const { removeSession } = userStore();
@@ -126,7 +126,7 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default ProfileLayout;
+export default FoodLayout;
 
 async function getUserSession(): Promise<UserResponse> {
   try {

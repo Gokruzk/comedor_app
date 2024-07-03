@@ -81,8 +81,6 @@ const UpdateMenu = ({ id_menu }: UpdateMenuForm) => {
     status_menu_description = "No disponible";
   }
 
-  console.log(status_menu, status_menu_description)
-
   useEffect(() => {
     if (menu) {
       setSelectedTime(menu.data.meal_time.id_meal_time);
