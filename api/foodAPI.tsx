@@ -1,5 +1,8 @@
-import { Menu, User } from "@/types";
-import axios, { AxiosError } from "axios";
+"use server"
+import { COOKIE_NAME } from "@/constants";
+import { Menu } from "@/types";
+import axios from "axios";
+import { cookies } from "next/headers";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -10,8 +13,14 @@ const foodAPI = axios.create({
 //get menus for admin
 
 export const getMenus = async () => {
+  const token = cookies().get(COOKIE_NAME)?.value;
   try {
-    const res = await foodAPI.get(`/menus/all/`);
+    const res = await foodAPI.get(`/menus/all/`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
     if (res.status == 200) {
       return { status: 200, data: res.data };
     } else {
