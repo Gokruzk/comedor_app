@@ -231,8 +231,8 @@ const UpdateMenu = ({ id_menu }: UpdateMenuForm) => {
                   <option value={4}>Alergias</option>
                 </select>
                 <div
-                  inline-datepicker
-                  datepicker-autoselect-today
+                  inline-datepicker="true"
+                  datepicker-autoselect-today="true"
                   className="mx-auto sm:mx-0 flex justify-center [&>div>div]:shadow-none [&>div>div]:bg-gray-50 [&_div>button]:bg-gray-50"
                 ></div>
                 <label className="mt-4 text-sm font-bold text-gray-900 dark:text-white mb-2 block">
