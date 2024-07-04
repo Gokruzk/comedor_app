@@ -26,7 +26,7 @@ export default function Home() {
 
           <div className="p-10">
             <p className="text-gray-900 text-9xl dark:text-black font-bold absolute">
-              Politecnico!
+              Politécnico!
             </p>
           </div>
         </div>
