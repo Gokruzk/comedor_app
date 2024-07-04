@@ -3,12 +3,11 @@ import LinkButton from "@/components/LinkButton";
 import useStore from "@/store/auth/authStore";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import axios, { AxiosError } from "axios";
 import { APP_NAME } from "@/constants";
-import { UserResponse } from "@/types";
 import LogoutButton from "@/components/LogoutButton";
 import userStore from "@/store/auth/userStore";
 import { logout } from "@/api/userAPI";
+import { getUserSession } from "@/utils";
 
 const FoodLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
@@ -19,10 +18,13 @@ const FoodLayout = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     (async () => {
-      const { user, error } = await getUserSession();
+      const { user, error, type } = await getUserSession();
       if (error) {
         router.push("/login");
       } else if (user) {
+        if (type === 0) {
+          router.push("/admin_comidas");
+        }
         authUser(user);
       }
       setIsSuccess(true);
@@ -127,17 +129,3 @@ const FoodLayout = ({ children }: { children: React.ReactNode }) => {
 };
 
 export default FoodLayout;
-
-async function getUserSession(): Promise<UserResponse> {
-  try {
-    const { data } = await axios.get("/me");
-    return {
-      user: data,
-      error: null,
-    };
-  } catch (e) {
-    return {
-      error: e as AxiosError,
-    };
-  }
-}

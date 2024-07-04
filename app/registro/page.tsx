@@ -173,7 +173,6 @@ const RegisterForm = () => {
                     <option defaultValue={"Tipo de usuario"}>
                       Elegir tipo de usuario
                     </option>
-                    <option value={0}>Administrativo</option>
                     <option value={1}>Estudiante</option>
                     <option value={2}>Profesor</option>
                     <option value={3}>Personal</option>
@@ -185,7 +184,7 @@ const RegisterForm = () => {
                       name="password"
                       id="password"
                       className="bg-gray-50 border my-4 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder="Enter password"
+                      placeholder="Contraseña"
                       required
                     />
                     <button

@@ -94,6 +94,7 @@ export interface UserName {
 export interface UserResponse {
   user?: UserName;
   error: AxiosError | null;
+  type?: number;
 }
 
 export interface UserSt {
@@ -114,8 +115,8 @@ export interface Params_Menu {
   };
 }
 
-export interface UpdateMenuForm{
-  id_menu: string
+export interface UpdateMenuForm {
+  id_menu: string;
 }
 
 export interface ButtonProps {
@@ -139,6 +140,6 @@ export interface DeleteButtonProps {
 export interface NavBarProps {
   title: string;
   href: string;
-  nbuttons?: number
-  linkbuttons?: LinkButtonProps[]
+  nbuttons?: number;
+  linkbuttons?: LinkButtonProps[];
 }

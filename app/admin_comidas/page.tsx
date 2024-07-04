@@ -92,7 +92,7 @@ function Comidas() {
           title="<- Perfil"
           href="/perfil"
           nbuttons={2}
-          // linkbuttons={linkbuttons}
+          linkbuttons={linkbuttons}
         />
         <div className="flex-grow flex items-center justify-center">
           <div className="text-center">No hay menús</div>

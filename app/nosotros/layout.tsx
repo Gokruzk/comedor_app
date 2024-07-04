@@ -2,9 +2,6 @@
 
 import LinkButton from "@/components/LinkButton";
 import { APP_NAME } from "@/constants";
-import { UserResponse } from "@/types";
-import axios, { AxiosError } from "axios";
-import { useRouter } from "next/navigation";
 
 const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -82,17 +79,3 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
 };
 
 export default ProfileLayout;
-
-async function getUserSession(): Promise<UserResponse> {
-  try {
-    const { data } = await axios.get("/me");
-    return {
-      user: data,
-      error: null,
-    };
-  } catch (e) {
-    return {
-      error: e as AxiosError,
-    };
-  }
-}

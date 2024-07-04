@@ -20,7 +20,8 @@ export async function GET() {
   const data = await decrypt(value);
   try {
     const response = {
-      usuario: data["sub"],
+      usuario: data["email"],
+      type: data["type"],
     };
     return new Response(JSON.stringify(response));
   } catch (error) {
