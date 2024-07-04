@@ -94,7 +94,7 @@ const RegisterForm = () => {
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="w-full bg-white rounded-3xl shadow-2xl dark:border md:mt-0 sm:max-w-4xl  xl:p-0 dark:border-white justify-center items-center">
 
-          <div className="p-6 space-y-4 md:space-y-6 sm:p-8 sm:pb-0">
+          <div className="p-6 space-y-4 md:space-y-6 sm:px-8 sm:pb-0">
             <p className="text-sm font-light text-gray-500 dark:text-gray-600">
                 <Link
                   href={"/"}
@@ -105,7 +105,7 @@ const RegisterForm = () => {
             </p>
           </div>
 
-          <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+          <div className="p-6 space-y-4 md:space-y-6 sm:p-8 sm:pt-2">
             
             {/**columna izquerda */}
 
