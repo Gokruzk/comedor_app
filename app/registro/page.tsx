@@ -92,15 +92,15 @@ const RegisterForm = () => {
   return (
     <main className="bg-gray-50 dark:bg-gray-100">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <div className="w-full bg-black rounded-3xl shadow-2xl dark:border md:mt-0 sm:max-w-4xl  xl:p-0 dark:border-white justify-center items-center">
+        <div className="w-full bg-white rounded-3xl shadow-2xl dark:border md:mt-0 sm:max-w-4xl  xl:p-0 dark:border-white justify-center items-center">
 
-          <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+          <div className="p-6 space-y-4 md:space-y-6 sm:p-8 sm:pb-0">
+            <p className="text-sm font-light text-gray-500 dark:text-gray-600">
                 <Link
                   href={"/"}
                   className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                 >
-                  {"<-"} Volver a Iniio
+                  {"<-"} Volver a Inicio
                 </Link>
             </p>
           </div>
@@ -116,13 +116,13 @@ const RegisterForm = () => {
             <form className="space-y-4 md:space-y-6" action={registerUser}>
 
               <div className="grid grid-cols-2 gap-8 place-content-center">
+                
                 <div>
-                 
                   <input
                     type="email"
                     name="correo"
                     id="correo"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border my-4 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Correo Electrónico"
                     required
                   />
@@ -130,7 +130,7 @@ const RegisterForm = () => {
                   <input
                     name="cedula"
                     id="cedula"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border my-4 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Cédula"
                     required
                   />
@@ -138,7 +138,7 @@ const RegisterForm = () => {
                   <input
                     name="nombre"
                     id="nombre"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border my-4 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Nombre"
                     required
                   />
@@ -146,7 +146,7 @@ const RegisterForm = () => {
                   <input
                     name="apellido"
                     id="apellido"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border my-4 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Apellido"
                     required
                   />
@@ -154,8 +154,8 @@ const RegisterForm = () => {
                   <input
                     name="celular"
                     id="celular"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Celular"
+                    className=" bg-gray-50 border my-4 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Número Telefónico"
                     required
                     maxLength={10}
                   />
@@ -168,7 +168,7 @@ const RegisterForm = () => {
                   <select
                     id="type_user"
                     name="type_user"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border my-4 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   >
                     <option defaultValue={"Tipo de usuario"}>
                       Elegir tipo de usuario
@@ -184,7 +184,7 @@ const RegisterForm = () => {
                       type="password"
                       name="password"
                       id="password"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="bg-gray-50 border my-4 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="Enter password"
                       required
                     />
@@ -195,7 +195,7 @@ const RegisterForm = () => {
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-4 w-4 text-gray-400 dark:text-gray-300"
+                        className="h-4 w-4 text-gray-600 dark:text-gray-6 00"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -232,12 +232,27 @@ const RegisterForm = () => {
                       </svg>
                     </button>
                   </div>
-                  <button
-                    type="submit"
-                    className="bg-blue-500 hover:bg-blue-700 w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                  >
-                    Registrarse
-                  </button>
+
+                  <div className="flex justify-center items-center">
+                    <button
+                      type="submit"
+                      className="bg-green-600 my-4 hover:bg-green-700 w-2/3 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                    >
+                      Registrarse
+                    </button>
+                  </div>
+
+                  <p className="text-sm font-light mt-4 text-gray-600 dark:text-gray-00 text-center">
+                    ¿Ya tienes una cuenta?{" "}
+                    <Link
+                      href={"/login"}
+                      className="font-medium text-primary-600 hover:underline dark:text-primary-500 text-red-500"
+                    >
+                      Inicia sesión aquí
+                    </Link>
+                  </p>
+
+                  
                 </div>
 
               </div>
