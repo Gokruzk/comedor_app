@@ -184,7 +184,7 @@ function LoginForm() {
               </button>
               </div>
               
-              <p className="text-sm font-light text-gray-600 dark:text-gray-400 text-center">
+              <p className="text-sm font-light text-gray-600 dark:text-gray-00 text-center">
                 ¿No tienes una cuenta todavía?{" "}
                 <Link
                   href={"/registro"}
