@@ -52,7 +52,7 @@ const AgregarMenu = () => {
       toast.success(mensaje);
       setTimeout(() => {
         router.push("/comidas");
-      }, 1500);
+      }, 1000);
     } else {
       toast.error(mensaje);
     }

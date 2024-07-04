@@ -92,7 +92,7 @@ const UpdateMenu = ({ id_menu }: UpdateMenuForm) => {
       toast.success(mensaje);
       setTimeout(() => {
         router.push("/comidas");
-      }, 1500);
+      }, 1100);
     } else {
       toast.error(mensaje);
     }
