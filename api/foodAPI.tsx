@@ -20,7 +20,6 @@ export const getMenus = async () => {
         Authorization: `Bearer ${token}`,
       },
     });
-
     if (res.status == 200) {
       return { status: 200, data: res.data };
     } else {
@@ -28,11 +27,12 @@ export const getMenus = async () => {
     }
   } catch (error: unknown) {
     if(axios.isAxiosError(error)){
-      return {
-        status: error.response?.status,
-        errors: error.response,
-        detail: error.response?.data.detail,
-      };
+      return {status: error.response?.status}
+      // return {
+      //   status: error.response?.status,
+      //   errors: error.response,
+      //   detail: error.response?.data.detail,
+      // };
     }
   }
   return { status: 400, error: "Error consultando menús" };
@@ -88,6 +88,7 @@ export const addMenu = async (menu: Menu) => {
     }
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
+      console.log(error.response?.status);
       return {
         status: error.response?.status,
         errors: error.response,
