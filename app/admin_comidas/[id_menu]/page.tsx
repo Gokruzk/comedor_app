@@ -91,7 +91,7 @@ const UpdateMenu = ({ id_menu }: UpdateMenuForm) => {
     if (type === "success") {
       toast.success(mensaje);
       setTimeout(() => {
-        router.push("/comidas");
+        router.push("/admin_comidas");
       }, 1100);
     } else {
       toast.error(mensaje);
@@ -137,7 +137,7 @@ const UpdateMenu = ({ id_menu }: UpdateMenuForm) => {
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <p className="text-sm font-light text-gray-500 dark:text-gray-400">
               <Link
-                href={"/comidas"}
+                href={"/admin_comidas"}
                 className="font-medium text-primary-600 hover:underline dark:text-primary-500"
               >
                 {"<-"} Regresar
