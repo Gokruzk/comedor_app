@@ -46,7 +46,6 @@ export const getUserMenus = async () => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(res.data)
     if (res.status == 200) {
       return { status: 200, data: res.data };
     } else {

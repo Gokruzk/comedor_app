@@ -35,7 +35,6 @@ function Comidas() {
   const fetchMenus = useCallback(async () => {
     try {
       const { status, data, error } = await getUserMenus();
-      console.log(data)
       if (status === 200) {
         setIsLoading(false);
         setMenus(data); // Actualiza el estado con los datos del menú
@@ -150,7 +149,6 @@ function Comidas() {
       </main>
     );
   }
-  console.log(user_type)
   return (
     <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
       <NavBar

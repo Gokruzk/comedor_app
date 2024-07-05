@@ -2,7 +2,6 @@
 import { deleteFood, getMenus } from "@/api/foodAPI";
 import MenuCard from "@/components/MenuCard";
 import NavBar from "@/components/NavBar";
-import userStore from "@/store/auth/userStore";
 import { MenuItem } from "@/types";
 import { getUserSession } from "@/utils";
 import {
