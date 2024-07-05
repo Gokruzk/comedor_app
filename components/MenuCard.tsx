@@ -1,6 +1,5 @@
 import { MenuItem } from "@/types";
 import LinkButton from "./LinkButton";
-import DeleteButton from "./DeleteButton";
 
 export default function MenuCard({
   menu,

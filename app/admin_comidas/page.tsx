@@ -27,7 +27,7 @@ function Comidas() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
   const [error, setError] = useState<any>(null);
-  const [detail, setDetail] = useState<any>("[]");
+  const [detail, setDetail] = useState<any>(null);
   const [reload, setReload] = useState(false);
 
   const fetchMenus = useCallback(async () => {
@@ -39,7 +39,7 @@ function Comidas() {
         setMenus(data); // Actualiza el estado con los datos del menú
       } else if (status === 404) {
         setIsLoading(false);
-        setDetail("[]");
+        setDetail(detail);
         setMenus([]);
       } else {
         setIsLoading(false);

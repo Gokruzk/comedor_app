@@ -193,3 +193,28 @@ export const diningReservation = async (
   }
   return { status: 400, error: "El menú no existe" };
 };
+
+export const getDinings = async () => {
+  const token = cookies().get(COOKIE_NAME)?.value;
+  try {
+    const res = await foodAPI.get(`/dinings`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (res.status == 200) {
+      return { status: 200, data: res.data };
+    } else {
+      return { status: 400, error: "Error consultando reservaciones" };
+    }
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      return {
+        status: error.response?.status,
+        errors: error.response,
+        detail: error.response?.data.detail,
+      };
+    }
+  }
+  return { status: 400, error: "Error consultando reservaciones" };
+};

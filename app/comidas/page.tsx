@@ -25,7 +25,7 @@ function Comidas() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
   const [error, setError] = useState<any>(null);
-  const [detail, setDetail] = useState<any>("[]");
+  const [detail, setDetail] = useState<any>(null);
   const [reload, setReload] = useState(false);
   const [user_type, setType] = useState(99);
 
