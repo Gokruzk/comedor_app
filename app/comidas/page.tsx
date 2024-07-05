@@ -1,5 +1,5 @@
 "use client";
-import { deleteFood, getMenus, getUserMenus } from "@/api/foodAPI";
+import { getUserMenus } from "@/api/foodAPI";
 import MenuCard from "@/components/MenuCard";
 import NavBar from "@/components/NavBar";
 import { MenuItem } from "@/types";
@@ -7,11 +7,8 @@ import { getUserSession } from "@/utils";
 import {
   QueryClient,
   QueryClientProvider,
-  useMutation,
 } from "@tanstack/react-query";
 import { useCallback, useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const queryClient = new QueryClient();
 
@@ -70,25 +67,6 @@ function Comidas() {
 
   const availables_menus: MenuItem[] = [];
 
-  const showToastMessage = (mensaje: string, type: "success" | "error") => {
-    if (type === "success") {
-      toast.success(mensaje);
-    } else {
-      toast.error(mensaje);
-    }
-  };
-
-  const { mutate: deleteFoodMutate } = useMutation({
-    mutationFn: deleteFood,
-    onSuccess: () => {
-      showToastMessage("Menú eliminado correctamente", "success");
-      setReload((prev) => !prev);
-    },
-    onError: (error) => {
-      showToastMessage(`Error eliminando el menú: ${error.message}`, "error");
-    },
-  });
-
   const linkbuttons = [
     { href: "/mis_compras", title: "Mis compras" },
     // { href: "/otro_menu", title: "Otro menú" },
@@ -107,7 +85,6 @@ function Comidas() {
         <div className="flex-grow flex items-center justify-center">
           <div className="text-center">No hay menús</div>
         </div>
-        <ToastContainer />
       </main>
     );
   } else {
@@ -130,7 +107,6 @@ function Comidas() {
         <div className="flex-grow flex items-center justify-center">
           <div className="text-center">Loading...</div>
         </div>
-        <ToastContainer />
       </main>
     );
   } else if (isError) {
@@ -145,7 +121,6 @@ function Comidas() {
         <div className="flex-grow flex items-center justify-center">
           <div className="text-center">Error {error.message}</div>
         </div>
-        <ToastContainer />
       </main>
     );
   }
@@ -165,20 +140,13 @@ function Comidas() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {availables_menus.map((menu: MenuItem) => (
-                <MenuCard
-                  key={menu.menu.id_menu}
-                  menu={menu}
-                  deleteFoodMutate={deleteFoodMutate}
-                  type={user_type}
-                />
+                <MenuCard key={menu.menu.id_menu} menu={menu} />
               ))}
             </div>
           </div>
-          <div>
-          </div>
+          <div></div>
         </div>
       </div>
-      <ToastContainer />
     </main>
   );
 }

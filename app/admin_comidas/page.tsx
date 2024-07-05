@@ -1,5 +1,6 @@
 "use client";
 import { deleteFood, getMenus } from "@/api/foodAPI";
+import AdminMenuCard from "@/components/AdminMenuCard";
 import MenuCard from "@/components/MenuCard";
 import NavBar from "@/components/NavBar";
 import { MenuItem } from "@/types";
@@ -59,16 +60,6 @@ function Comidas() {
     fetchMenus();
   }, [fetchMenus, reload]);
 
-  useEffect(() => {
-    const updateType = async () => {
-      const { type } = await getUserSession();
-      if (type !== null && type !== undefined) {
-        setType(type);
-      }
-    };
-    updateType();
-  }, []);
-
   const availables_menus: MenuItem[] = [];
   const unavailables_menus: MenuItem[] = [];
 
@@ -84,6 +75,7 @@ function Comidas() {
     mutationFn: deleteFood,
     onSuccess: () => {
       showToastMessage("Menú eliminado correctamente", "success");
+      setMenus([]);
       setReload((prev) => !prev);
     },
     onError: (error) => {
@@ -170,11 +162,10 @@ function Comidas() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {availables_menus.map((menu: MenuItem) => (
-                <MenuCard
+                <AdminMenuCard
                   key={menu.menu.id_menu}
                   menu={menu}
                   deleteFoodMutate={deleteFoodMutate}
-                  type={user_type}
                 />
               ))}
             </div>
@@ -185,11 +176,10 @@ function Comidas() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {unavailables_menus.map((menu: MenuItem) => (
-                <MenuCard
+                <AdminMenuCard
                   key={menu.menu.id_menu}
                   menu={menu}
                   deleteFoodMutate={deleteFoodMutate}
-                  type={user_type}
                 />
               ))}
             </div>

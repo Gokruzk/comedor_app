@@ -175,9 +175,7 @@ export const diningReservation = async (
       reservation_date: reservation.reservation_date,
       reservation_hour: reservation.reservation_hour,
     };
-    console.log(newReservation)
     const res = await foodAPI.post(`/dinings`, newReservation);
-    console.log(res)
     if (res.status == 200) {
       return { status: 200, data: res.data };
     } else {

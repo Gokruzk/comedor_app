@@ -51,8 +51,8 @@ const AgregarMenu = () => {
     if (type === "success") {
       toast.success(mensaje);
       setTimeout(() => {
-        router.push("/comidas");
-      }, 1000);
+        router.push("/admin_comidas");
+      }, 1100);
     } else {
       toast.error(mensaje);
     }
