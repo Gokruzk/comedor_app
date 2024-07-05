@@ -21,10 +21,7 @@ const FoodLayout = ({ children }: { children: React.ReactNode }) => {
       const { user, error, type } = await getUserSession();
       if (error) {
         router.push("/login");
-      } else if (user) {
-        if (type === 0) {
-          router.push("/admin_comidas");
-        }
+      } else if (user && type ===0) {
         authUser(user);
       }
       setIsSuccess(true);
