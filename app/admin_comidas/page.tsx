@@ -91,7 +91,7 @@ function Comidas() {
       <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
         <NavBar
           title="<- Perfil"
-          href="/perfil"
+          href="/admin_perfil"
           nbuttons={2}
           linkbuttons={linkbuttons}
         />

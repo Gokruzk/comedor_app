@@ -23,7 +23,6 @@ export default function LoginF() {
 }
 
 function LoginForm() {
-  const authUser = useStore((state) => state.authUser);
 
   const loginUser = async (formdata: FormData) => {
     const email = formdata.get("email") as string;

@@ -22,10 +22,8 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
       if (error) {
         router.push("/login");
       } else if (user && type === 0) {
-        router.push("/admin_perfil");
         authUser(user);
-      } else if (user) {
-        authUser(user);
+      } else {
         router.push("/perfil");
       }
       setIsSuccess(true);
