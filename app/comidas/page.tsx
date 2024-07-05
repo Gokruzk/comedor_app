@@ -90,7 +90,7 @@ function Comidas() {
   });
 
   const linkbuttons = [
-    { href: "/admin_agregarmenu", title: "Agregar menú" },
+    { href: "/mis_compras", title: "Mis compras" },
     // { href: "/otro_menu", title: "Otro menú" },
     // Agrega más botones según sea necesario
   ];

@@ -122,7 +122,7 @@ export interface Params_Menu {
   };
 }
 
-export interface UpdateMenuForm {
+export interface MenuForm {
   id_menu: string;
 }
 
@@ -143,7 +143,10 @@ export interface DeleteButtonProps {
   style: string;
   onClick(): void;
 }
-
+export interface BuyCardProps {
+  menu: MenuItem;
+  reservationMutation: Function
+}
 export interface NavBarProps {
   title: string;
   href: string;
