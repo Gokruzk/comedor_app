@@ -58,7 +58,7 @@ function LoginForm() {
     },
     onError: (error) => {
       console.log(error);
-      alert("An error occurred during authentication");
+      showToastMessage(`Ocurrió un error de autenticación, ${error}`, "error");
     },
   });
   function togglePasswordVisibility() {
