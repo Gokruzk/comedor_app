@@ -1,18 +1,16 @@
 "use client";
-import { deleteFood, getMenus } from "@/api/foodAPI";
+import { useCallback, useEffect, useState } from "react";
 import AdminMenuCard from "@/components/AdminMenuCard";
-import MenuCard from "@/components/MenuCard";
+import { ToastContainer, toast } from "react-toastify";
+import { deleteFood, getMenus } from "@/api/foodAPI";
+import "react-toastify/dist/ReactToastify.css";
 import NavBar from "@/components/NavBar";
 import { MenuItem } from "@/types";
-import { getUserSession } from "@/utils";
 import {
   QueryClient,
   QueryClientProvider,
   useMutation,
 } from "@tanstack/react-query";
-import { useCallback, useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const queryClient = new QueryClient();
 
@@ -29,14 +27,13 @@ function Comidas() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
   const [error, setError] = useState<any>(null);
-  const [detail, setDetail] = useState<any>(null);
+  const [detail, setDetail] = useState<any>("[]");
   const [reload, setReload] = useState(false);
-  const [user_type, setType] = useState(99);
 
   const fetchMenus = useCallback(async () => {
     try {
-      const { status, data, error } = await getMenus();
-
+      const { status, data, error, detail } = await getMenus();
+      
       if (status === 200) {
         setIsLoading(false);
         setMenus(data); // Actualiza el estado con los datos del menú
