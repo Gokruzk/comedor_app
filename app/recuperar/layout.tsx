@@ -5,7 +5,7 @@ import { getUserSession } from "@/utils";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
+const RecoveryLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const authUser = useStore((state) => state.authUser);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
@@ -97,4 +97,4 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default ProfileLayout;
+export default RecoveryLayout;

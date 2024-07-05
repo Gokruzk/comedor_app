@@ -5,9 +5,11 @@ import DeleteButton from "./DeleteButton";
 export default function MenuCard({
   menu,
   deleteFoodMutate,
+  type,
 }: {
   menu: MenuItem;
   deleteFoodMutate: Function;
+  type: number;
 }) {
   return (
     <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow p-6">
@@ -28,20 +30,24 @@ export default function MenuCard({
       </p>
       <div className="flex space-x-2">
         <LinkButton
-          href={`/comprar_menu/${menu.menu.id_menu}`}
+          href={`/compra/${menu.menu.id_menu}`}
           style="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           title="Comprar"
         />
-        <LinkButton
-          href={`/comidas/${menu.menu.id_menu}`}
-          style="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          title="Actualizar"
-        />
-        <DeleteButton
-          title="Eliminar"
-          style="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
-          onClick={() => deleteFoodMutate(menu.menu.id_menu?.toString())}
-        />
+        {type === 0 && (
+          <>
+            <LinkButton
+              href={`/comidas/${menu.menu.id_menu}`}
+              style="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              title="Actualizar"
+            />
+            <DeleteButton
+              title="Eliminar"
+              style="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+              onClick={() => deleteFoodMutate(menu.menu.id_menu?.toString())}
+            />
+          </>
+        )}
       </div>
     </div>
   );

@@ -5,9 +5,9 @@ export async function getUserSession(): Promise<UserResponse> {
   try {
     const { data } = await axios.get("/me");
     return {
-      user: data.usuario,
+      user: data.email,
       error: null,
-      type: data.type
+      type: data.type,
     };
   } catch (e) {
     return {

@@ -1,10 +1,10 @@
-import { UserName, UserSt } from "@/types";
+import { UserSt } from "@/types";
 import { create } from "zustand";
 
 const useStore = create<UserSt>((set) => ({
-  username: null,
-  authUser: (username: UserName) => set({ username }),
-  removeSession: () => set({ username: null }),
+  email: null,
+  authUser: (email: string) => set({ email }),
+  removeSession: () => set({ email: null }),
 }));
 
 export default useStore;

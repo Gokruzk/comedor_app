@@ -4,12 +4,13 @@ import MenuCard from "@/components/MenuCard";
 import NavBar from "@/components/NavBar";
 import userStore from "@/store/auth/userStore";
 import { MenuItem } from "@/types";
+import { getUserSession } from "@/utils";
 import {
   QueryClient,
   QueryClientProvider,
   useMutation,
 } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -30,10 +31,12 @@ function Comidas() {
   const [error, setError] = useState<any>(null);
   const [detail, setDetail] = useState<any>(null);
   const [reload, setReload] = useState(false);
+  const [user_type, setType] = useState(99);
 
-  const fetchMenus = async () => {
+  const fetchMenus = useCallback(async () => {
     try {
       const { status, data, error } = await getMenus();
+
       if (status === 200) {
         setIsLoading(false);
         setMenus(data); // Actualiza el estado con los datos del menú
@@ -51,11 +54,21 @@ function Comidas() {
       setIsError(true);
       setError(error);
     }
-  };
+  }, [setIsLoading, setMenus, setDetail, setIsError, setError]);
 
   useEffect(() => {
     fetchMenus();
-  }, [reload]);
+  }, [fetchMenus, reload]);
+
+  useEffect(() => {
+    const updateType = async () => {
+      const { type } = await getUserSession();
+      if (type !== null && type !== undefined) {
+        setType(type);
+      }
+    };
+    updateType();
+  }, []);
 
   const availables_menus: MenuItem[] = [];
   const unavailables_menus: MenuItem[] = [];
@@ -162,6 +175,7 @@ function Comidas() {
                   key={menu.menu.id_menu}
                   menu={menu}
                   deleteFoodMutate={deleteFoodMutate}
+                  type={user_type}
                 />
               ))}
             </div>
@@ -176,6 +190,7 @@ function Comidas() {
                   key={menu.menu.id_menu}
                   menu={menu}
                   deleteFoodMutate={deleteFoodMutate}
+                  type={user_type}
                 />
               ))}
             </div>

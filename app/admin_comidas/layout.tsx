@@ -9,7 +9,7 @@ import userStore from "@/store/auth/userStore";
 import { logout } from "@/api/userAPI";
 import { getUserSession } from "@/utils";
 
-const FoodLayout = ({ children }: { children: React.ReactNode }) => {
+const AdminFoodLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const authUser = useStore((state) => state.authUser);
   const { removeSession } = userStore();
@@ -127,4 +127,4 @@ const FoodLayout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default FoodLayout;
+export default AdminFoodLayout;

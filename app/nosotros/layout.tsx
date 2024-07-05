@@ -3,7 +3,7 @@
 import LinkButton from "@/components/LinkButton";
 import { APP_NAME } from "@/constants";
 
-const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
+const UsLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main>
       <header>
@@ -78,4 +78,4 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default ProfileLayout;
+export default UsLayout;

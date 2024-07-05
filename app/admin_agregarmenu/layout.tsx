@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { APP_NAME } from "@/constants";
 import { getUserSession } from "@/utils";
 
-const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
+const AdminAgLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const authUser = useStore((state) => state.authUser);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
@@ -101,4 +101,4 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default ProfileLayout;
+export default AdminAgLayout;

@@ -49,6 +49,13 @@ export interface DiningReservation {
   reserve_status: ReserveStatus;
 }
 
+export interface CreateDiningReservation {
+  id_menu: number;
+  email: string;
+  reservation_date: string;
+  reservation_hour: string;
+}
+
 export interface Menu {
   id_menu?: number;
   id_menu_type: number;
@@ -88,18 +95,18 @@ export interface UserLogin {
 }
 
 export interface UserName {
-  user_name: string;
+  email: string;
 }
 
 export interface UserResponse {
-  user?: UserName;
+  user?: string;
   error: AxiosError | null;
-  type?: number;
+  type?: number | null;
 }
 
 export interface UserSt {
-  username: UserName | null;
-  authUser: (user: UserName) => void;
+  email: string | null;
+  authUser: (email: string) => void;
   removeSession: () => void;
 }
 
