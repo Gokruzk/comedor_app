@@ -1,5 +1,5 @@
 "use client";
-import { deleteFood, getMenus } from "@/api/foodAPI";
+import { deleteFood, getMenus, getUserMenus } from "@/api/foodAPI";
 import MenuCard from "@/components/MenuCard";
 import NavBar from "@/components/NavBar";
 import { MenuItem } from "@/types";
@@ -34,8 +34,8 @@ function Comidas() {
 
   const fetchMenus = useCallback(async () => {
     try {
-      const { status, data, error } = await getMenus();
-
+      const { status, data, error } = await getUserMenus();
+      console.log(data)
       if (status === 200) {
         setIsLoading(false);
         setMenus(data); // Actualiza el estado con los datos del menú
@@ -70,7 +70,6 @@ function Comidas() {
   }, []);
 
   const availables_menus: MenuItem[] = [];
-  const unavailables_menus: MenuItem[] = [];
 
   const showToastMessage = (mensaje: string, type: "success" | "error") => {
     if (type === "success") {
@@ -116,8 +115,6 @@ function Comidas() {
     menus.map((menu: MenuItem) => {
       if (menu.menu.status === true) {
         availables_menus.push(menu);
-      } else {
-        unavailables_menus.push(menu);
       }
     });
   }
@@ -180,19 +177,6 @@ function Comidas() {
             </div>
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              Menús no disponibles
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {unavailables_menus.map((menu: MenuItem) => (
-                <MenuCard
-                  key={menu.menu.id_menu}
-                  menu={menu}
-                  deleteFoodMutate={deleteFoodMutate}
-                  type={user_type}
-                />
-              ))}
-            </div>
           </div>
         </div>
       </div>

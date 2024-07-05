@@ -38,6 +38,32 @@ export const getMenus = async () => {
   return { status: 400, error: "Error consultando menús" };
 };
 
+export const getUserMenus = async () => {
+  const token = cookies().get(COOKIE_NAME)?.value;
+  try {
+    const res = await foodAPI.get(`/menus`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(res.data)
+    if (res.status == 200) {
+      return { status: 200, data: res.data };
+    } else {
+      return { status: 400, error: "Error consultando menús" };
+    }
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      return {
+        status: error.response?.status,
+        errors: error.response,
+        detail: error.response?.data.detail,
+      };
+    }
+  }
+  return { status: 400, error: "Error consultando menús" };
+};
+
 export const getMenusUser = async () => {
   try {
     const res = await foodAPI.get(`/menus`);

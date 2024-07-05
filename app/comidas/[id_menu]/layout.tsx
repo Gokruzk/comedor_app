@@ -9,7 +9,7 @@ import userStore from "@/store/auth/userStore";
 import { logout } from "@/api/userAPI";
 import { getUserSession } from "@/utils";
 
-const AdminFoodLayout = ({ children }: { children: React.ReactNode }) => {
+const FoodLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const authUser = useStore((state) => state.authUser);
   const { removeSession } = userStore();
@@ -21,10 +21,8 @@ const AdminFoodLayout = ({ children }: { children: React.ReactNode }) => {
       const { user, error, type } = await getUserSession();
       if (error) {
         router.push("/login");
-      } else if (user && type === 0) {
+      } else if (user) {
         authUser(user);
-      } else {
-        router.push("/comidas");
       }
       setIsSuccess(true);
     })();
@@ -127,4 +125,4 @@ const AdminFoodLayout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default AdminFoodLayout;
+export default FoodLayout;
