@@ -13,21 +13,26 @@ const userAPI = axios.create({
   baseURL: API_URL,
 });
 
-//get user
+// get user
 
-// export const getUser = async (usuario: string) => {
-//   try {
-//     const res = await userAPI.get(`/user/id/${usuario}`);
-//     if (res.status == 200) {
-//       return { status: 200, data: res.data };
-//     } else {
-//       return { status: 400, error: "The user does not exist" };
-//     }
-//   } catch (error) {
-//     console.log(error);
-//   }
-//   return { status: 400, error: "The user does not exist" };
-// };
+export const getUser = async (email: string) => {
+  const token = cookies().get(COOKIE_NAME)?.value;
+  try {
+    const res = await userAPI.get(`/users/email/${email}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (res.status == 200) {
+      return { status: 200, data: res.data };
+    } else {
+      return { status: 400, error: "The user does not exist" };
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  return { status: 400, error: "The user does not exist" };
+};
 
 export const addUser = async (user: User) => {
   try {

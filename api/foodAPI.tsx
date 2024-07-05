@@ -1,8 +1,9 @@
-"use server"
+"use server";
 import { COOKIE_NAME } from "@/constants";
-import { Menu } from "@/types";
+import { CreateDiningReservation, Menu } from "@/types";
 import axios from "axios";
 import { cookies } from "next/headers";
+import { getUser } from "./userAPI";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -26,13 +27,12 @@ export const getMenus = async () => {
       return { status: 400, error: "Error consultando menús" };
     }
   } catch (error: unknown) {
-    if(axios.isAxiosError(error)){
-      return {status: error.response?.status}
-      // return {
-      //   status: error.response?.status,
-      //   errors: error.response,
-      //   detail: error.response?.data.detail,
-      // };
+    if (axios.isAxiosError(error)) {
+      return {
+        status: error.response?.status,
+        errors: error.response,
+        detail: error.response?.data.detail,
+      };
     }
   }
   return { status: 400, error: "Error consultando menús" };
@@ -128,6 +128,38 @@ export const deleteFood = async (id_menu: string) => {
       return { status: 400, error: "El menú no existe" };
     }
   } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      return {
+        status: error.response?.status,
+        errors: error.response,
+        detail: error.response?.data.detail,
+      };
+    }
+  }
+  return { status: 400, error: "El menú no existe" };
+};
+
+export const diningReservation = async (
+  reservation: CreateDiningReservation
+) => {
+  try {
+    const user = await getUser(reservation.email);
+    const newReservation = {
+      id_menu: reservation.id_menu,
+      id_user: user.data.user.id_user,
+      reservation_date: reservation.reservation_date,
+      reservation_hour: reservation.reservation_hour,
+    };
+    console.log(newReservation)
+    const res = await foodAPI.post(`/dinings`, newReservation);
+    console.log(res)
+    if (res.status == 200) {
+      return { status: 200, data: res.data };
+    } else {
+      return { status: 400, error: "El menú no existe" };
+    }
+  } catch (error: unknown) {
+    console.log(error)
     if (axios.isAxiosError(error)) {
       return {
         status: error.response?.status,
