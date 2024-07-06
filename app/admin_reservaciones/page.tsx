@@ -1,10 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import {
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { UserReservation } from "@/types";
 import { ToastContainer, toast } from "react-toastify";
@@ -36,6 +33,7 @@ const ViewAllReservations = () => {
       const { status, data, error, detail } = await getDinings();
 
       if (status === 200) {
+        setDetail("");
         setIsLoading(false);
         setReservations(data); // Actualiza el estado con los datos del menú
       } else if (status === 404) {
@@ -57,17 +55,6 @@ const ViewAllReservations = () => {
   useEffect(() => {
     fetchReservations();
   }, [fetchReservations]);
-
-  const showToastMessage = (mensaje: string, type: "success" | "error") => {
-    if (type === "success") {
-      toast.success(mensaje);
-      setTimeout(() => {
-        router.push("/admin_comidas");
-      }, 1100);
-    } else {
-      toast.error(mensaje);
-    }
-  };
 
   const reservations_: UserReservation[] = [];
 
