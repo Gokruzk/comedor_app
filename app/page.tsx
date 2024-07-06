@@ -39,7 +39,7 @@ export default function Home() {
           </div>¨
 
           <p className="text-black">
-            <LinkButton href="/nosotros"  style="" title="BORRAR ESTO AL FINAL"/>
+            <LinkButton href="/comidas"  style="" title="BORRAR ESTO AL FINAL"/>
           </p>
          </div>
       </div>
