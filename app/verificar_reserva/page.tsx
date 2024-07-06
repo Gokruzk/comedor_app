@@ -1,0 +1,88 @@
+"use client";
+import {
+  QueryClient,
+  QueryClientProvider,
+  useMutation,
+} from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
+import { useCallback, useEffect, useState } from "react";
+import { verifyQR } from "@/api/foodAPI";
+import { IDetectedBarcode, Scanner } from "@yudiel/react-qr-scanner";
+import LinkButton from "@/components/LinkButton";
+import "react-toastify/dist/ReactToastify.css";
+
+const queryClient = new QueryClient();
+
+export default function VerifyReservation() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <VerifyR />
+    </QueryClientProvider>
+  );
+}
+
+const VerifyR = () => {
+  const [codeData, setCodeData] = useState();
+  const [isScanning, setIsScanning] = useState<boolean>(true);
+  const [isVerifying, setIsVerifying] = useState<boolean>(false);
+  const router = useRouter();
+
+  const showToastMessage = useCallback(
+    (mensaje: string, type: "success" | "error") => {
+      if (type === "success") {
+        toast.success(mensaje, {});
+      } else {
+        toast.error(mensaje, {});
+      }
+    },
+    []
+  );
+
+  const verifyReservationMutation = useMutation({
+    mutationFn: verifyQR,
+    onSuccess: (data) => {
+      if (data.status === 200 && data.data.valid) {
+        showToastMessage("Su compra ha sido verificada", "success");
+      } else {
+        showToastMessage(data.data.detail, "error");
+      }
+    },
+    onError: (error) => {
+      console.log(error);
+      showToastMessage(`${error}`, "error");
+    },
+  });
+
+  useEffect(() => {
+    if (codeData) {
+      verifyReservationMutation.mutate(codeData);
+    }
+  },[codeData]);
+
+  const handleScan = (result: IDetectedBarcode[]) => {
+    if (result[0].rawValue) {
+      setCodeData(JSON.parse(result[0].rawValue));
+    }
+  };
+
+  return (
+    <main className="bg-gray-50 dark:bg-gray-900">
+      <div className="flex flex-col items-center justify-center px-20 py-8 mx-auto md:h-screen lg:py-0">
+        <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+          <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+            <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+              <LinkButton
+                title="<- Regresar"
+                href="/admin_perfil"
+                style="font-medium text-primary-600 hover:underline dark:text-primary-500"
+              />
+            </p>
+            {isScanning && <Scanner onScan={handleScan} />}
+          </div>
+        </div>
+      </div>
+      <ToastContainer />
+    </main>
+  );
+};

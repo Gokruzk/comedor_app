@@ -1,10 +1,13 @@
 import { MenuItem } from "@/types";
 import LinkButton from "./LinkButton";
+import DeleteButton from "./DeleteButton";
 
-export default function MenuCard({
+export default function AdminMenuCard({
   menu,
+  deleteFoodMutate,
 }: {
   menu: MenuItem;
+  deleteFoodMutate: Function;
 }) {
   return (
     <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow p-6">
@@ -28,6 +31,16 @@ export default function MenuCard({
           href={`/compra/${menu.menu.id_menu}`}
           style="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           title="Comprar"
+        />
+        <LinkButton
+          href={`/admin_comidas/${menu.menu.id_menu}`}
+          style="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          title="Actualizar"
+        />
+        <DeleteButton
+          title="Eliminar"
+          style="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+          onClick={() => deleteFoodMutate(menu.menu.id_menu?.toString())}
         />
       </div>
     </div>

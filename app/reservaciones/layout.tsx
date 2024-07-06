@@ -6,11 +6,11 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { APP_NAME } from "@/constants";
 import { getUserSession } from "@/utils";
-import { logout } from "@/api/userAPI";
-import userStore from "@/store/auth/userStore";
 import LogoutButton from "@/components/LogoutButton";
+import userStore from "@/store/auth/userStore";
+import { logout } from "@/api/userAPI";
 
-const AdminAgLayout = ({ children }: { children: React.ReactNode }) => {
+const AdminReservaciones = ({ children }: { children: React.ReactNode }) => {
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const authUser = useStore((state) => state.authUser);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -22,10 +22,11 @@ const AdminAgLayout = ({ children }: { children: React.ReactNode }) => {
       const { user, error, type } = await getUserSession();
       if (error) {
         router.push("/login");
-      } else if (user && type === 0) {
+      } else if (user && type !== 0) {
         authUser(user);
-      } else {
-        router.push("/comidas");
+      } else if (user && type === 0) {
+        router.push("/admin_reservaciones");
+        authUser(user);
       }
       //If the user is logged
       setIsSuccess(true);
@@ -127,4 +128,4 @@ const AdminAgLayout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default AdminAgLayout;
+export default AdminReservaciones;

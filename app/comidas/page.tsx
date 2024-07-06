@@ -1,17 +1,10 @@
 "use client";
-import { deleteFood, getMenus, getUserMenus } from "@/api/foodAPI";
+import { getUserMenus } from "@/api/foodAPI";
 import MenuCard from "@/components/MenuCard";
 import NavBar from "@/components/NavBar";
 import { MenuItem } from "@/types";
-import { getUserSession } from "@/utils";
-import {
-  QueryClient,
-  QueryClientProvider,
-  useMutation,
-} from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useCallback, useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const queryClient = new QueryClient();
 
@@ -28,19 +21,21 @@ function Comidas() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
   const [error, setError] = useState<any>(null);
-  const [detail, setDetail] = useState<any>(null);
-  const [reload, setReload] = useState(false);
-  const [user_type, setType] = useState(99);
+  const [detail_, setDetail] = useState<string>("[]");
+  const [status, setStatus] = useState(0);
 
   const fetchMenus = useCallback(async () => {
     try {
-      const { status, data, error } = await getUserMenus();
+      const { status, data, error, detail } = await getUserMenus();
+      
       if (status === 200) {
         setIsLoading(false);
         setMenus(data); // Actualiza el estado con los datos del menú
+        setDetail("");
       } else if (status === 404) {
+        setStatus(status);
         setIsLoading(false);
-        setDetail("[]");
+        setDetail(detail);
         setMenus([]);
       } else {
         setIsLoading(false);
@@ -56,46 +51,19 @@ function Comidas() {
 
   useEffect(() => {
     fetchMenus();
-  }, [fetchMenus, reload]);
-
-  useEffect(() => {
-    const updateType = async () => {
-      const { type } = await getUserSession();
-      if (type !== null && type !== undefined) {
-        setType(type);
-      }
-    };
-    updateType();
-  }, []);
+  }, [fetchMenus]);
 
   const availables_menus: MenuItem[] = [];
 
-  const showToastMessage = (mensaje: string, type: "success" | "error") => {
-    if (type === "success") {
-      toast.success(mensaje);
-    } else {
-      toast.error(mensaje);
-    }
-  };
-
-  const { mutate: deleteFoodMutate } = useMutation({
-    mutationFn: deleteFood,
-    onSuccess: () => {
-      showToastMessage("Menú eliminado correctamente", "success");
-      setReload((prev) => !prev);
-    },
-    onError: (error) => {
-      showToastMessage(`Error eliminando el menú: ${error.message}`, "error");
-    },
-  });
-
   const linkbuttons = [
-    { href: "/admin_agregarmenu", title: "Agregar menú" },
+    { href: "/mis_compras", title: "Mis compras" },
     // { href: "/otro_menu", title: "Otro menú" },
     // Agrega más botones según sea necesario
   ];
 
-  if (detail === "[]") {
+  console.log(status)
+
+  if (detail_ === "[]") {
     return (
       <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
         <NavBar
@@ -107,7 +75,6 @@ function Comidas() {
         <div className="flex-grow flex items-center justify-center">
           <div className="text-center">No hay menús</div>
         </div>
-        <ToastContainer />
       </main>
     );
   } else {
@@ -130,7 +97,6 @@ function Comidas() {
         <div className="flex-grow flex items-center justify-center">
           <div className="text-center">Loading...</div>
         </div>
-        <ToastContainer />
       </main>
     );
   } else if (isError) {
@@ -145,7 +111,6 @@ function Comidas() {
         <div className="flex-grow flex items-center justify-center">
           <div className="text-center">Error {error.message}</div>
         </div>
-        <ToastContainer />
       </main>
     );
   }
@@ -165,20 +130,13 @@ function Comidas() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {availables_menus.map((menu: MenuItem) => (
-                <MenuCard
-                  key={menu.menu.id_menu}
-                  menu={menu}
-                  deleteFoodMutate={deleteFoodMutate}
-                  type={user_type}
-                />
+                <MenuCard key={menu.menu.id_menu} menu={menu} />
               ))}
             </div>
           </div>
-          <div>
-          </div>
+          <div></div>
         </div>
       </div>
-      <ToastContainer />
     </main>
   );
 }

@@ -13,7 +13,21 @@ export interface User {
   created_date: string;
   user_type?: UserType;
   card?: Card;
-  dining_reservations?: DiningReservation;
+}
+
+export interface UserInfo{
+  user: User
+}
+export interface UserReservation extends User {
+  user: UserInfo
+  reservation: DiningReservationBase;
+  menu: MenuItem;
+  reservestatus: ReserveStatus;
+}
+
+export interface ReserveStatus {
+  id_status: number;
+  reserve_status: string;
 }
 
 export interface UserType {
@@ -36,6 +50,17 @@ export interface Suggest {
   created_date: string;
 }
 
+export interface DiningReservationBase {
+  id_reservation: number;
+  id_menu: number;
+  id_user: number;
+  id_status: number;
+  reservation_date: string;
+  reservation_hour: string;
+  created_date: string;
+  total_cost: number;
+}
+
 export interface DiningReservation {
   id_reservation: number;
   id_menu: number;
@@ -47,6 +72,10 @@ export interface DiningReservation {
   total_cost: number;
   menu: Menu;
   reserve_status: ReserveStatus;
+}
+
+export interface DiningItem {
+  reservation: DiningReservation;
 }
 
 export interface CreateDiningReservation {
@@ -122,7 +151,7 @@ export interface Params_Menu {
   };
 }
 
-export interface UpdateMenuForm {
+export interface MenuForm {
   id_menu: string;
 }
 
@@ -143,7 +172,10 @@ export interface DeleteButtonProps {
   style: string;
   onClick(): void;
 }
-
+export interface BuyCardProps {
+  menu: MenuItem;
+  reservationMutation: Function;
+}
 export interface NavBarProps {
   title: string;
   href: string;

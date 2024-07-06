@@ -6,11 +6,11 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { APP_NAME } from "@/constants";
 import { getUserSession } from "@/utils";
+import LogoutButton from "@/components/LogoutButton";
 import { logout } from "@/api/userAPI";
 import userStore from "@/store/auth/userStore";
-import LogoutButton from "@/components/LogoutButton";
 
-const AdminAgLayout = ({ children }: { children: React.ReactNode }) => {
+const AdminReservaciones = ({ children }: { children: React.ReactNode }) => {
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const authUser = useStore((state) => state.authUser);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -24,8 +24,9 @@ const AdminAgLayout = ({ children }: { children: React.ReactNode }) => {
         router.push("/login");
       } else if (user && type === 0) {
         authUser(user);
-      } else {
-        router.push("/comidas");
+      } else if (user) {
+        router.push("/perfil");
+        authUser(user);
       }
       //If the user is logged
       setIsSuccess(true);
@@ -62,17 +63,16 @@ const AdminAgLayout = ({ children }: { children: React.ReactNode }) => {
               href="/"
               className="flex items-center space-x-3 rtl:space-x-reverse"
             >
-              {/* <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Flowbite Logo" /> */}
               <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
                 {APP_NAME}
               </span>
             </a>
             <button
-              data-collapse-toggle="navbar-dropdown"
+              onClick={toggleMenu} // Toggle menu visibility
               type="button"
               className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
               aria-controls="navbar-dropdown"
-              aria-expanded="false"
+              aria-expanded={menuOpen ? "true" : "false"} // Toggle aria-expanded attribute
             >
               <span className="sr-only">Open main menu</span>
               <svg
@@ -92,7 +92,9 @@ const AdminAgLayout = ({ children }: { children: React.ReactNode }) => {
               </svg>
             </button>
             <div
-              className="hidden w-full md:block md:w-auto"
+              className={`md:flex ${
+                menuOpen ? "block" : "hidden"
+              } w-full md:w-auto`}
               id="navbar-dropdown"
             >
               <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
@@ -127,4 +129,4 @@ const AdminAgLayout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default AdminAgLayout;
+export default AdminReservaciones;

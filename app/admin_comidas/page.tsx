@@ -1,17 +1,16 @@
 "use client";
+import { useCallback, useEffect, useState } from "react";
+import AdminMenuCard from "@/components/AdminMenuCard";
+import { ToastContainer, toast } from "react-toastify";
 import { deleteFood, getMenus } from "@/api/foodAPI";
-import MenuCard from "@/components/MenuCard";
+import "react-toastify/dist/ReactToastify.css";
 import NavBar from "@/components/NavBar";
 import { MenuItem } from "@/types";
-import { getUserSession } from "@/utils";
 import {
   QueryClient,
   QueryClientProvider,
   useMutation,
 } from "@tanstack/react-query";
-import { useCallback, useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const queryClient = new QueryClient();
 
@@ -28,20 +27,20 @@ function Comidas() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
   const [error, setError] = useState<any>(null);
-  const [detail, setDetail] = useState<any>(null);
+  const [detail_, setDetail] = useState<string>("[]");
   const [reload, setReload] = useState(false);
-  const [user_type, setType] = useState(99);
 
   const fetchMenus = useCallback(async () => {
     try {
-      const { status, data, error } = await getMenus();
+      const { status, data, error, detail } = await getMenus();
 
       if (status === 200) {
+        setDetail("");
         setIsLoading(false);
         setMenus(data); // Actualiza el estado con los datos del menú
       } else if (status === 404) {
         setIsLoading(false);
-        setDetail("[]");
+        setDetail(detail);
         setMenus([]);
       } else {
         setIsLoading(false);
@@ -59,16 +58,6 @@ function Comidas() {
     fetchMenus();
   }, [fetchMenus, reload]);
 
-  useEffect(() => {
-    const updateType = async () => {
-      const { type } = await getUserSession();
-      if (type !== null && type !== undefined) {
-        setType(type);
-      }
-    };
-    updateType();
-  }, []);
-
   const availables_menus: MenuItem[] = [];
   const unavailables_menus: MenuItem[] = [];
 
@@ -84,7 +73,9 @@ function Comidas() {
     mutationFn: deleteFood,
     onSuccess: () => {
       showToastMessage("Menú eliminado correctamente", "success");
+      setMenus([]);
       setReload((prev) => !prev);
+      setDetail("[]");
     },
     onError: (error) => {
       showToastMessage(`Error eliminando el menú: ${error.message}`, "error");
@@ -97,12 +88,12 @@ function Comidas() {
     // Agrega más botones según sea necesario
   ];
 
-  if (detail === "[]") {
+  if (detail_ === "[]") {
     return (
       <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
         <NavBar
           title="<- Perfil"
-          href="/perfil"
+          href="/admin_perfil"
           nbuttons={2}
           linkbuttons={linkbuttons}
         />
@@ -127,7 +118,7 @@ function Comidas() {
       <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
         <NavBar
           title="<- Perfil"
-          href="/perfil"
+          href="/admin_perfil"
           nbuttons={2}
           linkbuttons={linkbuttons}
         />
@@ -142,7 +133,7 @@ function Comidas() {
       <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
         <NavBar
           title="<- Perfil"
-          href="/perfil"
+          href="/admin_perfil"
           nbuttons={2}
           linkbuttons={linkbuttons}
         />
@@ -158,7 +149,7 @@ function Comidas() {
     <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
       <NavBar
         title="<- Perfil"
-        href="/perfil"
+        href="/admin_perfil"
         nbuttons={2}
         linkbuttons={linkbuttons}
       />
@@ -170,11 +161,10 @@ function Comidas() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {availables_menus.map((menu: MenuItem) => (
-                <MenuCard
+                <AdminMenuCard
                   key={menu.menu.id_menu}
                   menu={menu}
                   deleteFoodMutate={deleteFoodMutate}
-                  type={user_type}
                 />
               ))}
             </div>
@@ -185,11 +175,10 @@ function Comidas() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {unavailables_menus.map((menu: MenuItem) => (
-                <MenuCard
+                <AdminMenuCard
                   key={menu.menu.id_menu}
                   menu={menu}
                   deleteFoodMutate={deleteFoodMutate}
-                  type={user_type}
                 />
               ))}
             </div>

@@ -7,7 +7,7 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { Menu, MenuItem, Params_Menu, UpdateMenuForm, User } from "@/types";
+import { Menu, MenuForm, MenuItem, Params_Menu, User } from "@/types";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "react-hook-form";
@@ -25,7 +25,7 @@ export default function UpMenu({ params }: Params_Menu) {
   );
 }
 
-const UpdateMenu = ({ id_menu }: UpdateMenuForm) => {
+const UpdateMenu = ({ id_menu }: MenuForm) => {
   const router = useRouter();
   const { register, handleSubmit } = useForm();
   const [selectedTime, setSelectedTime] = useState(0);
@@ -171,7 +171,7 @@ const UpdateMenu = ({ id_menu }: UpdateMenuForm) => {
                 >
                   Descripción del menú
                 </label>
-                <input
+                <textarea
                   id="menu_description"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Descripción del menú"
