@@ -27,14 +27,15 @@ function Comidas() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
   const [error, setError] = useState<any>(null);
-  const [detail, setDetail] = useState<any>(null);
+  const [detail_, setDetail] = useState<string>("[]");
   const [reload, setReload] = useState(false);
 
   const fetchMenus = useCallback(async () => {
     try {
       const { status, data, error, detail } = await getMenus();
-      
+
       if (status === 200) {
+        setDetail("");
         setIsLoading(false);
         setMenus(data); // Actualiza el estado con los datos del menú
       } else if (status === 404) {
@@ -74,6 +75,7 @@ function Comidas() {
       showToastMessage("Menú eliminado correctamente", "success");
       setMenus([]);
       setReload((prev) => !prev);
+      setDetail("[]");
     },
     onError: (error) => {
       showToastMessage(`Error eliminando el menú: ${error.message}`, "error");
@@ -86,7 +88,7 @@ function Comidas() {
     // Agrega más botones según sea necesario
   ];
 
-  if (detail === "[]") {
+  if (detail_ === "[]") {
     return (
       <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
         <NavBar

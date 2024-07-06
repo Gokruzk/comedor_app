@@ -3,11 +3,7 @@ import { getUserMenus } from "@/api/foodAPI";
 import MenuCard from "@/components/MenuCard";
 import NavBar from "@/components/NavBar";
 import { MenuItem } from "@/types";
-import { getUserSession } from "@/utils";
-import {
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useCallback, useEffect, useState } from "react";
 
 const queryClient = new QueryClient();
@@ -25,17 +21,19 @@ function Comidas() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
   const [error, setError] = useState<any>(null);
-  const [detail, setDetail] = useState<any>(null);
-  const [reload, setReload] = useState(false);
-  const [user_type, setType] = useState(99);
+  const [detail_, setDetail] = useState<string>("[]");
+  const [status, setStatus] = useState(0);
 
   const fetchMenus = useCallback(async () => {
     try {
       const { status, data, error, detail } = await getUserMenus();
+      
       if (status === 200) {
         setIsLoading(false);
         setMenus(data); // Actualiza el estado con los datos del menú
+        setDetail("");
       } else if (status === 404) {
+        setStatus(status);
         setIsLoading(false);
         setDetail(detail);
         setMenus([]);
@@ -53,17 +51,7 @@ function Comidas() {
 
   useEffect(() => {
     fetchMenus();
-  }, [fetchMenus, reload]);
-
-  useEffect(() => {
-    const updateType = async () => {
-      const { type } = await getUserSession();
-      if (type !== null && type !== undefined) {
-        setType(type);
-      }
-    };
-    updateType();
-  }, []);
+  }, [fetchMenus]);
 
   const availables_menus: MenuItem[] = [];
 
@@ -73,7 +61,9 @@ function Comidas() {
     // Agrega más botones según sea necesario
   ];
 
-  if (detail === "[]") {
+  console.log(status)
+
+  if (detail_ === "[]") {
     return (
       <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
         <NavBar
