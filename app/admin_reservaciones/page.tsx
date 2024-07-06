@@ -30,8 +30,7 @@ const ViewAllReservations = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
   const [error, setError] = useState<any>(null);
-  const [detail, setDetail] = useState<any>(null);
-  const [reload, setReload] = useState(false);
+  const [detail_, setDetail] = useState<string>("[]");
 
   const fetchReservations = useCallback(async () => {
     try {
@@ -58,7 +57,7 @@ const ViewAllReservations = () => {
 
   useEffect(() => {
     fetchReservations();
-  }, [fetchReservations, reload]);
+  }, [fetchReservations]);
 
   const showToastMessage = (mensaje: string, type: "success" | "error") => {
     if (type === "success") {
@@ -73,7 +72,7 @@ const ViewAllReservations = () => {
 
   const reservations_: UserReservation[] = [];
 
-  if (detail === "[]") {
+  if (detail_ === "[]") {
     return (
       <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
         <div className="flex-grow flex items-center justify-center">
