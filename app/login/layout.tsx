@@ -24,7 +24,7 @@ const LoginLayout = ({ children }: { children: React.ReactNode }) => {
 
   if (!isSuccess) {
     return (
-      <main>
+      <main className="bg-white h-screen text-black">
         <p>Loading...</p>
       </main>
     );
