@@ -3,7 +3,6 @@ import NavBar from "@/components/NavBar";
 export default function Profile() {
   const linkbuttons = [
     { href: "/comidas", title: "Ver menús" },
-    { href: "/reservaciones", title: "Mis reservaciones" },
     { href: "/cuenta", title: "Mi cuenta" },
   ];
   return (
@@ -11,7 +10,7 @@ export default function Profile() {
       <NavBar
         title="<- Regresar"
         href="/"
-        nbuttons={3}
+        nbuttons={2}
         linkbuttons={linkbuttons}
       />
       <div className="flex-grow flex items-center justify-center">

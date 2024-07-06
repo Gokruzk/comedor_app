@@ -6,11 +6,16 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { APP_NAME } from "@/constants";
 import { getUserSession } from "@/utils";
+import LogoutButton from "@/components/LogoutButton";
+import userStore from "@/store/auth/userStore";
+import { logout } from "@/api/userAPI";
 
 const AdminReservaciones = ({ children }: { children: React.ReactNode }) => {
-  const router = useRouter();
-  const authUser = useStore((state) => state.authUser);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const authUser = useStore((state) => state.authUser);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const { removeSession } = userStore();
+  const router = useRouter();
 
   useEffect(() => {
     (async () => {
@@ -27,6 +32,20 @@ const AdminReservaciones = ({ children }: { children: React.ReactNode }) => {
       setIsSuccess(true);
     })();
   }, [router, authUser]);
+
+  const handleLogout = async () => {
+    const result = await logout();
+    if (result.status === 200) {
+      router.push("/login");
+      removeSession();
+    } else {
+      console.error(result.error);
+    }
+  };
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   if (!isSuccess) {
     return (
@@ -81,8 +100,15 @@ const AdminReservaciones = ({ children }: { children: React.ReactNode }) => {
                 <li>
                   <LinkButton
                     href="/"
-                    style="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent"
+                    style="alingn-center block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                     title="Inicio"
+                  />
+                </li>
+                <li>
+                  <LogoutButton
+                    style="alingn-center block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                    title="Cerrar sesión"
+                    onClick={handleLogout}
                   />
                 </li>
                 <li>
