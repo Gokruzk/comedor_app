@@ -79,7 +79,7 @@ function LoginForm() {
   return (
     <main className="bg-gray-50 dark:bg-gray-100">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <div className="w-full bg-white rounded-3xl shadow-2xl dark:border md:mt-0 sm:max-w-4xl h-3/6 xl:p-0 dark:border-white grid grid-cols-2 justify-center items-center">
+        <div className="w-full bg-white rounded-3xl shadow-2xl dark:border md:mt-0 sm:max-w-4xl xl:p-0 dark:border-white grid grid-cols-2 justify-center items-center">
           
           {/* seccion de codigo para la imagen*/}
           <div className="flex justify-center items-center p-6 space-y-4 md:space-y-6 sm:p-8">
