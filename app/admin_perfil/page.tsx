@@ -5,7 +5,7 @@ export default function AdminProfile() {
     const linkbuttons = [
       { href: "/admin_comidas", title: "Ver menús" },
       { href: "/admin_reservaciones", title: "Ver reservaciones" },
-      { href: "/verificar_reservación", title: "Verificar reservación" },
+      { href: "/verificar_reserva", title: "Verificar reservación" },
     ];
   return (
     <main className="bg-gray-50 dark:bg-gray-900 min-h-full flex">

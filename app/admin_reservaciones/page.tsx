@@ -36,7 +36,7 @@ const ViewAllReservations = () => {
   const fetchReservations = useCallback(async () => {
     try {
       const { status, data, error, detail } = await getDinings();
-      
+
       if (status === 200) {
         setIsLoading(false);
         setReservations(data); // Actualiza el estado con los datos del menú
@@ -115,7 +115,7 @@ const ViewAllReservations = () => {
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <p className="text-sm font-light text-gray-500 dark:text-gray-400">
               <Link
-                href={"/admin_comidas"}
+                href={"/admin_perfil"}
                 className="font-medium text-primary-600 hover:underline dark:text-primary-500"
               >
                 {"<-"} Regresar
@@ -124,18 +124,14 @@ const ViewAllReservations = () => {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               Reservas realizadas
             </h1>
-            <div className="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-              <div className="flow-root">
-                {reservations_.map((reservation) => {
-                  return (
-                    <ReservationCard
-                      key={reservation.reservation.id_reservation}
-                      reservations={reservation}
-                    />
-                  );
-                })}
-              </div>
-            </div>
+            {reservations_.map((reservation) => {
+              return (
+                <ReservationCard
+                  key={reservation.reservation.id_reservation}
+                  reservations={reservation}
+                />
+              );
+            })}
           </div>
         </div>
       </div>

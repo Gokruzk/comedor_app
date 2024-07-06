@@ -218,3 +218,23 @@ export const getDinings = async () => {
   }
   return { status: 400, error: "Error consultando reservaciones" };
 };
+
+export const verifyQR = async (qrData: string) =>{
+  try {
+    const res = await foodAPI.post(`/qr_codes/validate_qr`, qrData);
+    if (res.status == 200) {
+      return { status: 200, data: res.data };
+    } else {
+      return { status: 400, error: "La reserva no existe" };
+    }
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      return {
+        status: error.response?.status,
+        errors: error.response,
+        detail: error.response?.data.detail,
+      };
+    }
+  }
+  return { status: 400, error: "La reserva no existe" };
+}

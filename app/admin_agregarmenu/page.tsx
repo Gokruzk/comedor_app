@@ -47,6 +47,7 @@ const AgregarMenu = () => {
       ...menu,
     });
   };
+  
   const showToastMessage = (mensaje: string, type: "success" | "error") => {
     if (type === "success") {
       toast.success(mensaje);
