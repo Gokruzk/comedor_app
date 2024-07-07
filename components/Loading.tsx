@@ -1,6 +1,6 @@
 import React from 'react'
-import Loading_motion from "./loading_motion.json"
 import Lottie from 'lottie-react'
+import { Loading_motion } from './Loading_motion'
 
 export default function Loading(){
   return(
