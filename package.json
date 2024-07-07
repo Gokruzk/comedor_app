@@ -24,6 +24,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7.52.1",
     "react-lottie": "^1.2.4",
+    "react-modal": "^3.16.1",
     "react-toastify": "^10.0.5",
     "zustand": "^4.5.4"
   },

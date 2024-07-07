@@ -1,10 +1,12 @@
 import LinkButton from "@/components/LinkButton";
 import Image from "next/image";
+import React, {useState} from "react";
 
 //bg-gradient-to-r from-red-700 from-10% to-white to-60% 
 export default function Home() {
+
   return (
-    <main className="text-black">
+    <main className="text-black h-screen bg-gradient-to-r from-red-600 from-10% to-white to-60% ">
       {/* Contenedor de las imágenes y los botones para agregar */}
       <div className="flex flex-col lg:flex-row items-center justify-center h-screen">
 
@@ -33,6 +35,8 @@ export default function Home() {
             <LinkButton href="/login" style="focus:outline-none text-white bg-green-700 hover:bg-green-200 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-xl px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" title="INICIAR ->"/>
           </div>
         </div>
+
+
 
       </div>
     </main>
