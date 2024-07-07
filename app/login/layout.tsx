@@ -3,6 +3,7 @@ import useStore from "@/store/auth/authStore";
 import { getUserSession } from "@/utils";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Loading from "@/components/Loading";
 
 const LoginLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
@@ -24,8 +25,8 @@ const LoginLayout = ({ children }: { children: React.ReactNode }) => {
 
   if (!isSuccess) {
     return (
-      <main className="bg-white h-screen text-black">
-        <p>Loading...</p>
+      <main >
+        <Loading/>
       </main>
     );
   }

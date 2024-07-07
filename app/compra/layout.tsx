@@ -3,6 +3,7 @@ import useStore from "@/store/auth/authStore";
 import { getUserSession } from "@/utils";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Loading from "@/components/Loading";
 
 const CompraLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
@@ -24,7 +25,7 @@ const CompraLayout = ({ children }: { children: React.ReactNode }) => {
   if (!isSuccess) {
     return (
       <main>
-        <p>Loading...</p>
+        <Loading/>
       </main>
     );
   }

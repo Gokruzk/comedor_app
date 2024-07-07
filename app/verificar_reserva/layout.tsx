@@ -2,6 +2,7 @@
 
 import LinkButton from "@/components/LinkButton";
 import useStore from "@/store/auth/authStore";
+import Loading from "@/components/Loading";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { APP_NAME } from "@/constants";
@@ -50,7 +51,7 @@ const AdminReservaciones = ({ children }: { children: React.ReactNode }) => {
   if (!isSuccess) {
     return (
       <main>
-        <p>Loading...</p>
+        <Loading/>
       </main>
     );
   }

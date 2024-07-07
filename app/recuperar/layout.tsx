@@ -1,6 +1,7 @@
 "use client";
 
 import useStore from "@/store/auth/authStore";
+import Loading from "@/components/Loading";
 import { getUserSession } from "@/utils";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -26,7 +27,7 @@ const RecoveryLayout = ({ children }: { children: React.ReactNode }) => {
   if (!isSuccess) {
     return (
       <main>
-        <p>Loading...</p>
+        <Loading/>
       </main>
     );
   }

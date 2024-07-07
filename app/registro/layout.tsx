@@ -1,4 +1,5 @@
 "use client";
+import Loading from "@/components/Loading";
 import useStore from "@/store/auth/authStore";
 import { getUserSession } from "@/utils";
 import { useRouter } from "next/navigation";
@@ -25,8 +26,9 @@ const RegisterLayout = ({ children }: { children: React.ReactNode }) => {
 
   if (!isSuccess) {
     return (
-      <main className="bg-white h-screen text-black">
-        <p>Loading...</p>
+
+      <main>
+        <Loading/>
       </main>
     );
   }

@@ -1,6 +1,7 @@
 "use client";
 import LogoutButton from "@/components/LogoutButton";
 import LinkButton from "@/components/LinkButton";
+import Loading from "@/components/Loading";
 import useStore from "@/store/auth/authStore";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -47,7 +48,7 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
   if (!isSuccess) {
     return (
       <main>
-        <p>Loading...</p>
+        <Loading/>
       </main>
     );
   }

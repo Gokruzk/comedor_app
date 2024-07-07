@@ -2,6 +2,7 @@
 
 import LinkButton from "@/components/LinkButton";
 import useStore from "@/store/auth/authStore";
+import Loading from "@/components/Loading";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { APP_NAME } from "@/constants";
@@ -9,6 +10,7 @@ import { getUserSession } from "@/utils";
 import { logout } from "@/api/userAPI";
 import userStore from "@/store/auth/userStore";
 import LogoutButton from "@/components/LogoutButton";
+import { Import } from "lucide-react";
 
 const AdminAgLayout = ({ children }: { children: React.ReactNode }) => {
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
@@ -49,7 +51,7 @@ const AdminAgLayout = ({ children }: { children: React.ReactNode }) => {
   if (!isSuccess) {
     return (
       <main>
-        <p>Loading...</p>
+        <Loading/>
       </main>
     );
   }
