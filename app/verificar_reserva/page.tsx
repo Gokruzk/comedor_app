@@ -24,9 +24,9 @@ export default function VerifyReservation() {
 
 const VerifyR = () => {
   const [codeData, setCodeData] = useState();
-  const [isScanning, setIsScanning] = useState<boolean>(true);
-  const [isVerifying, setIsVerifying] = useState<boolean>(false);
-  const router = useRouter();
+  // const [isScanning, setIsScanning] = useState<boolean>(true);
+  // const [isVerifying, setIsVerifying] = useState<boolean>(false);
+  // const router = useRouter();
 
   const showToastMessage = useCallback(
     (mensaje: string, type: "success" | "error") => {
@@ -58,7 +58,7 @@ const VerifyR = () => {
     if (codeData) {
       verifyReservationMutation.mutate(codeData);
     }
-  },[codeData]);
+  });
 
   const handleScan = (result: IDetectedBarcode[]) => {
     if (result[0].rawValue) {
@@ -78,7 +78,7 @@ const VerifyR = () => {
                 style="font-medium text-primary-600 hover:underline dark:text-primary-500"
               />
             </p>
-            {isScanning && <Scanner onScan={handleScan} />}
+            {<Scanner onScan={handleScan} />}
           </div>
         </div>
       </div>
