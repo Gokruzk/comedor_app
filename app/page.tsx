@@ -14,7 +14,7 @@ export default function Home() {
         <div className="flex justify-center items-center w-full lg:w-1/2">
           <div className="m-4 lg:m-24 animate-pulse">
             {/* Imgs are in public folder */}
-            <Image width={500} height={500} src="/ESPOCH.png" alt="" />
+            <Image width={500} height={500} src="/ESPOCH.png" alt="" /> 
           </div>
         </div>
 
@@ -35,9 +35,6 @@ export default function Home() {
             <LinkButton href="/login" style="focus:outline-none text-white bg-green-700 hover:bg-green-200 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-xl px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" title="INICIAR ->"/>
           </div>
         </div>
-
-
-
       </div>
     </main>
   );
