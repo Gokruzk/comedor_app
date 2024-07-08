@@ -4,8 +4,6 @@ import Link from "next/link";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { UserReservation } from "@/types";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { getDinings } from "@/api/foodAPI";
 import { useCallback, useEffect, useState } from "react";
 import ReservationCard from "@/components/ReservationCard";
@@ -64,7 +62,6 @@ const ViewAllReservations = () => {
         <div className="flex-grow flex items-center justify-center">
           <div className="text-center">No hay reservaciones</div>
         </div>
-        <ToastContainer />
       </main>
     );
   } else {
@@ -79,7 +76,6 @@ const ViewAllReservations = () => {
         <div className="flex-grow flex items-center justify-center">
           <div className="text-center">Loading...</div>
         </div>
-        <ToastContainer />
       </main>
     );
   } else if (isError) {
@@ -88,7 +84,6 @@ const ViewAllReservations = () => {
         <div className="flex-grow flex items-center justify-center">
           <div className="text-center">Error {error.message}</div>
         </div>
-        <ToastContainer />
       </main>
     );
   }
@@ -120,7 +115,6 @@ const ViewAllReservations = () => {
           </div>
         </div>
       </div>
-      <ToastContainer />
     </main>
   );
 };
