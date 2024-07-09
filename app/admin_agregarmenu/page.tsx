@@ -81,7 +81,7 @@ const AgregarMenu = () => {
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <p className="text-sm font-light text-gray-500 dark:text-gray-400">
               <LinkButton
-                title="<- Regresar"
+                title="<- Volver"
                 href="/admin_comidas"
                 style="font-medium text-primary-600 hover:underline dark:text-primary-500"
               />
