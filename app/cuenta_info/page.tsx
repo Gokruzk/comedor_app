@@ -8,7 +8,6 @@ import {
   QueryClient,
   QueryClientProvider,
   useMutation,
-  useQuery,
 } from "@tanstack/react-query";
 import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
