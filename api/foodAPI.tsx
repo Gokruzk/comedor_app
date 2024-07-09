@@ -202,6 +202,7 @@ export const getDinings = async () => {
         Authorization: `Bearer ${token}`,
       },
     });
+
     if (res.status == 200) {
       return { status: 200, data: res.data };
     } else {
