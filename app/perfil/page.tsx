@@ -3,7 +3,7 @@ import NavBar from "@/components/NavBar";
 export default function Profile() {
   const linkbuttons = [
     { href: "/comidas", title: "Ver menús" },
-    { href: "/cuenta", title: "Mi cuenta" },
+    { href: "/cuenta_info", title: "Mi cuenta" },
   ];
   return (
     <main className="bg-gray-50 dark:bg-gray-900 min-h-full flex">

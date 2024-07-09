@@ -38,7 +38,15 @@ export interface UserType {
 
 export interface Card {
   id_card?: number;
-  id_user: number;
+  id_user?: number;
+  card_number: string;
+  exp_month: string;
+  exp_year: string;
+}
+
+export interface CardUser {
+  id_card?: number;
+  email: string;
   card_number: string;
   exp_month: string;
   exp_year: string;
