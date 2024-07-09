@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { UserReservation } from "@/types";
@@ -8,6 +7,7 @@ import { getDinings } from "@/api/foodAPI";
 import { useCallback, useEffect, useState } from "react";
 import ReservationCard from "@/components/ReservationCard";
 import Loading from "@/components/Loading";
+import LinkButton from "@/components/LinkButton";
 
 const queryClient = new QueryClient();
 
@@ -71,21 +71,21 @@ const ViewAllReservations = () => {
     });
   }
 
-if (isLoading) {
-  return (
-    <main>
-      <Loading />
-    </main>
-  );
-} else if (isError) {
-  return (
-    <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
-      <div className="flex-grow flex items-center justify-center">
-        <div className="text-center">Error {error.message}</div>
-      </div>
-    </main>
-  );
-}
+  if (isLoading) {
+    return (
+      <main>
+        <Loading />
+      </main>
+    );
+  } else if (isError) {
+    return (
+      <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
+        <div className="flex-grow flex items-center justify-center">
+          <div className="text-center">Error {error.message}</div>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="bg-gray-50 dark:bg-gray-900">
@@ -93,12 +93,11 @@ if (isLoading) {
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-              <Link
-                href={"/admin_perfil"}
-                className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-              >
-                {"<-"} Volver
-              </Link>
+              <LinkButton
+                href="/admin_perfil"
+                style="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                title="<- Volver"
+              />
             </p>
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               Reservas realizadas

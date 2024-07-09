@@ -5,7 +5,6 @@ import {
   QueryClientProvider,
   useMutation,
 } from "@tanstack/react-query";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -185,21 +184,18 @@ function LoginForm() {
 
               <p className="text-sm font-light text-gray-600 dark:text-gray-00 text-center">
                 ¿No tienes una cuenta todavía?{" "}
-                <Link
-                  href={"/registro"}
-                  className="font-medium text-primary-600 hover:underline dark:text-primary-500 text-red-500"
-                >
-                  Regístrate aquí
-                </Link>
+                <LinkButton
+                  title="Regístrate aquí"
+                  href="/registro"
+                  style="font-medium text-primary-600 hover:underline dark:text-primary-500 text-red-500"
+                />
               </p>
-
               <p className="text-sm font-light text-gray-600 dark:text-gray-500 text-center">
-                <Link
-                  href={"/recuperar"}
-                  className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                >
-                  ¿Has olvidado tu contraseña?
-                </Link>
+                <LinkButton
+                  title="¿Has olvidado tu contraseña?"
+                  href="/recuperar"
+                  style="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                />
               </p>
             </form>
           </div>
