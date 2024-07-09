@@ -43,6 +43,7 @@ const ViewAllReservations = () => {
         setIsLoading(false);
         setIsError(true);
         setError(error);
+        setDetail(detail);
       }
     } catch (error) {
       setIsLoading(false);
@@ -56,6 +57,9 @@ const ViewAllReservations = () => {
   }, [fetchReservations]);
 
   const reservations_: UserReservation[] = [];
+
+
+  console.log(detail_)
 
   if (detail_ === "[]") {
     return (
