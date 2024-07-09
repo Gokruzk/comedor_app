@@ -24,17 +24,15 @@ const ViewAllReservations = () => {
   const [reservations, setReservations] = useState<UserReservation[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
-  const [error, setError] = useState<any>(null);
   const [detail_, setDetail] = useState<string>("[]");
 
   const fetchReservations = useCallback(async () => {
     try {
-      const { status, data, error, detail } = await getDinings();
-
+      const { status, data, errors, detail } = await getDinings();
       if (status === 200) {
-        setDetail("");
         setIsLoading(false);
         setReservations(data); // Actualiza el estado con los datos del menú
+        setDetail(detail);
       } else if (status === 404) {
         setIsLoading(false);
         setDetail(detail);
@@ -42,15 +40,13 @@ const ViewAllReservations = () => {
       } else {
         setIsLoading(false);
         setIsError(true);
-        setError(error);
         setDetail(detail);
       }
     } catch (error) {
       setIsLoading(false);
       setIsError(true);
-      setError(error);
     }
-  }, [setIsLoading, setReservations, setDetail, setIsError, setError]);
+  }, [setIsLoading, setReservations, setDetail, setIsError]);
 
   useEffect(() => {
     fetchReservations();
@@ -58,8 +54,7 @@ const ViewAllReservations = () => {
 
   const reservations_: UserReservation[] = [];
 
-
-  console.log(detail_)
+  console.log(detail_);
 
   if (detail_ === "[]") {
     return (
@@ -85,7 +80,7 @@ const ViewAllReservations = () => {
     return (
       <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
         <div className="flex-grow flex items-center justify-center">
-          <div className="text-center">Error {error.message}</div>
+          <div className="text-center">Error</div>
         </div>
       </main>
     );
