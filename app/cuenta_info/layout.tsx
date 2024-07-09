@@ -62,7 +62,7 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
             <div className="max-w-screen-xl mx-auto">
               <div className="max-w-6xl w-full mx-auto bg-red-600 rounded-2xl p-4">
                 <div className="flex flex-wrap items-center justify-between">
-                  <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
+                  <a className="flex items-center space-x-3 rtl:space-x-reverse">
                       <LinkButton href="/perfil" style="self-center text-3xl font-bold whitespace-nowrap dark:text-white" title="Comedor Politécnico"/>
                   </a>
 

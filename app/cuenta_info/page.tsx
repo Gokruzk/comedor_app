@@ -1,7 +1,7 @@
 "use client";
-import { getUserCard } from "@/api/userAPI";
+import { getUserBalance, getUserCard, setUserBalance } from "@/api/userAPI";
 import NavBar from "@/components/NavBar";
-import { Card } from "@/types";
+import { Balance, Card } from "@/types";
 import { getUserSession } from "@/utils";
 import {
   QueryClient,
@@ -9,7 +9,11 @@ import {
   useMutation,
   useQuery,
 } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const queryClient = new QueryClient();
 
@@ -23,13 +27,16 @@ export default function CuentaIn() {
 
 function CuentaInfo() {
   const [card, setCard] = useState<Card>();
+  const [userBalance, setBalance] = useState(0);
   const [detail_, setDetail] = useState("[]");
+  const [user_email, setEmail] = useState("");
+
+  const { register, handleSubmit, watch } = useForm();
 
   const fetchCard = useCallback(async () => {
     try {
       const { user } = await getUserSession();
-      let user_email = "";
-      if (user) user_email = user;
+      if (user) setEmail(user);
 
       const { status, data, error, detail } = await getUserCard(user_email);
 
@@ -43,17 +50,73 @@ function CuentaInfo() {
     } catch (error_) {
       console.log(error_);
     }
-  }, [setCard, setDetail]);
+  }, [user_email]);
 
   useEffect(() => {
     fetchCard();
   }, [fetchCard]);
 
-  const linkbuttons = [
-    { href: "/agregar_tarjeta", title: "Agregar tarjeta" },
-  ];
+  const fetchBalance = useCallback(async () => {
+    try {
+      const { status, data, error, detail } = await getUserBalance(user_email);
+      if (status === 200) {
+        setBalance(data); // Actualiza el estado con los datos del menú
+      } else if (status === 404) {
+        setBalance(0);
+      } else {
+      }
+    } catch (error_) {
+      console.log(error_);
+    }
+  }, [user_email]);
 
-  let cardData: any = {};
+  useEffect(() => {
+    fetchBalance();
+  }, [fetchBalance]);
+
+  useEffect(() => {
+    handleAddBalance;
+  });
+
+  const handleAddBalance = async (data: any) => {
+    const newUserBalance: Balance = {
+      email: user_email,
+      new_balance: data.newBalance,
+    };
+    setBalance(Number(userBalance) + Number(data.newBalance));
+
+    setBalanceMutation.mutate({
+      ...newUserBalance,
+    });
+  };
+
+  const showToastMessage = (mensaje: string, type: "success" | "error") => {
+    if (type === "success") {
+      toast.success(mensaje);
+    } else {
+      toast.error(mensaje);
+    }
+  };
+
+  const setBalanceMutation = useMutation({
+    mutationFn: setUserBalance,
+    onSuccess: (data) => {
+      if (data.status === 200) {
+        showToastMessage("Tú saldo se actualizó correctamente", "success");
+      } else {
+        showToastMessage(`${data.error}`, "error");
+      }
+    },
+    onError: (error) => {
+      console.log(error);
+      showToastMessage(`${error}`, "error");
+    },
+  });
+
+  const linkbuttons = [{ href: "/agregar_tarjeta", title: "Agregar tarjeta" }];
+
+  let cardData = card;
+  let userBalanceFetched = userBalance;
 
   if (detail_ === "[]") {
     return (
@@ -71,8 +134,6 @@ function CuentaInfo() {
         </div>
       </main>
     );
-  } else {
-    if (card) cardData = card;
   }
 
   return (
@@ -89,7 +150,7 @@ function CuentaInfo() {
           <div className="pt-1">
             <p className="font-light">Número de tarjeta</p>
             <p className="font-medium tracking-more-wider">
-              {cardData.card_number}
+              {cardData?.card_number}
             </p>
           </div>
           <div className="pt-6 pr-6">
@@ -97,7 +158,7 @@ function CuentaInfo() {
               <div>
                 <p className="font-light text-xs">Valida hasta</p>
                 <p className="font-medium tracking-wider text-sm">
-                  {cardData.exp_month}/{cardData.exp_year}
+                  {cardData?.exp_month}/{cardData?.exp_year}
                 </p>
               </div>
               <div>
@@ -109,8 +170,7 @@ function CuentaInfo() {
           <div className="py-6">
             <p className="font-light">Saldo en tu cuenta comedor</p>
             <p className="font-medium tracking-more-wider">
-              {/* {cardData.saldo} */}
-              $0
+              ${userBalanceFetched}
             </p>
           </div>
         </div>
@@ -118,57 +178,56 @@ function CuentaInfo() {
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
             Agrega saldo a tu cuenta
           </h2>
-          <div className="mt-6 sm:mt-8 lg:flex lg:items-start lg:gap-12">
-            <div className="mt-6 grow sm:mt-8 lg:mt-0">
-              <div className="space-y-4 rounded-lg border border-gray-100 bg-gray-50 p-6 dark:border-gray-700 dark:bg-gray-800">
-                <div className="space-y-2">
-                  <dl className="flex items-center justify-between gap-4">
-                    <dt className="text-base font-normal text-gray-500 dark:text-gray-400">
-                      Original price
+          <form onSubmit={handleSubmit(handleAddBalance)}>
+            <div className="mt-6 sm:mt-8 lg:flex lg:items-start lg:gap-12">
+              <div className="mt-6 grow sm:mt-8 lg:mt-0">
+                <div className="space-y-4 rounded-lg border border-gray-100 bg-gray-50 p-6 dark:border-gray-700 dark:bg-gray-800">
+                  <div className="space-y-2">
+                    <dl className="flex items-center justify-between gap-4">
+                      <dt className="text-base font-normal text-gray-500 dark:text-gray-400">
+                        Saldo que quieres agregar
+                      </dt>
+                      <dd className="text-base font-medium text-green-500">
+                        +${watch("newBalance") || 0}
+                      </dd>
+                    </dl>
+                    <input
+                      type="number"
+                      step="0.01"
+                      {...register("newBalance")}
+                      className="w-full p-2 rounded border dark:bg-gray-700 dark:text-white"
+                      required
+                    />
+                    <dl className="flex items-center justify-between gap-4">
+                      <dt className="text-base font-normal text-gray-500 dark:text-gray-400">
+                        Saldo actual
+                      </dt>
+                      <dd className="text-base font-medium text-gray-900 dark:text-white">
+                        ${userBalance}
+                      </dd>
+                    </dl>
+                  </div>
+                  <dl className="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
+                    <dt className="text-base font-bold text-gray-900 dark:text-white">
+                      Total
                     </dt>
-                    <dd className="text-base font-medium text-gray-900 dark:text-white">
-                      $6,592.00
+                    <dd className="text-base font-bold text-gray-900 dark:text-white">
+                      ${userBalance + (parseFloat(watch("newBalance")) || 0)}
                     </dd>
                   </dl>
-
-                  <dl className="flex items-center justify-between gap-4">
-                    <dt className="text-base font-normal text-gray-500 dark:text-gray-400">
-                      Savings
-                    </dt>
-                    <dd className="text-base font-medium text-green-500">
-                      -$299.00
-                    </dd>
-                  </dl>
-                  <dl className="flex items-center justify-between gap-4">
-                    <dt className="text-base font-normal text-gray-500 dark:text-gray-400">
-                      Store Pickup
-                    </dt>
-                    <dd className="text-base font-medium text-gray-900 dark:text-white">
-                      $99
-                    </dd>
-                  </dl>
-                  <dl className="flex items-center justify-between gap-4">
-                    <dt className="text-base font-normal text-gray-500 dark:text-gray-400">
-                      Tax
-                    </dt>
-                    <dd className="text-base font-medium text-gray-900 dark:text-white">
-                      $799
-                    </dd>
-                  </dl>
+                  <button
+                    type="submit"
+                    className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                  >
+                    Agregar saldo
+                  </button>
                 </div>
-                <dl className="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
-                  <dt className="text-base font-bold text-gray-900 dark:text-white">
-                    Total
-                  </dt>
-                  <dd className="text-base font-bold text-gray-900 dark:text-white">
-                    $7,191.00
-                  </dd>
-                </dl>
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
+      <ToastContainer />
     </main>
   );
 }
