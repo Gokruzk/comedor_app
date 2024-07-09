@@ -151,13 +151,15 @@ function CuentaInfo() {
         nbuttons={2}
         linkbuttons={linkbuttons}
       />
-      <div className="flex-1 p-6">
+      
+      <div className="flex-1 p-8">
+        
         <h2 className="text-xl font-normal mb-4 text-gray-600">
           Información de la tarjeta
         </h2>
 
-        <div className="flex-1 justifty-center items-center ">
-          <div className="w-80 bg-green-600 rounded-xl relative text-white shadow-2xl p-6">
+        <div className="flex justify-between items-start space-x-0">
+          <div className="w-80 bg-green-600 rounded-xl text-white shadow-2xl p-6">
             <div className="pt-1">
               <p className="font-bold">Número de tarjeta</p>
               <p className="font-light tracking-more-wider">
@@ -185,61 +187,67 @@ function CuentaInfo() {
               </p>
             </div>
           </div>
-        </div>
-        <h2 className="text-xl font-bold mb-4">Información de la tarjeta</h2>
-        <div className="mx-auto max-w-5xl">
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
-            Agrega saldo a tu cuenta
-          </h2>
-          <form onSubmit={handleSubmit(handleAddBalance)}>
-            <div className="mt-6 sm:mt-8 lg:flex lg:items-start lg:gap-12">
-              <div className="mt-6 grow sm:mt-8 lg:mt-0">
-                <div className="space-y-4 rounded-lg border border-gray-100 bg-gray-50 p-6 dark:border-gray-700 dark:bg-gray-800">
-                  <div className="space-y-2">
-                    <dl className="flex items-center justify-between gap-4">
-                      <dt className="text-base font-normal text-gray-500 dark:text-gray-400">
-                        Saldo que quieres agregar
-                      </dt>
-                      <dd className="text-base font-medium text-green-500">
-                        +${watch("newBalance") || 0}
-                      </dd>
-                    </dl>
-                    <input
-                      type="number"
-                      step="0.01"
-                      {...register("newBalance")}
-                      className="w-full p-2 rounded border dark:bg-gray-700 dark:text-white"
-                      required
-                    />
-                    <dl className="flex items-center justify-between gap-4">
-                      <dt className="text-base font-normal text-gray-500 dark:text-gray-400">
-                        Saldo actual
-                      </dt>
-                      <dd className="text-base font-medium text-gray-900 dark:text-white">
-                        ${userBalance}
-                      </dd>
-                    </dl>
+
+          <div className="flex-1">
+            
+            <div className="mx-auto max-w-2xl">
+              <h2 className="text-xl font-normal mb-4 text-gray-600">
+                Agrega saldo a tu cuenta
+              </h2>
+              <form onSubmit={handleSubmit(handleAddBalance)}>
+                <div className="mt-6 sm:mt-8 lg:flex lg:items-start lg:gap-12">
+                  <div className="mt-6 grow sm:mt-8 lg:mt-0">
+                    <div className="space-y-4 rounded-2xl border border-gray-100 bg-gray-50 p-6 dark:border-green-600 dark:bg-white">
+                      <div className="space-y-2">
+                        <dl className="flex items-center justify-between gap-4">
+                          <dt className="text-base font-normal text-gray-500 dark:text-gray-400">
+                            Saldo que quieres agregar
+                          </dt>       
+                          <dd className="text-base font-medium text-green-500">
+                            +${watch("newBalance") || 0}
+                          </dd>
+                        </dl>
+                        <input
+                          type="number"
+                          step="0.01"
+                          {...register("newBalance")}
+                          className="w-full p-2 rounded border dark:bg-white-700 dark:text-gray-500"
+                          required
+                        />
+                        <dl className="flex items-center justify-between gap-4">
+                          <dt className="text-base font-normal text-gray-500 dark:text-gray-400">
+                            Saldo actual
+                          </dt>
+                          <dd className="text-base font-medium text-gray-900 dark:text-gray-600">
+                            ${userBalance}
+                          </dd>
+                        </dl>
+                      </div>
+                      <dl className="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
+                        <dt className="text-base font-bold text-gray-900 dark:text-black">
+                          Total
+                        </dt>
+                        <dd className="text-base font-bold text-gray-900 dark:text-black">
+                          ${userBalance + (parseFloat(watch("newBalance")) || 0)}
+                        </dd>
+                      </dl>
+                      <button
+                        type="submit"
+                        className="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-800"
+                      >
+                        Agregar saldo
+                      </button>
+                    </div>
                   </div>
-                  <dl className="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
-                    <dt className="text-base font-bold text-gray-900 dark:text-white">
-                      Total
-                    </dt>
-                    <dd className="text-base font-bold text-gray-900 dark:text-white">
-                      ${userBalance + (parseFloat(watch("newBalance")) || 0)}
-                    </dd>
-                  </dl>
-                  <button
-                    type="submit"
-                    className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                  >
-                    Agregar saldo
-                  </button>
                 </div>
-              </div>
+              </form>
             </div>
-          </form>
+          </div>
         </div>
       </div>
+
+
+
       <ToastContainer />
     </main>
   );
