@@ -4,7 +4,6 @@ import {
   QueryClientProvider,
   useMutation,
 } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import { useCallback, useEffect, useState } from "react";
 import { verifyQR } from "@/api/foodAPI";
@@ -25,8 +24,6 @@ export default function VerifyReservation() {
 const VerifyR = () => {
   const [codeData, setCodeData] = useState();
   const [isScanning, setIsScanning] = useState<boolean>(true);
-  const [isVerifying, setIsVerifying] = useState<boolean>(false);
-  const router = useRouter();
 
   const showToastMessage = useCallback(
     (mensaje: string, type: "success" | "error") => {
@@ -55,10 +52,11 @@ const VerifyR = () => {
   });
 
   useEffect(() => {
-    if (codeData) {
+    if (codeData && isScanning === true) {
       verifyReservationMutation.mutate(codeData);
+      setIsScanning(false);
     }
-  },[codeData]);
+  }, [codeData, verifyReservationMutation, isScanning]);
 
   const handleScan = (result: IDetectedBarcode[]) => {
     if (result[0].rawValue) {

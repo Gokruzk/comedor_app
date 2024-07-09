@@ -1,6 +1,5 @@
 import LinkButton from "@/components/LinkButton";
 import Image from "next/image";
-import React, {useState} from "react";
 
 //bg-gradient-to-r from-red-700 from-10% to-white to-60% 
 export default function Home() {
