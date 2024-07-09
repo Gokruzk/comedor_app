@@ -72,14 +72,16 @@ function Comidas() {
 
   const { mutate: deleteFoodMutate } = useMutation({
     mutationFn: deleteFood,
-    onSuccess: () => {
-      showToastMessage("Menú eliminado correctamente", "success");
-      setMenus([]);
-      setReload((prev) => !prev);
-      setDetail("[]");
+    onSuccess: (data) => {
+      if (data.status === 200) {
+        showToastMessage("Menú eliminado correctamente", "success");
+        setMenus([]);
+        setReload((prev) => !prev);
+        setDetail("[]");
+      }
     },
     onError: (error) => {
-      showToastMessage(`Error eliminando el menú: ${error.message}`, "error");
+      showToastMessage(`Error eliminando el menú: ${error}`, "error");
     },
   });
 
@@ -99,7 +101,9 @@ function Comidas() {
           linkbuttons={linkbuttons}
         />
         <div className="flex-grow flex items-center justify-center">
-          <div className="text-center text-gray-600">No hay menús disponibles</div>
+          <div className="text-center text-gray-600">
+            No hay menús disponibles
+          </div>
         </div>
         <ToastContainer />
       </main>

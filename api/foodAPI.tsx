@@ -156,7 +156,7 @@ export const deleteFood = async (id_menu: string) => {
     if (axios.isAxiosError(error)) {
       return {
         status: error.response?.status,
-        errors: error.response,
+        error: error.response?.data.detail,
         detail: error.response?.data.detail,
       };
     }
