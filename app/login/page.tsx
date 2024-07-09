@@ -1,6 +1,5 @@
 "use client";
 import { auth } from "@/api/userAPI";
-import useStore from "@/store/auth/authStore";
 import {
   QueryClient,
   QueryClientProvider,
