@@ -10,7 +10,6 @@ import {
   useMutation,
   useQuery,
 } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
@@ -52,6 +51,7 @@ function CuentaInfo() {
       }
     } catch (error_) {
       console.log(error_);
+      setIsLoading(false);
     }
   }, [user_email]);
 
@@ -124,7 +124,7 @@ function CuentaInfo() {
   if (isLoading) {
     return <Loading />;
   }
-  
+
   if (detail_ === "[]") {
     return (
       <main className="bg-gray-50 dark:bg-gray-900 min-h-screen flex">

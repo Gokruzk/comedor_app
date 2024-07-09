@@ -59,6 +59,9 @@ const AgregarTarjetaPage = () => {
       }, 1500);
     } else {
       toast.error(mensaje);
+      setTimeout(() => {
+        router.push("/cuenta_info");
+      }, 1500);
     }
   };
 
@@ -72,7 +75,6 @@ const AgregarTarjetaPage = () => {
       }
     },
     onError: (error) => {
-      console.log(error);
       showToastMessage(`${error}`, "error");
     },
   });
