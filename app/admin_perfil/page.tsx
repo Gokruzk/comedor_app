@@ -8,14 +8,14 @@ export default function AdminProfile() {
     { href: "/verificar_reserva", title: "Verificar reservación" },
   ];
   return (
-    <main className="bg-gray-50 dark:bg-gray-900 min-h-full flex">
+    <main className="bg-gray-50 dark:bg-white min-h-full flex">
       <NavBar
-        title="<- Volver"
+        title="Actualizar"
         href="/"
         nbuttons={3}
         linkbuttons={linkbuttons}
       />
-      <div className="flex-grow flex items-center justify-center">
+      <div className="flex-grow flex items-center justify-center text-gray-600">
         Perfil de administrador
       </div>
     </main>
