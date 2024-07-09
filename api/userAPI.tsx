@@ -152,7 +152,7 @@ export const addCard = async (card: CardUser) => {
       return {
         status: error.response?.status,
         error: error.response?.data.detail,
-        detail: error.response,
+        detail: error.response?.data.detail,
       };
     }
   }
