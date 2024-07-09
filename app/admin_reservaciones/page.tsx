@@ -7,6 +7,7 @@ import { UserReservation } from "@/types";
 import { getDinings } from "@/api/foodAPI";
 import { useCallback, useEffect, useState } from "react";
 import ReservationCard from "@/components/ReservationCard";
+import Loading from "@/components/Loading";
 
 const queryClient = new QueryClient();
 
@@ -70,23 +71,21 @@ const ViewAllReservations = () => {
     });
   }
 
-  if (isLoading) {
-    return (
-      <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
-        <div className="flex-grow flex items-center justify-center">
-          <div className="text-center">Loading...</div>
-        </div>
-      </main>
-    );
-  } else if (isError) {
-    return (
-      <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
-        <div className="flex-grow flex items-center justify-center">
-          <div className="text-center">Error {error.message}</div>
-        </div>
-      </main>
-    );
-  }
+if (isLoading) {
+  return (
+    <main>
+      <Loading />
+    </main>
+  );
+} else if (isError) {
+  return (
+    <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
+      <div className="flex-grow flex items-center justify-center">
+        <div className="text-center">Error {error.message}</div>
+      </div>
+    </main>
+  );
+}
 
   return (
     <main className="bg-gray-50 dark:bg-gray-900">

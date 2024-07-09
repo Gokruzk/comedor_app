@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import { getUserSession } from "@/utils";
 import BuyCard from "@/components/BuyCard";
 import LinkButton from "@/components/LinkButton";
+import Loading from "@/components/Loading";
 
 const queryClient = new QueryClient();
 
@@ -106,22 +107,20 @@ const CompraMenu = ({ id_menu }: MenuForm) => {
     },
   });
 
-  if (isLoading)
-    return (
-      <main className="bg-gray-50 dark:bg-gray-900">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-          Loading...
-        </div>
-      </main>
-    );
-  else if (isError)
-    return (
-      <main className="bg-gray-50 dark:bg-gray-900">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-          Error {error?.message}
-        </div>
-      </main>
-    );
+if (isLoading) {
+  return (
+    <main>
+      <Loading />
+    </main>
+  );
+} else if (isError)
+  return (
+    <main className="bg-gray-50 dark:bg-gray-900">
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        Error {error?.message}
+      </div>
+    </main>
+  );
 
   return (
     <main className="bg-gray-50 dark:bg-gray-900">

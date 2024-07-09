@@ -1,5 +1,6 @@
 "use client";
 import { getUserBalance, getUserCard, setUserBalance } from "@/api/userAPI";
+import Loading from "@/components/Loading";
 import NavBar from "@/components/NavBar";
 import { Balance, Card } from "@/types";
 import { getUserSession } from "@/utils";
@@ -30,6 +31,7 @@ function CuentaInfo() {
   const [userBalance, setBalance] = useState(0);
   const [detail_, setDetail] = useState("[]");
   const [user_email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const { register, handleSubmit, watch } = useForm();
 
@@ -43,6 +45,7 @@ function CuentaInfo() {
       if (status === 200) {
         setCard(data); // Actualiza el estado con los datos del menú
         setDetail("");
+        setIsLoading(false);
       } else if (status === 404) {
         setDetail(detail);
       } else {
@@ -118,6 +121,10 @@ function CuentaInfo() {
   let cardData = card;
   let userBalanceFetched = userBalance;
 
+  if (isLoading) {
+    return <Loading />;
+  }
+  
   if (detail_ === "[]") {
     return (
       <main className="bg-gray-50 dark:bg-gray-900 min-h-screen flex">
