@@ -91,7 +91,7 @@ function Comidas() {
 
   if (detail_ === "[]") {
     return (
-      <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
+      <main className="bg-gray-50 dark:bg-white flex min-h-screen">
         <NavBar
           title="<- Perfil"
           href="/admin_perfil"
@@ -99,7 +99,7 @@ function Comidas() {
           linkbuttons={linkbuttons}
         />
         <div className="flex-grow flex items-center justify-center">
-          <div className="text-center">No hay menús</div>
+          <div className="text-center text-gray-600">No hay menús disponibles</div>
         </div>
         <ToastContainer />
       </main>
@@ -122,7 +122,7 @@ function Comidas() {
     );
   } else if (isError) {
     return (
-      <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
+      <main className="bg-gray-50 dark:bg-white flex min-h-screen">
         <NavBar
           title="<- Perfil"
           href="/admin_perfil"
@@ -138,7 +138,7 @@ function Comidas() {
   }
 
   return (
-    <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
+    <main className="bg-gray-50 dark:bg-white flex min-h-screen">
       <NavBar
         title="<- Perfil"
         href="/admin_perfil"
