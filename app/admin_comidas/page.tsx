@@ -145,10 +145,10 @@ function Comidas() {
         nbuttons={2}
         linkbuttons={linkbuttons}
       />
-      <div className="flex-grow flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
-        <div className="w-full max-w-7xl mx-auto">
+      <div className="flex-grow  flex-col items-center justify-center px-6 py-8 mx-auto lg:p-10">
+        <div className="w-full max-w-6xl mx-20">
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl font-normal text-gray-900 dark:text-gray-600 mb-4">
               Menús disponibles
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -165,7 +165,7 @@ function Comidas() {
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               Menús no disponibles
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {unavailables_menus.map((menu: MenuItem) => (
                 <AdminMenuCard
                   key={menu.menu.id_menu}
