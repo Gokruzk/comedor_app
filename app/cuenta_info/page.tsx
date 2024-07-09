@@ -60,8 +60,8 @@ function CuentaInfo() {
     return (
       <main className="bg-gray-50 dark:bg-gray-900 min-h-screen flex">
         <NavBar
-          title="<- Volver"
-          href="/cuenta"
+          title="<- Ir a mi perfil"
+          href="/perfil"
           nbuttons={2}
           linkbuttons={linkbuttons}
         />
