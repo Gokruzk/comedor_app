@@ -65,15 +65,15 @@ function Comidas() {
 
   if (detail_ === "[]") {
     return (
-      <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
+      <main className="bg-gray-50 dark:bg-white flex min-h-screen">
         <NavBar
-          title="<- Perfil"
+          title="<- Regresar"
           href="/perfil"
           nbuttons={2}
           // linkbuttons={linkbuttons}
         />
         <div className="flex-grow flex items-center justify-center">
-          <div className="text-center">No hay menús</div>
+          <div className="text-center text-gray-600">No hay menús</div>
         </div>
       </main>
     );
@@ -89,7 +89,7 @@ function Comidas() {
     return (
       <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
         <NavBar
-          title="<- Perfil"
+          title="<- Regresar"
           href="/perfil"
           nbuttons={2}
           linkbuttons={linkbuttons}
@@ -103,7 +103,7 @@ function Comidas() {
     return (
       <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
         <NavBar
-          title="<- Perfil"
+          title="<- Regresar"
           href="/perfil"
           nbuttons={2}
           linkbuttons={linkbuttons}
