@@ -179,7 +179,7 @@ export const diningReservation = async (
     if (res.status == 200) {
       return { status: 200, data: res.data };
     } else {
-      return { status: 400, error: "El menú no existe" };
+      return { status: 400, error: "Error creando la reservación" };
     }
   } catch (error: unknown) {
     console.log(error)
@@ -191,7 +191,7 @@ export const diningReservation = async (
       };
     }
   }
-  return { status: 400, error: "El menú no existe" };
+  return { status: 400, error: "Error creando la reservación" };
 };
 
 export const getDinings = async () => {
