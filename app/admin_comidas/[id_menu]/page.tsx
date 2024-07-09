@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import {
   QueryClient,
   QueryClientProvider,
@@ -13,6 +12,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "react-hook-form";
 import { getMenu, updateMenu } from "@/api/foodAPI";
 import { useEffect, useState } from "react";
+import Loading from "@/components/Loading";
+import LinkButton from "@/components/LinkButton";
 
 const queryClient = new QueryClient();
 
@@ -113,15 +114,13 @@ const UpdateMenu = ({ id_menu }: MenuForm) => {
     },
   });
 
-  if (isLoading)
+  if (isLoading) {
     return (
-      <main className="bg-gray-50 dark:bg-gray-900">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-          Loading...
-        </div>
+      <main>
+        <Loading />
       </main>
     );
-  else if (isError)
+  } else if (isError)
     return (
       <main className="bg-gray-50 dark:bg-gray-900">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -136,12 +135,11 @@ const UpdateMenu = ({ id_menu }: MenuForm) => {
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-              <Link
-                href={"/admin_comidas"}
-                className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-              >
-                {"<-"} Volver
-              </Link>
+              <LinkButton
+                title="<- Volver"
+                href="/admin_comidas"
+                style="font-medium text-primary-600 hover:underline dark:text-primary-500"
+              />
             </p>
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               Actualizar menú de comida

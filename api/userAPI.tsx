@@ -1,6 +1,6 @@
 "use server";
 import { jwtVerify } from "jose";
-import { Card, CardUser, User, UserLogin } from "@/types";
+import { Balance, Card, CardUser, User, UserLogin } from "@/types";
 import axios from "axios";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
@@ -158,6 +158,56 @@ export const addCard = async (card: CardUser) => {
     }
   }
   return { status: 401, error: "Error agregando la tarjeta" };
+};
+
+export const getUserBalance = async (email: string) => {
+  const token = cookies().get(COOKIE_NAME)?.value;
+  try {
+    const user = await userAPI.get(`/users/email/${email}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const res = await userAPI.get(`/users/balance/${user.data.user.id_user}`);
+    if (res.status == 200) {
+      return { status: 200, data: res.data.balance };
+    } else {
+      return { status: 401, error: "Error obteniendo saldo" };
+    }
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      return {
+        status: error.response?.status,
+        errors: error.response,
+        detail: error.response?.data.detail,
+      };
+    }
+  }
+  return { status: 401, error: "Error obteniendo saldo" };
+};
+
+export const setUserBalance = async (balance: Balance) => {
+  try {
+    const res = await userAPI.post(`/users/balance`, balance);
+    if (res.status == 200) {
+      return { status: 200 };
+    } else {
+      return {
+        status: 401,
+        error: "Error actualizando el saldo de tu tarjeta",
+      };
+    }
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.log(error.response?.status);
+      return {
+        status: error.response?.status,
+        errors: error.response,
+        detail: error.response?.data.detail,
+      };
+    }
+  }
+  return { status: 401, error: "Error actualizando el saldo de tu tarjeta" };
 };
 
 export const getUserCard = async (email: string) => {

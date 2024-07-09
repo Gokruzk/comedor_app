@@ -126,6 +126,11 @@ export interface ReserveStatus {
   reserve_status: string;
 }
 
+export interface Balance {
+  email: string;
+  new_balance: number;
+}
+
 export interface UserLogin {
   email: string;
   password: string;

@@ -5,11 +5,11 @@ import {
   QueryClientProvider,
   useMutation,
 } from "@tanstack/react-query";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
+import LinkButton from "@/components/LinkButton";
 
 const queryClient = new QueryClient();
 
@@ -22,7 +22,6 @@ export default function LoginF() {
 }
 
 function LoginForm() {
-
   const loginUser = async (formdata: FormData) => {
     const email = formdata.get("email") as string;
     const password = formdata.get("password") as string;
@@ -74,12 +73,10 @@ function LoginForm() {
   }
   const router = useRouter();
 
-
   return (
     <main className="bg-gray-50 dark:bg-gray-100">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="w-full bg-white rounded-3xl shadow-2xl dark:border md:mt-0 sm:max-w-4xl xl:p-0 dark:border-white grid grid-cols-2 justify-center items-center">
-          
           {/* seccion de codigo para la imagen*/}
           <div className="flex justify-center items-center p-6 space-y-4 md:space-y-6 sm:p-8">
             <Image width={300} height={300} src="/ESPOCH.png" alt="" />
@@ -88,15 +85,18 @@ function LoginForm() {
           {/* seccion de codigo para el texto*/}
           <div className="p-6 space-y-4  md:space-y-6 sm:p-8">
             <p className="text-sm font-light text-gray-500 dark:text-gray-600">
-              <Link href={"/"} className="font-medium text-primary-600 hover:underline dark:text-primary-500">
-                {"<-"} Volver a inicio
-              </Link>
+              <LinkButton
+                title="<- Volver a inicio"
+                href="/"
+                style="font-medium text-primary-600 hover:underline dark:text-primary-500"
+              />
             </p>
             {/*<h1 className="text-xl font-bold leading-tight tracking-tight md:text-3xl text-black text-center">
               INICIO DE SESION
             </h1>*/}
             <form className="space-y-4 md:space-y-6" action={loginUser}>
-              <div>{/*}                <label
+              <div>
+                {/*}                <label
                   htmlFor="email"
                   className="block mb-2 text-sm font-medium text-gray-500"
                 >
@@ -172,33 +172,30 @@ function LoginForm() {
                   </button>
                 </div>
               </div>
-              
+
               <div className="flex justify-center items-center">
                 <button
                   type="submit"
                   className="bg-green-600 hover:bg-green-700 w-2/3 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
                   Iniciar Sesión
-              </button>
+                </button>
               </div>
-              
+
               <p className="text-sm font-light text-gray-600 dark:text-gray-00 text-center">
                 ¿No tienes una cuenta todavía?{" "}
-                <Link
-                  href={"/registro"}
-                  className="font-medium text-primary-600 hover:underline dark:text-primary-500 text-red-500"
-                >
-                  Regístrate aquí
-                </Link>
+                <LinkButton
+                  title="Regístrate aquí"
+                  href="/registro"
+                  style="font-medium text-primary-600 hover:underline dark:text-primary-500 text-red-500"
+                />
               </p>
-
               <p className="text-sm font-light text-gray-600 dark:text-gray-500 text-center">
-                <Link
-                  href={"/recuperar"}
-                  className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                >
-                  ¿Has olvidado tu contraseña?
-                </Link>
+                <LinkButton
+                  title="¿Has olvidado tu contraseña?"
+                  href="/recuperar"
+                  style="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                />
               </p>
             </form>
           </div>

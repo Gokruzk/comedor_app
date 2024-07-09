@@ -1,4 +1,4 @@
-import Link from "next/link";
+import LinkButton from "@/components/LinkButton";
 
 export default function Recovery() {
   return (
@@ -7,12 +7,11 @@ export default function Recovery() {
         <div className="w-full bg-white rounded-3xl shadow-2xl dark:border md:mt-0 sm:max-w-2xl xl:p-0 dark:border-white  justify-center items-center">
           <div className="p-6 space-y-4 md:space-y-2 sm:p-8 sm:pb-4">
             <p className="text-sm font-light text-gray-500 dark:text-gray-600">
-              <Link
-                href={"/login"}
-                className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-              >
-                {"<-"} Volver
-              </Link>
+              <LinkButton
+                title="<- Volver"
+                href="/login"
+                style="font-medium text-primary-600 hover:underline dark:text-primary-500"
+              />
             </p>
           </div>
 

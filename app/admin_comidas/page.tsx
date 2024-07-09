@@ -11,6 +11,7 @@ import {
   QueryClientProvider,
   useMutation,
 } from "@tanstack/react-query";
+import Loading from "@/components/Loading";
 
 const queryClient = new QueryClient();
 
@@ -115,17 +116,8 @@ function Comidas() {
 
   if (isLoading) {
     return (
-      <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
-        <NavBar
-          title="<- Perfil"
-          href="/admin_perfil"
-          nbuttons={2}
-          linkbuttons={linkbuttons}
-        />
-        <div className="flex-grow flex items-center justify-center">
-          <div className="text-center">Loading...</div>
-        </div>
-        <ToastContainer />
+      <main>
+        <Loading />
       </main>
     );
   } else if (isError) {

@@ -1,5 +1,6 @@
 "use client";
 import { getUserMenus } from "@/api/foodAPI";
+import Loading from "@/components/Loading";
 import MenuCard from "@/components/MenuCard";
 import NavBar from "@/components/NavBar";
 import { MenuItem } from "@/types";
@@ -85,35 +86,27 @@ function Comidas() {
     });
   }
 
-  if (isLoading) {
-    return (
-      <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
-        <NavBar
-          title="<- Regresar"
-          href="/perfil"
-          nbuttons={2}
-          linkbuttons={linkbuttons}
-        />
-        <div className="flex-grow flex items-center justify-center">
-          <div className="text-center">Loading...</div>
-        </div>
-      </main>
-    );
-  } else if (isError) {
-    return (
-      <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
-        <NavBar
-          title="<- Regresar"
-          href="/perfil"
-          nbuttons={2}
-          linkbuttons={linkbuttons}
-        />
-        <div className="flex-grow flex items-center justify-center">
-          <div className="text-center">Error {error.message}</div>
-        </div>
-      </main>
-    );
-  }
+if (isLoading) {
+  return (
+    <main>
+      <Loading />
+    </main>
+  );
+} else if (isError) {
+  return (
+    <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
+      <NavBar
+        title="<- Regresar"
+        href="/perfil"
+        nbuttons={2}
+        linkbuttons={linkbuttons}
+      />
+      <div className="flex-grow flex items-center justify-center">
+        <div className="text-center">Error {error.message}</div>
+      </div>
+    </main>
+  );
+}
   return (
     <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
       <NavBar

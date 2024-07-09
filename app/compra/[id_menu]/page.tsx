@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import { getUserSession } from "@/utils";
 import BuyCard from "@/components/BuyCard";
 import LinkButton from "@/components/LinkButton";
+import Loading from "@/components/Loading";
 
 const queryClient = new QueryClient();
 
@@ -29,8 +30,10 @@ export default function CompraQ({ params }: Params_Menu) {
 const CompraMenu = ({ id_menu }: MenuForm) => {
   const router = useRouter();
   const [selectedTime, setSelectedTime] = useState(0);
+  const [loadingPurchase, setIsLoading] = useState<boolean>(false);
 
   const buyMenu = async (formdata: any) => {
+    setIsLoading(true);
     const { user } = await getUserSession();
     const email = user;
 
@@ -82,7 +85,7 @@ const CompraMenu = ({ id_menu }: MenuForm) => {
       toast.success(mensaje);
       setTimeout(() => {
         router.push("/comidas");
-      }, 2000);
+      }, 1000);
     } else {
       toast.error(mensaje);
     }
@@ -99,22 +102,23 @@ const CompraMenu = ({ id_menu }: MenuForm) => {
       } else {
         showToastMessage(`${data.error}`, "error");
       }
+      setIsLoading(false);
     },
     onError: (error) => {
       console.log(error);
       showToastMessage(`${error}`, "error");
+      setIsLoading(false);
     },
   });
 
-  if (isLoading)
+  if (isLoading || loadingPurchase) {
     return (
-      <main className="bg-gray-50 dark:bg-gray-900">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-          Loading...
-        </div>
+      <main>
+        <Loading />
+        <ToastContainer />
       </main>
     );
-  else if (isError)
+  } else if (isError)
     return (
       <main className="bg-gray-50 dark:bg-gray-900">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">

@@ -13,7 +13,6 @@ import { Card, CardUser } from "@/types";
 import { addCard } from "@/api/userAPI";
 import { getUserSession } from "@/utils";
 import LinkButton from "@/components/LinkButton";
-import Link from "next/link";
 
 const queryClient = new QueryClient();
 
@@ -82,8 +81,7 @@ const AgregarTarjetaPage = () => {
     <section className="bg-gray-50 dark:bg-gray-100">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="w-full bg-white rounded-3xl shadow-2xl dark:border md:mt-0 sm:max-w-4xl xl:p-0 dark:border-white justify-center items-center">
-
-         <div className="p-6 space-y-4  md:space-y-6 sm:p-8">
+          <div className="p-6 space-y-4  md:space-y-6 sm:p-8">
             <form
               onSubmit={handleSubmit(addNewCard)}
               className="space-y-4 md:space-y-6"
@@ -212,13 +210,12 @@ const AgregarTarjetaPage = () => {
                 </div>
               </div>
 
-
               <div className="flex justify-around items-center ">
-
-                <Link href={"/cuenta_info"} className="bg-red-600 hover:bg-red-700 w-60 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                Cancelar y volver
-                </Link>
-
+                <LinkButton
+                  title="Cancelar y volver"
+                  href="/cuenta_info"
+                  style="bg-red-600 hover:bg-red-700 w-60 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                />
                 <button
                   type="submit"
                   className="bg-green-600 hover:bg-green-700 w-60 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"

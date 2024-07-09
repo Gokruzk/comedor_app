@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import {
   QueryClient,
   QueryClientProvider,
@@ -11,6 +10,7 @@ import { User } from "@/types";
 import { addUser } from "@/api/userAPI";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LinkButton from "@/components/LinkButton";
 
 const queryClient = new QueryClient();
 
@@ -49,7 +49,7 @@ const RegisterForm = () => {
       ...user,
     });
   };
-  
+
   const showToastMessage = (mensaje: string, type: "success" | "error") => {
     if (type === "success") {
       toast.success(mensaje);
@@ -94,20 +94,17 @@ const RegisterForm = () => {
     <main className="bg-gray-50 dark:bg-gray-100">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="w-full bg-white rounded-3xl shadow-2xl dark:border md:mt-0 sm:max-w-4xl  xl:p-0 dark:border-white justify-center items-center">
-
           <div className="p-6 space-y-4 md:space-y-6 sm:px-8 sm:pb-0">
             <p className="text-sm font-light text-gray-500 dark:text-gray-600">
-                <Link
-                  href={"/"}
-                  className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                >
-                  {"<-"} Volver a Inicio
-                </Link>
+              <LinkButton
+                title="<- Volver a Inicio"
+                href="/"
+                style="font-medium text-primary-600 hover:underline dark:text-primary-500"
+              />
             </p>
           </div>
 
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8 sm:pt-2">
-            
             {/**columna izquerda */}
 
             {/*
@@ -115,9 +112,7 @@ const RegisterForm = () => {
               Registro
             </h1>*/}
             <form className="space-y-4 md:space-y-6" action={registerUser}>
-
               <div className="grid grid-cols-2 gap-8 place-content-center">
-                
                 <div>
                   <input
                     type="email"
@@ -127,7 +122,7 @@ const RegisterForm = () => {
                     placeholder="Correo Electrónico"
                     required
                   />
-                  
+
                   <input
                     name="cedula"
                     id="cedula"
@@ -135,7 +130,7 @@ const RegisterForm = () => {
                     placeholder="Cédula"
                     required
                   />
-                
+
                   <input
                     name="nombre"
                     id="nombre"
@@ -151,7 +146,7 @@ const RegisterForm = () => {
                     placeholder="Apellido"
                     required
                   />
-    
+
                   <input
                     name="celular"
                     id="celular"
@@ -162,10 +157,8 @@ const RegisterForm = () => {
                   />
                 </div>
 
-
-                  {/**columna derecha*/}
+                {/**columna derecha*/}
                 <div>
-                    
                   <select
                     id="type_user"
                     name="type_user"
@@ -244,21 +237,14 @@ const RegisterForm = () => {
 
                   <p className="text-sm font-light mt-4 text-gray-600 dark:text-gray-00 text-center">
                     ¿Ya tienes una cuenta?{" "}
-                    <Link
-                      href={"/login"}
-                      className="font-medium text-primary-600 hover:underline dark:text-primary-500 text-red-500"
-                    >
-                      Inicia sesión aquí
-                    </Link>
+                    <LinkButton
+                      title="Inicia sesión aquí"
+                      href="/login"
+                      style="font-medium text-primary-600 hover:underline dark:text-primary-500 text-red-500"
+                    />
                   </p>
-
-                  
                 </div>
-
               </div>
-
-
-              
             </form>
           </div>
         </div>
