@@ -127,15 +127,15 @@ function CuentaInfo() {
 
   if (detail_ === "[]") {
     return (
-      <main className="bg-gray-50 dark:bg-gray-900 min-h-screen flex">
+      <main className="bg-white dark:bg-white-900 min-h-screen flex">
         <NavBar
           title="<- Volver"
           href="/cuenta"
           nbuttons={1}
           linkbuttons={linkbuttons}
         />
-        <div className="flex-1 p-6">
-          <h2 className="text-xl font-bold mb-4">
+        <div className="flex p-10">
+          <h2 className="text-lg font-light mb-4 text-gray-600">
             No hay una tarjeta agregada
           </h2>
         </div>
@@ -144,14 +144,53 @@ function CuentaInfo() {
   }
 
   return (
-    <main className="bg-gray-50 dark:bg-gray-900 min-h-screen flex">
+    <main className="bg-gray-50 dark:bg-white min-h-screen flex">
       <NavBar
-        title="<- Volver"
+        title="<- Ir a mi perfil"
         href="/perfil"
         nbuttons={2}
         linkbuttons={linkbuttons}
       />
+
       <div className="flex-1 p-6">
+        < HEAD
+        <h2 className="text-xl font-normal mb-4 text-gray-600">Información de la tarjeta</h2>
+
+        <div className="flex-1 justifty-center items-center ">
+          <div className="w-80 bg-green-600 rounded-xl relative text-white shadow-2xl p-6">
+            <div className="pt-1">
+              <p className="font-bold">Número de tarjeta</p>
+              <p className="font-light tracking-more-wider">
+                {cardData.card_number}
+              </p>
+            </div>
+            <div className="pt-6 pr-6">
+              <div className="flex justify-between">
+                <div>
+                  <p className="font-bold ">Valida hasta</p>
+                  <p className="font-light tracking-wider text-sm">
+                    {cardData.exp_month}/{cardData.exp_year}
+                  </p>
+                </div>
+                <div>
+                  <p className="font-bold">CVV</p>
+                  <p className="font-bold tracking-more-wider text-sm">...</p>
+                </div>
+              </div>
+            </div>
+            <div className="py-6">
+              <p className="font-bold">Saldo en tu cuenta comedor</p>
+              <p className="font-light tracking-more-wider">
+                {/* {cardData.saldo} */}
+                $0
+              </p>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      
+
         <h2 className="text-xl font-bold mb-4">Información de la tarjeta</h2>
         <div className="w-80 bg-blue-700 rounded-xl relative text-white shadow-2xl p-6">
           <div className="pt-1">
@@ -235,6 +274,7 @@ function CuentaInfo() {
         </div>
       </div>
       <ToastContainer />
+
     </main>
   );
 }
