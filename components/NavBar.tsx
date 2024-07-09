@@ -8,12 +8,13 @@ export default function NavBar({
   linkbuttons = [],
 }: NavBarProps) {
   return (
-    <nav className="w-64 bg-white dark:bg-gray-800 shadow-md h-screen p-4">
-      <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+    <main>
+    <nav className="w-64 bg-white dark:bg-gray-100 shadow-md h-screen p-4 rounded-r-2xl">
+      <p className="text-sm font-light text-gray-600 dark:text-gray-600">
         <LinkButton
           title={title}
           href={href}
-          style="font-medium text-primary-600 hover:underline dark:text-primary-500"
+          style="pl-5 font-medium text-primary-600 hover:underline dark:text-primary-500"
         />
       </p>
       <ul className="mt-8">
@@ -23,12 +24,15 @@ export default function NavBar({
             <li key={index} className="mb-4">
               <LinkButton
                 href={button.href}
-                style="py-2.5 px-5 ml-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                style="w-48 py-2.5 px-10 ml-2 text-md font-medium text-white focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-red-700 dark:bg-red-600 dark:text-white dark:border-red-600 dark:hover:text-white dark:hover:bg-red-700"
                 title={button.title}
               />
             </li>
           ))}
       </ul>
     </nav>
+
+
+    </main>
   );
 }

@@ -6,16 +6,18 @@ export default function Profile() {
     { href: "/cuenta_info", title: "Mi cuenta" },
   ];
   return (
-    <main className="bg-gray-50 dark:bg-gray-900 min-h-full flex">
+    <main className="bg-gray-50 dark:bg-white min-h-full flex">
       <NavBar
-        title="<- Regresar"
+        title="<- Volver"
         href="/"
         nbuttons={2}
         linkbuttons={linkbuttons}
       />
       <div className="flex-grow flex items-center justify-center">
-        <div className="bg-white rounded-lg shadow dark:border sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-          <div className="pl-8 pt-3">Vacío</div>
+        <div className="w-48 bg-white rounded-lg shadow dark:border sm:max-w-md xl:p-0 dark:bg-white dark:border-red-600 text-gray-600">
+          <div className="px-8 py-3 text-center">
+            Vacío
+          </div>
         </div>
       </div>
     </main>
