@@ -13,6 +13,7 @@ import { Card, CardUser } from "@/types";
 import { addCard } from "@/api/userAPI";
 import { getUserSession } from "@/utils";
 import LinkButton from "@/components/LinkButton";
+import Link from "next/link";
 
 const queryClient = new QueryClient();
 
@@ -78,23 +79,14 @@ const AgregarTarjetaPage = () => {
   });
 
   return (
-    <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
-      <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
-        <div className="mx-auto max-w-5xl">
-          <p className="text-sm font-light text-gray-500 dark:text-gray-600">
-            <LinkButton
-              href="/cuenta_info"
-              style="font-medium text-primary-600 hover:underline dark:text-primary-500"
-              title="<- Volver"
-            />
-          </p>
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
-            Agrega tu tarjeta
-          </h2>
-          <div className="mt-6 sm:mt-8 lg:flex lg:items-start lg:gap-12">
+    <section className="bg-gray-50 dark:bg-gray-100">
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <div className="w-full bg-white rounded-3xl shadow-2xl dark:border md:mt-0 sm:max-w-4xl xl:p-0 dark:border-white justify-center items-center">
+
+         <div className="p-6 space-y-4  md:space-y-6 sm:p-8">
             <form
               onSubmit={handleSubmit(addNewCard)}
-              className="w-full rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6 lg:max-w-xl lg:p-8"
+              className="space-y-4 md:space-y-6"
             >
               <div className="mt-6 flex items-center justify-center gap-8">
                 <Image width={40} height={20} src="/amex.svg" alt="" />
@@ -105,17 +97,17 @@ const AgregarTarjetaPage = () => {
                 <div className="col-span-2 sm:col-span-1">
                   <label
                     htmlFor="full_name"
-                    className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                    className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-600"
                   >
                     {" "}
-                    Full name (as displayed on card)*{" "}
+                    Propietario de la tarjeta*{" "}
                   </label>
                   <input
                     type="text"
                     id="full_name"
                     {...register("full_name")}
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-                    placeholder="Bonnie Green"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Nombre Apellido"
                     required
                   />
                 </div>
@@ -123,16 +115,16 @@ const AgregarTarjetaPage = () => {
                 <div className="col-span-2 sm:col-span-1">
                   <label
                     htmlFor="card_number"
-                    className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                    className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-600"
                   >
                     {" "}
-                    Card number*{" "}
+                    Número de tarjeta*{" "}
                   </label>
                   <input
                     type="text"
                     id="card_number"
                     {...register("card_number")}
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 pe-10 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500  dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="xxxx-xxxx-xxxx-xxxx"
                     required
                   />
@@ -141,9 +133,9 @@ const AgregarTarjetaPage = () => {
                 <div>
                   <label
                     htmlFor="card_expiration"
-                    className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                    className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-600"
                   >
-                    Card expiration*{" "}
+                    Fecha de expiracion*{" "}
                   </label>
                   <div className="relative">
                     <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3.5">
@@ -168,7 +160,7 @@ const AgregarTarjetaPage = () => {
                       id="card_expiration"
                       type="text"
                       {...register("card_expiration")}
-                      className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 ps-9 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="mm/yy"
                       required
                     />
@@ -177,7 +169,7 @@ const AgregarTarjetaPage = () => {
                 <div>
                   <label
                     htmlFor="cvv-input"
-                    className="mb-2 flex items-center gap-1 text-sm font-medium text-gray-900 dark:text-white"
+                    className="mb-2 flex items-center gap-1 text-sm font-medium text-gray-900 dark:text-gray-600"
                   >
                     CVV*
                     <button
@@ -213,19 +205,27 @@ const AgregarTarjetaPage = () => {
                     id="cvv-input"
                     {...register("cvv")}
                     aria-describedby="helper-text-explanation"
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="•••"
                     required
                   />
                 </div>
               </div>
 
-              <button
-                type="submit"
-                className="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-              >
-                Agregar tarjeta
-              </button>
+
+              <div className="flex justify-around items-center ">
+
+                <Link href={"/cuenta_info"} className="bg-red-600 hover:bg-red-700 w-60 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                Cancelar y volver
+                </Link>
+
+                <button
+                  type="submit"
+                  className="bg-green-600 hover:bg-green-700 w-60 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                >
+                  Agregar tarjeta
+                </button>
+              </div>
             </form>
           </div>
         </div>
