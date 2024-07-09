@@ -151,17 +151,17 @@ function CuentaInfo() {
         nbuttons={2}
         linkbuttons={linkbuttons}
       />
-
       <div className="flex-1 p-6">
-        < HEAD
-        <h2 className="text-xl font-normal mb-4 text-gray-600">Información de la tarjeta</h2>
+        <h2 className="text-xl font-normal mb-4 text-gray-600">
+          Información de la tarjeta
+        </h2>
 
         <div className="flex-1 justifty-center items-center ">
           <div className="w-80 bg-green-600 rounded-xl relative text-white shadow-2xl p-6">
             <div className="pt-1">
               <p className="font-bold">Número de tarjeta</p>
               <p className="font-light tracking-more-wider">
-                {cardData.card_number}
+                {cardData?.card_number}
               </p>
             </div>
             <div className="pt-6 pr-6">
@@ -169,7 +169,7 @@ function CuentaInfo() {
                 <div>
                   <p className="font-bold ">Valida hasta</p>
                   <p className="font-light tracking-wider text-sm">
-                    {cardData.exp_month}/{cardData.exp_year}
+                    {cardData?.exp_month}/{cardData?.exp_year}
                   </p>
                 </div>
                 <div>
@@ -181,45 +181,12 @@ function CuentaInfo() {
             <div className="py-6">
               <p className="font-bold">Saldo en tu cuenta comedor</p>
               <p className="font-light tracking-more-wider">
-                {/* {cardData.saldo} */}
-                $0
+                ${userBalanceFetched}
               </p>
             </div>
           </div>
         </div>
-        
-      </div>
-      
-
         <h2 className="text-xl font-bold mb-4">Información de la tarjeta</h2>
-        <div className="w-80 bg-blue-700 rounded-xl relative text-white shadow-2xl p-6">
-          <div className="pt-1">
-            <p className="font-light">Número de tarjeta</p>
-            <p className="font-medium tracking-more-wider">
-              {cardData?.card_number}
-            </p>
-          </div>
-          <div className="pt-6 pr-6">
-            <div className="flex justify-between">
-              <div>
-                <p className="font-light text-xs">Valida hasta</p>
-                <p className="font-medium tracking-wider text-sm">
-                  {cardData?.exp_month}/{cardData?.exp_year}
-                </p>
-              </div>
-              <div>
-                <p className="font-light text-xs">CVV</p>
-                <p className="font-bold tracking-more-wider text-sm">...</p>
-              </div>
-            </div>
-          </div>
-          <div className="py-6">
-            <p className="font-light">Saldo en tu cuenta comedor</p>
-            <p className="font-medium tracking-more-wider">
-              ${userBalanceFetched}
-            </p>
-          </div>
-        </div>
         <div className="mx-auto max-w-5xl">
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
             Agrega saldo a tu cuenta
@@ -274,7 +241,6 @@ function CuentaInfo() {
         </div>
       </div>
       <ToastContainer />
-
     </main>
   );
 }
