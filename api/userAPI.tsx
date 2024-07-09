@@ -149,11 +149,10 @@ export const addCard = async (card: CardUser) => {
     }
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
-      console.log(error.response?.status);
       return {
         status: error.response?.status,
-        errors: error.response,
-        detail: error.response?.data.detail,
+        error: error.response?.data.detail,
+        detail: error.response,
       };
     }
   }
@@ -178,7 +177,7 @@ export const getUserBalance = async (email: string) => {
     if (axios.isAxiosError(error)) {
       return {
         status: error.response?.status,
-        errors: error.response,
+        error: error.response,
         detail: error.response?.data.detail,
       };
     }
