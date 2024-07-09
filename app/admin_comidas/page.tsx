@@ -78,9 +78,12 @@ function Comidas() {
         setMenus([]);
         setReload((prev) => !prev);
         setDetail("[]");
+      } else {
+        showToastMessage(`${data.error}`, "error");
       }
     },
     onError: (error) => {
+      console.log(error)
       showToastMessage(`Error eliminando el menú: ${error}`, "error");
     },
   });
