@@ -135,6 +135,7 @@ const AgregarMenu = () => {
                   placeholder="Precio"
                   required
                   min={1}
+                  max={999.99}
                   {...register("price")}
                 />
                 <label
