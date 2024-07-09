@@ -1,6 +1,6 @@
 "use server";
 import { jwtVerify } from "jose";
-import { User, UserLogin } from "@/types";
+import { Card, CardUser, User, UserLogin } from "@/types";
 import axios from "axios";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
@@ -12,6 +12,45 @@ const key = new TextEncoder().encode(process.env.NEXT_PUBLIC_SECRET_KEY);
 const userAPI = axios.create({
   baseURL: API_URL,
 });
+
+export const auth = async (user: UserLogin) => {
+  try {
+    const data = await userAPI.post("/login", user);
+    if (data.data.status != 401) {
+      const token = data.data.access_token;
+      cookies().set({
+        name: COOKIE_NAME,
+        value: token,
+        httpOnly: true,
+        sameSite: "strict",
+        path: "/",
+        maxAge: 60 * 60,
+      });
+      return { status: 200, token: token };
+    } else {
+      return { status: 404, error: "Usuario o contraseña incorrecta" };
+    }
+  } catch (error) {
+    console.error("Error during authentication");
+  }
+  return { status: 404, error: "Usuario o contraseña incorrecta" };
+};
+
+export const logout = () => {
+  try {
+    cookies().set({
+      name: COOKIE_NAME,
+      value: "",
+      httpOnly: true,
+      sameSite: "strict",
+      path: "/",
+    });
+    return { status: 200 };
+  } catch (error) {
+    console.error("Error during authentication", error);
+  }
+  return { status: 404, error: "Invalid username or password" };
+};
 
 // get user
 
@@ -34,6 +73,7 @@ export const getUser = async (email: string) => {
   return { status: 400, error: "The user does not exist" };
 };
 
+//add user
 export const addUser = async (user: User) => {
   try {
     const res = await userAPI.post("/users", user);
@@ -84,43 +124,61 @@ export const addUser = async (user: User) => {
 //   return { status: 401, error: "Error while updating user" };
 // };
 
-export const auth = async (user: UserLogin) => {
+export const addCard = async (card: CardUser) => {
+  const token = cookies().get(COOKIE_NAME)?.value;
   try {
-    const data = await userAPI.post("/login", user);
-    if (data.data.status != 401) {
-      const token = data.data.access_token;
-      cookies().set({
-        name: COOKIE_NAME,
-        value: token,
-        httpOnly: true,
-        sameSite: "strict",
-        path: "/",
-        maxAge: 60 * 60,
-      });
-      return { status: 200, token: token };
+    const user = await userAPI.get(`/users/email/${card.email}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    const car: Card = {
+      id_user: user.data.user.id_user,
+      card_number: card.card_number,
+      exp_month: card.exp_month,
+      exp_year: card.exp_year,
+    };
+
+    const res = await userAPI.post("/cards", car);
+    if (res.status == 200) {
+      console.log(res);
+      return { status: 200 };
     } else {
-      return { status: 404, error: "Usuario o contraseña incorrecta" };
+      return { status: 401, error: "Error agregando la tarjeta" };
     }
-  } catch (error) {
-    console.error("Error during authentication");
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.log(error.response?.status);
+      return {
+        status: error.response?.status,
+        errors: error.response,
+        detail: error.response?.data.detail,
+      };
+    }
   }
-  return { status: 404, error: "Usuario o contraseña incorrecta" };
+  return { status: 401, error: "Error agregando la tarjeta" };
 };
 
-export const logout = () => {
+export const getUserCard = async (email: string) => {
   try {
-    cookies().set({
-      name: COOKIE_NAME,
-      value: "",
-      httpOnly: true,
-      sameSite: "strict",
-      path: "/",
-    });
-    return { status: 200 };
-  } catch (error) {
-    console.error("Error during authentication", error);
+    const user = await getUser(email);
+    const res = await userAPI.get(`/cards/user_id/${user.data.user.id_user}`);
+    if (res.status == 200) {
+      return { status: 200, data: res.data };
+    } else {
+      return { status: 401, error: "Error cargando la tarjeta" };
+    }
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      return {
+        status: error.response?.status,
+        errors: error.response,
+        detail: error.response?.data.detail,
+      };
+    }
   }
-  return { status: 404, error: "Invalid username or password" };
+  return { status: 401, error: "Error cargando la tarjeta" };
 };
 
 export async function decrypt(input: string): Promise<any> {

@@ -74,7 +74,7 @@ const UpdateMenu = ({ id_menu }: MenuForm) => {
   let status_menu: any = "";
 
   if (menu?.data.menu.status == true) {
-    status_menu = "true"
+    status_menu = "true";
     status_menu_description = "Disponible";
   } else {
     status_menu = "false";
@@ -140,7 +140,7 @@ const UpdateMenu = ({ id_menu }: MenuForm) => {
                 href={"/admin_comidas"}
                 className="font-medium text-primary-600 hover:underline dark:text-primary-500"
               >
-                {"<-"} Regresar
+                {"<-"} Volver
               </Link>
             </p>
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">

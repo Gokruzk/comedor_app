@@ -1,6 +1,7 @@
 import Image from "next/image";
+import React from "react";
 
-export default function UserAccount() {
+const AddCardForm = () => {
   return (
     <div>
       <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
@@ -196,3 +197,5 @@ export default function UserAccount() {
     </div>
   );
 }
+
+export default AddCardForm

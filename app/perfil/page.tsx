@@ -2,8 +2,8 @@ import NavBar from "@/components/NavBar";
 
 export default function Profile() {
   const linkbuttons = [
-    { href: "/comidas", title: "Ver menú" },
-    { href: "/cuenta", title: "Mi cuenta" },
+    { href: "/comidas", title: "Ver menús" },
+    { href: "/cuenta_info", title: "Mi cuenta" },
   ];
   return (
     <main className="bg-gray-50 dark:bg-white min-h-full flex">
