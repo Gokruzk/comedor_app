@@ -168,7 +168,7 @@ function CuentaInfo() {
             <div className="pt-6 pr-6">
               <div className="flex justify-between">
                 <div>
-                  <p className="font-bold ">Valida hasta</p>
+                  <p className="font-bold ">Válida hasta</p>
                   <p className="font-light tracking-wider text-sm">
                     {cardData?.exp_month}/{cardData?.exp_year}
                   </p>
