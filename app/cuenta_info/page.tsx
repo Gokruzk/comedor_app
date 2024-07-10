@@ -211,6 +211,7 @@ function CuentaInfo() {
                           step="0.01"
                           {...register("newBalance")}
                           className="w-full p-2 rounded border dark:bg-white-700 dark:text-gray-500"
+                          min={0.01}
                           required
                         />
                         <dl className="flex items-center justify-between gap-4">
