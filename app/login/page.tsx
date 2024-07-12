@@ -74,16 +74,16 @@ function LoginForm() {
   const router = useRouter();
 
   return (
-    <main className="bg-gray-50 dark:bg-gray-100">
+    <main className="bg-gray-50 dark:bg-gray-100 min-h-screen">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <div className="w-full bg-white rounded-3xl shadow-2xl dark:border md:mt-0 sm:max-w-4xl xl:p-0 dark:border-white grid grid-cols-2 justify-center items-center">
-          {/* seccion de codigo para la imagen*/}
+        <div className="w-full bg-white rounded-3xl shadow-2xl dark:border md:mt-0 sm:max-w-4xl xl:p-0 dark:border-white grid grid-cols-1 lg:grid-cols-2 justify-center items-center">
+          {/* Sección de código para la imagen */}
           <div className="flex justify-center items-center p-6 space-y-4 md:space-y-6 sm:p-8">
-            <Image width={300} height={300} src="/ESPOCH.png" alt="" />
+            <Image width={300} height={300} src="/ESPOCH.png" alt="ESPOCH" />
           </div>
 
-          {/* seccion de codigo para el texto*/}
-          <div className="p-6 space-y-4  md:space-y-6 sm:p-8">
+          {/* Sección de código para el texto */}
+          <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <p className="text-sm font-light text-gray-500 dark:text-gray-600">
               <LinkButton
                 title="<- Volver a inicio"
@@ -91,9 +91,6 @@ function LoginForm() {
                 style="font-medium text-primary-600 hover:underline dark:text-primary-500"
               />
             </p>
-            {/*<h1 className="text-xl font-bold leading-tight tracking-tight md:text-3xl text-black text-center">
-              INICIO DE SESION
-            </h1>*/}
             <form className="space-y-4 md:space-y-6" action={loginUser}>
               <div>
                 <input
@@ -117,7 +114,7 @@ function LoginForm() {
                   />
                   <button
                     type="button"
-                    className="absolute inset-y-0 right-0 px-3 py-2 b"
+                    className="absolute inset-y-0 right-0 px-3 py-2"
                     onClick={togglePasswordVisibility}
                   >
                     <svg
@@ -170,7 +167,7 @@ function LoginForm() {
                 </button>
               </div>
 
-              <p className="text-sm font-light text-gray-600 dark:text-gray-00 text-center">
+              <p className="text-sm font-light text-gray-600 dark:text-gray-500 text-center">
                 ¿No tienes una cuenta todavía?{" "}
                 <LinkButton
                   title="Regístrate aquí"
