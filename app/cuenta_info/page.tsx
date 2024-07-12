@@ -168,7 +168,7 @@ function CuentaInfo() {
             <div className="pt-6 pr-6">
               <div className="flex justify-between">
                 <div>
-                  <p className="font-bold ">Valida hasta</p>
+                  <p className="font-bold ">Válida hasta</p>
                   <p className="font-light tracking-wider text-sm">
                     {cardData?.exp_month}/{cardData?.exp_year}
                   </p>
@@ -211,6 +211,7 @@ function CuentaInfo() {
                           step="0.01"
                           {...register("newBalance")}
                           className="w-full p-2 rounded border dark:bg-white-700 dark:text-gray-500"
+                          min={0.01}
                           required
                         />
                         <dl className="flex items-center justify-between gap-4">
