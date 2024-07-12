@@ -58,7 +58,7 @@ const ViewAllReservations = () => {
 
   if (detail_ === "[]") {
     return (
-      <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
+      <main className="bg-white dark:bg-white flex min-h-screen">
         <div className="flex-grow flex items-center justify-center">
           <div className="text-center">No hay reservaciones</div>
         </div>
@@ -78,7 +78,7 @@ const ViewAllReservations = () => {
     );
   } else if (isError) {
     return (
-      <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
+      <main className="bg-gray-50 dark:white flex min-h-screen">
         <div className="flex-grow flex items-center justify-center">
           <div className="text-center">Error</div>
         </div>
