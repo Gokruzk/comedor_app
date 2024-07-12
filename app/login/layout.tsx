@@ -25,16 +25,12 @@ const LoginLayout = ({ children }: { children: React.ReactNode }) => {
 
   if (!isSuccess) {
     return (
-      <main >
-        <Loading/>
+      <main>
+        <Loading />
       </main>
     );
   }
-  return (
-    <main>
-      {children}
-    </main>
-  );
+  return children;
 };
 
 export default LoginLayout;

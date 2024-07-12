@@ -132,14 +132,14 @@ const CompraMenu = ({ id_menu }: MenuForm) => {
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="w-full bg-white rounded-3xl shadow-2xl dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-white dark:border-white">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-
             <BuyCard menu={menu?.data} reservationMutation={buyMenu} />
 
             <div className="flex justify-center items-center mt-2">
-                <LinkButton
-                  href={"/comidas"}
-                  style="bg-blue-500 hover:bg-blue-700 w-2xl text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" title="Cancelar y volver"
-                />
+              <LinkButton
+                href={"/comidas"}
+                style="bg-blue-500 hover:bg-blue-700 w-2xl text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                title="Cancelar y volver"
+              />
             </div>
           </div>
         </div>

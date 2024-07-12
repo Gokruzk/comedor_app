@@ -6,8 +6,6 @@ import NavBar from "@/components/NavBar";
 import { MenuItem } from "@/types";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useCallback, useEffect, useState } from "react";
-import LinkButton from "@/components/LinkButton";
-
 
 const queryClient = new QueryClient();
 
@@ -30,7 +28,7 @@ function Comidas() {
   const fetchMenus = useCallback(async () => {
     try {
       const { status, data, error, detail } = await getUserMenus();
-      
+
       if (status === 200) {
         setIsLoading(false);
         setMenus(data); // Actualiza el estado con los datos del menú
@@ -64,7 +62,7 @@ function Comidas() {
     // Agrega más botones según sea necesario
   ];
 
-  console.log(status)
+  console.log(status);
 
   if (detail_ === "[]") {
     return (
@@ -88,35 +86,30 @@ function Comidas() {
     });
   }
 
-if (isLoading) {
-  return (
-    <main>
-      <Loading />
-    </main>
-  );
-} else if (isError) {
+  if (isLoading) {
+    return (
+      <main>
+        <Loading />
+      </main>
+    );
+  } else if (isError) {
+    return (
+      <main className="bg-white dark:bg-white flex min-h-screen">
+        <NavBar
+          title="<- Regresar"
+          href="/perfil"
+          nbuttons={2}
+          linkbuttons={linkbuttons}
+        />
+        <div className="flex-grow flex items-center justify-center">
+          <div className="text-center">Error {error.message}</div>
+        </div>
+      </main>
+    );
+  }
   return (
     <main className="bg-white dark:bg-white flex min-h-screen">
-      <NavBar
-        title="<- Regresar"
-        href="/perfil"
-        nbuttons={2}
-        linkbuttons={linkbuttons}
-      />
-      <div className="flex-grow flex items-center justify-center">
-        <div className="text-center">Error {error.message}</div>
-      </div>
-    </main>
-  );
-}
-  return (
-    <main className="bg-white dark:bg-white flex min-h-screen">
-      <NavBar
-        title="<- Volver"
-        href="/perfil"
-        nbuttons={2}
-        
-      />
+      <NavBar title="<- Volver" href="/perfil" nbuttons={2} />
       <div className="flex-grow flex-col items-center justify-center px-6 py-8 mx-auto lg:p-10">
         <div className="w-full max-w-6xl mx-20">
           <div className="mb-8">

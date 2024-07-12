@@ -1,14 +1,12 @@
-import React, {useEffect, useState} from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Loading from "@/components/Loading";
-import { Timer } from "lucide-react";
+import { APP_NAME } from "@/constants";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Comedor Politécnico",
+  title: APP_NAME,
   description: "Reserva de tickets para el comedor de la ESPOCH",
 };
 
@@ -17,7 +15,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>

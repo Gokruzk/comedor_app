@@ -96,12 +96,6 @@ function LoginForm() {
             </h1>*/}
             <form className="space-y-4 md:space-y-6" action={loginUser}>
               <div>
-                {/*}                <label
-                  htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-gray-500"
-                >
-                  Email
-                </label>*/}
                 <input
                   type="email"
                   name="email"
@@ -112,12 +106,6 @@ function LoginForm() {
                 />
               </div>
               <div>
-                {/*<label
-                  htmlFor="password"
-                  className="block mb-2 text-sm font-medium text-gray-500 "
-                >
-                  Contraseña
-                </label>*/}
                 <div className="relative">
                   <input
                     type="password"

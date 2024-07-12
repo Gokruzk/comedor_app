@@ -54,8 +54,6 @@ const ViewAllReservations = () => {
 
   const reservations_: UserReservation[] = [];
 
-  console.log(detail_);
-
   if (detail_ === "[]") {
     return (
       <main className="bg-white dark:bg-white flex min-h-screen">
@@ -91,29 +89,28 @@ const ViewAllReservations = () => {
       <div className="flex flex-col  px-20 py-8 mx-auto md:h-screen lg:py-8">
         <div className="w-full  bg-white rounded-lg shadow-2xl dark:border md:mt-0 xl:p-0 dark:bg-gray-100 dark:border-gray-100">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <p className="text-sm font-light text-gray-500 dark:text-gray-600">
-                <LinkButton
-                  href="/admin_perfil"
-                  style="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                  title="<- Volver"
-                />
-              </p>
+            <p className="text-sm font-light text-gray-500 dark:text-gray-600">
+              <LinkButton
+                href="/admin_perfil"
+                style="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                title="<- Volver"
+              />
+            </p>
 
-              <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-600 md:text-2xl dark:text-gray-600">
-                Reservas realizadas
-              </h1>
+            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-600 md:text-2xl dark:text-gray-600">
+              Reservas realizadas
+            </h1>
 
-              <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
-                {reservations_.map((reservation) => {
-                  return (
-                    <ReservationCard
-                      key={reservation.reservation.id_reservation}
-                      reservations={reservation}
-                    />
-                  );
-                })}
-              </div>
-            
+            <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+              {reservations_.map((reservation) => {
+                return (
+                  <ReservationCard
+                    key={reservation.reservation.id_reservation}
+                    reservations={reservation}
+                  />
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

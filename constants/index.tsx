@@ -1,2 +1,2 @@
 export const COOKIE_NAME = "user"
-export const APP_NAME = "COMEDOR"
+export const APP_NAME = "Comedor Politécnico"

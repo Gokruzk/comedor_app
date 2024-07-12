@@ -1,4 +1,3 @@
-import LinkButton from "@/components/LinkButton";
 import NavBar from "@/components/NavBar";
 
 export default function AdminProfile() {
@@ -10,7 +9,7 @@ export default function AdminProfile() {
   return (
     <main className="bg-gray-50 dark:bg-white min-h-full flex">
       <NavBar
-        title="Actualizar"
+        title=""
         href="/admin_perfil"
         nbuttons={3}
         linkbuttons={linkbuttons}

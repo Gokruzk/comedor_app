@@ -83,7 +83,7 @@ function Comidas() {
       }
     },
     onError: (error) => {
-      console.log(error)
+      console.log(error);
       showToastMessage(`Error eliminando el menú: ${error}`, "error");
     },
   });
