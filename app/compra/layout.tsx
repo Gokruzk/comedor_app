@@ -25,11 +25,12 @@ const CompraLayout = ({ children }: { children: React.ReactNode }) => {
   if (!isSuccess) {
     return (
       <main>
-        <Loading/>
+        <Loading />
       </main>
     );
   }
-  
+
+  return children;
 };
 
 export default CompraLayout;
