@@ -147,7 +147,7 @@ function Comidas() {
   return (
     <main className="bg-gray-50 dark:bg-white flex min-h-screen">
       <NavBar
-        title="<- Volver"
+        title="<- Perfil"
         href="/admin_perfil"
         nbuttons={2}
         linkbuttons={linkbuttons}
