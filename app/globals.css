@@ -33,3 +33,18 @@ body {
   }
 }
 
+/* Ocultar la barra de desplazamiento sin deshabilitar el desplazamiento */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Deshabilitar el desplazamiento */
+.no-scroll {
+  overflow: hidden;
+}
+
