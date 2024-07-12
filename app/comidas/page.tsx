@@ -94,7 +94,7 @@ if (isLoading) {
   );
 } else if (isError) {
   return (
-    <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
+    <main className="bg-white dark:bg-white flex min-h-screen">
       <NavBar
         title="<- Regresar"
         href="/perfil"
@@ -108,17 +108,17 @@ if (isLoading) {
   );
 }
   return (
-    <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen">
+    <main className="bg-white dark:bg-white flex min-h-screen">
       <NavBar
         title="<- Volver"
         href="/perfil"
         nbuttons={2}
         linkbuttons={linkbuttons}
       />
-      <div className="flex-grow flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
-        <div className="w-full max-w-7xl mx-auto">
+      <div className="flex-grow flex-col items-center justify-center px-6 py-8 mx-auto lg:p-10">
+        <div className="w-full max-w-6xl mx-20">
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-600 mb-4">
               Menús disponibles
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
