@@ -6,6 +6,8 @@ import NavBar from "@/components/NavBar";
 import { MenuItem } from "@/types";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useCallback, useEffect, useState } from "react";
+import LinkButton from "@/components/LinkButton";
+
 
 const queryClient = new QueryClient();
 

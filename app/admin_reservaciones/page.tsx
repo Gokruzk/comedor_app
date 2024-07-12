@@ -117,9 +117,6 @@ const ViewAllReservations = () => {
           </div>
         </div>
       </div>
-
-                  
-
     </main>
   );
 };

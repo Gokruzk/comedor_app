@@ -29,7 +29,7 @@ const CompraLayout = ({ children }: { children: React.ReactNode }) => {
       </main>
     );
   }
-  return <main>{children}</main>;
+  
 };
 
 export default CompraLayout;
