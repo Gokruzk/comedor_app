@@ -11,7 +11,7 @@ export default function AdminProfile() {
     <main className="bg-gray-50 dark:bg-white min-h-full flex">
       <NavBar
         title="Actualizar"
-        href="/"
+        href="/admin_perfil"
         nbuttons={3}
         linkbuttons={linkbuttons}
       />

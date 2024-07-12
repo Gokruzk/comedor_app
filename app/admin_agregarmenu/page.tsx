@@ -88,62 +88,43 @@ const AgregarMenu = () => {
               onSubmit={handleSubmit(addNewMenu)}
             >
               <div>
-                <label
-                  htmlFor="menu_title"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-600"
-                >
-                  Título del menú
-                </label>
+
                 <input
                   id="menu_title"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-4"
                   placeholder="Título del menú"
                   required
                   {...register("menu_title")}
                 />
-                <label
-                  htmlFor="menu_description"
-                  className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-gray-600"
-                >
-                  Descripción del menú
-                </label>
+         
                 <textarea
                   id="menu_description"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-4"
                   placeholder="Descripción del menú"
                   required
                   {...register("menu_description")}
                 />
 
-                <label
-                  htmlFor="price"
-                  className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-gray-600"
-                >
-                  Precio
-                </label>
+    
+    
                 <input
                   type="number"
                   step="0.01"
                   id="price"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Precio"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-4"
+                  placeholder="Precio $$$"
                   required
                   min={1}
                   max={999.99}
                   {...register("price")}
                 />
-                <label
-                  htmlFor="id_menu_type"
-                  className="block mt-4 mb-2 text-sm font-bold text-gray-900 dark:text-gray-600"
-                >
-                  Tipo de menú
-                </label>
+                
                 <select
                   id="id_menu_type"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-red-600 dark:focus:border-red-600"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-4" 
                   {...register("id_menu_type")}
                 >
-                  <option defaultValue={"Tipo de usuario"}>Tipo de menú</option>
+                  <option defaultValue={"Tipo de usuario"} >Tipo de menú</option>
                   <option value={1}>Normal</option>
                   <option value={2}>Vegetariano</option>
                   <option value={3}>Vegano</option>
@@ -152,9 +133,9 @@ const AgregarMenu = () => {
                 <div
                   inline-datepicker="true"
                   datepicker-autoselect-today="true"
-                  className="mx-auto sm:mx-0 flex justify-center [&>div>div]:shadow-none [&>div>div]:bg-gray-50 [&_div>button]:bg-gray-50"
+                  className="mx-auto sm:mx-0 flex justify-center [&>div>div]:shadow-none [&>div>div]:bg-gray-500 [&_div>button]:bg-gray-800"
                 ></div>
-                <label className="mt-4 text-sm font-bold text-gray-900 dark:text-gray-600 mb-2 block">
+                <label className="mt-4 text-sm font-bold text-gray-900 dark:text-gray-600 mb-4 block">
                   Seleccionar el horario en el que menú estará disponible
                 </label>
                 <ul
@@ -171,7 +152,7 @@ const AgregarMenu = () => {
                     />
                     <label
                       htmlFor="6am-12-am"
-                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-gray-900 dark:hover:text-white bg-white dark:bg-gray-800 border rounded-lg cursor-pointer text-gray-500 border-gray-200 dark:border-gray-700 dark:peer-checked:border-blue-500 peer-checked:border-blue-700 dark:hover:border-gray-600 dark:peer-checked:text-blue-500 peer-checked:bg-blue-50 peer-checked:text-blue-700 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-600 dark:peer-checked:bg-blue-900"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-white dark:hover:gray-500 bg-white dark:bg-whiteborder shadow-xl rounded-xl cursor-pointer text-gray-800 border-gray-200 dark:border-gray-700 dark:hover:border-gray-600 dark:peer-checked:text-white  hover:bg-gray-100 dark:text-gray-500 dark:hover:bg-gray-400 dark:peer-checked:bg-gray-600"
                     >
                       Desayuno
                     </label>
@@ -186,7 +167,7 @@ const AgregarMenu = () => {
                     />
                     <label
                       htmlFor="12am-13pm"
-                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-gray-900 dark:hover:text-white bg-white dark:bg-gray-800 border rounded-lg cursor-pointer text-gray-500 border-gray-200 dark:border-gray-700 dark:peer-checked:border-blue-500 peer-checked:border-blue-700 dark:hover:border-gray-600 dark:peer-checked:text-blue-500 peer-checked:bg-blue-50 peer-checked:text-blue-700 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-600 dark:peer-checked:bg-blue-900"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-white dark:hover:gray-500 bg-white dark:bg-whiteborder shadow-xl rounded-xl cursor-pointer text-gray-800 border-gray-200 dark:border-gray-700 dark:hover:border-gray-600 dark:peer-checked:text-white  hover:bg-gray-100 dark:text-gray-500 dark:hover:bg-gray-400 dark:peer-checked:bg-gray-600"
                     >
                       Almuerzo
                     </label>
@@ -201,7 +182,7 @@ const AgregarMenu = () => {
                     />
                     <label
                       htmlFor="18-21-pm"
-                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-gray-900 dark:hover:text-white bg-white dark:bg-gray-800 border rounded-lg cursor-pointer text-gray-500 border-gray-200 dark:border-gray-700 dark:peer-checked:border-blue-500 peer-checked:border-blue-700 dark:hover:border-gray-600 dark:peer-checked:text-blue-500 peer-checked:bg-blue-50 peer-checked:text-blue-700 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-600 dark:peer-checked:bg-blue-900"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-white dark:hover:gray-500 bg-white dark:bg-whiteborder shadow-xl rounded-xl cursor-pointer text-gray-800 border-gray-200 dark:border-gray-700 dark:hover:border-gray-600 dark:peer-checked:text-white  hover:bg-gray-100 dark:text-gray-500 dark:hover:bg-gray-400 dark:peer-checked:bg-gray-600"
                     >
                       Merienda
                     </label>
@@ -220,7 +201,7 @@ const AgregarMenu = () => {
 
               <div className="flex justify-center items-center">
                 <LinkButton
-                  href={"submit"}
+                  href={"/admin_comidas"}
                   style="bg-blue-500 hover:bg-blue-700 w-2xl text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" title="Cancelar y volver"
                 />
               </div>

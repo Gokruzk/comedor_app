@@ -87,18 +87,18 @@ const ViewAllReservations = () => {
   }
 
   return (
-    <main className="bg-gray-50 dark:bg-gray-900">
-      <div className="flex flex-col items-center justify-center px-20 py-8 mx-auto md:h-screen lg:py-0">
-        <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+    <main className="bg-white dark:bg-white">
+      <div className="flex flex-col  px-20 py-8 mx-auto md:h-screen lg:py-0">
+        <div className="w-full bg-white rounded-lg shadow-2xl dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-100 dark:border-gray-100">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+            <p className="text-sm font-light text-gray-500 dark:text-gray-600">
               <LinkButton
                 href="/admin_perfil"
                 style="font-medium text-primary-600 hover:underline dark:text-primary-500"
                 title="<- Volver"
               />
             </p>
-            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-600 md:text-2xl dark:text-gray-600">
               Reservas realizadas
             </h1>
             {reservations_.map((reservation) => {
