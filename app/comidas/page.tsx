@@ -115,7 +115,7 @@ if (isLoading) {
         title="<- Volver"
         href="/perfil"
         nbuttons={2}
-        linkbuttons={linkbuttons}
+        
       />
       <div className="flex-grow flex-col items-center justify-center px-6 py-8 mx-auto lg:p-10">
         <div className="w-full max-w-6xl mx-20">

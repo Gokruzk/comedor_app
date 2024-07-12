@@ -101,7 +101,7 @@ const AdminFoodLayout = ({ children }: { children: React.ReactNode }) => {
                       
                         <li>
                           <LinkButton
-                            href="/nosotros"
+                            href="/nosotros2"
                             style="w-40 align-center bg-red-900 block py-2 text-white rounded-xl bg-red-600 hover:bg-red-700 md:border-0 dark:text-white md:bg-red-600"
                             title="Acerca de"
                           />
