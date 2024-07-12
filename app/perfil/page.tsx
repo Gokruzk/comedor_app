@@ -8,8 +8,8 @@ export default function Profile() {
   return (
     <main className="bg-gray-50 dark:bg-white min-h-full flex">
       <NavBar
-        title="Actualizar"
-        href="/perfil"
+        title=""
+        href=""
         nbuttons={2}
         linkbuttons={linkbuttons}
       />
