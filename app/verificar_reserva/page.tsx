@@ -65,7 +65,7 @@ const VerifyR = () => {
   };
 
   return (
-    <main className="bg-gray dark:bg-white no-scrollbar">
+    <main className="bg-gray dark:bg-white no-scroll">
       <div className="flex flex-col items-center px-8 py-8 mx-auto md:h-screen lg:py-0 m-32">
         <div className="w-full bg-white rounded-3xl shadow-2xl dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-100 dark:border-gray-100">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
