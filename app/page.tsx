@@ -11,7 +11,7 @@ export default function Home() {
         <div className="flex justify-center items-center w-full lg:w-1/2">
           <div className="m-4 lg:m-24 animate-pulse">
             {/* Imgs are in public folder */}
-            <Image width={500} height={500} src="/ESPOCH.png" alt="" />
+            <Image width={800} height={800} src="/mesero.png" alt="" />
           </div>
         </div>
 
