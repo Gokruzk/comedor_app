@@ -9,11 +9,14 @@ import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "react-hook-form";
-import { Card, CardUser } from "@/types";
+import { CardUser } from "@/types";
 import { addCard } from "@/api/userAPI";
 import { getUserSession } from "@/utils";
 import LinkButton from "@/components/LinkButton";
-
+import { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { getMonth, getYear } from "date-fns";
 
 const queryClient = new QueryClient();
 
@@ -28,12 +31,15 @@ export default function AddCardPage() {
 const AgregarTarjetaPage = () => {
   const router = useRouter();
   const { register, handleSubmit } = useForm();
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   const addNewCard = async (formdata: any) => {
     const card_number = formdata.card_number;
-    const exp = formdata.card_expiration;
-    const [month, year] = exp.split("/");
-
+    let month = "", year = ""
+    if (selectedDate) {
+      month = (getMonth(selectedDate) + 1).toString();
+      year = getYear(selectedDate).toString();
+    }
     const { user } = await getUserSession();
     const email = user;
 
@@ -138,31 +144,13 @@ const AgregarTarjetaPage = () => {
                   >
                     Fecha de expiracion*{" "}
                   </label>
-                  <div className="relative">
-                    <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3.5">
-                      <svg
-                        className="h-4 w-4 text-gray-500 dark:text-gray-400"
-                        aria-hidden="true"
-                
-                        width="24"
-                        height="24"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        
-                      </svg>
-                    </div>
-                    <input
-                      id="card_expiration"
-                      type="text"
-                      {...register("card_expiration")}
-                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder="MM/YY"
-                      required
-                      pattern="\d{2}/\d{2}"
-                      maxLength={5}
-                    />
-                  </div>
+                  <DatePicker
+                    id="card_expiration"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    dateFormat="MM/yyyy"
+                    selected={selectedDate}
+                    onChange={(date) => setSelectedDate(date)}
+                  />
                 </div>
                 <div>
                   <label
