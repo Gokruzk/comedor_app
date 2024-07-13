@@ -129,7 +129,7 @@ function CuentaInfo() {
       <main className="bg-white dark:bg-white-900 min-h-screen flex">
         <NavBar
           title="<- Volver"
-          href="/cuenta"
+          href="/perfil"
           nbuttons={1}
           linkbuttons={linkbuttons}
         />
@@ -145,7 +145,7 @@ function CuentaInfo() {
   return (
     <main className="bg-gray-50 dark:bg-white min-h-screen flex">
       <NavBar
-        title="<- Ir a mi perfil"
+        title="<- Volver"
         href="/perfil"
         nbuttons={2}
         linkbuttons={linkbuttons}
