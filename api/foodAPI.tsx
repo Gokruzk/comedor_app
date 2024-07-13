@@ -186,7 +186,7 @@ export const diningReservation = async (
     if (axios.isAxiosError(error)) {
       return {
         status: error.response?.status,
-        errors: error.response,
+        error: error.response?.data.detail,
         detail: error.response?.data.detail,
       };
     }
