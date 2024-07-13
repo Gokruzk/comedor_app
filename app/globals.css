@@ -48,3 +48,16 @@ body {
   overflow: hidden;
 }
 
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.react-datepicker__input-container {
+  width: 100%;
+}
+
+.react-datepicker__input-container input {
+  width: 100%;
+  padding: 1rem; /* ajusta este valor según sea necesario */
+}
+
