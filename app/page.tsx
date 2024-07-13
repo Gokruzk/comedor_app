@@ -4,7 +4,7 @@ import Image from "next/image";
 //bg-gradient-to-r from-red-700 from-10% to-white to-60%
 export default function Home() {
   return (
-    <main className="text-black h-screen bg-gradient-to-r from-red-600 from-10% to-white to-60% ">
+    <main className="text-black h-screen bg-gradient-to-b from-red-600 to-white sm:bg-gradient-to-r sm:from-red-600 sm:to-white to-60%">
       {/* Contenedor de las imágenes y los botones para agregar */}
       <div className="flex flex-col lg:flex-row items-center justify-center h-screen">
         {/* Sección para la imagen de presentación */}
@@ -17,7 +17,7 @@ export default function Home() {
 
         {/* Texto de presentación y botones */}
         <div className="flex flex-col justify-center items-start m-4 lg:m-10 pl-4 lg:pl-12 space-y-48 w-full lg:w-1/2">
-          <div className="text-center lg:text-left">
+          <div className="text-center lg:text-left sm:text-center">
             <p className="text-gray-900 text-4xl lg:text-9xl dark:text-black font-bold">
               ¡Comedor
             </p>
@@ -25,6 +25,7 @@ export default function Home() {
               Politécnico!
             </p>
           </div>
+
 
           {/* Botones */}
           <div className="flex justify-center lg:justify-start items-center w-full space-x-4 mt-4">
