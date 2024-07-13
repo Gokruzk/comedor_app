@@ -30,12 +30,17 @@ export default function AddCardPage() {
 
 const AgregarTarjetaPage = () => {
   const router = useRouter();
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   const addNewCard = async (formdata: any) => {
     const card_number = formdata.card_number;
-    let month = "", year = ""
+    let month = "",
+      year = "";
     if (selectedDate) {
       month = (getMonth(selectedDate) + 1).toString();
       year = getYear(selectedDate).toString();
@@ -86,6 +91,9 @@ const AgregarTarjetaPage = () => {
     },
   });
 
+  const cardNumberPattern =
+    /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|6(?:011|5[0-9]{2})[0-9]{12}|(?:2131|1800|35\d{3})\d{11}|4\d{3}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{4}|5\d{3}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{4}|3\d{3}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{4}|6\d{3}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{4})$/;
+
   return (
     <section className="bg-gray-50 dark:bg-gray-100">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -124,17 +132,28 @@ const AgregarTarjetaPage = () => {
                     htmlFor="card_number"
                     className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-600"
                   >
-                    {" "}
-                    Número de tarjeta*{" "}
+                    Número de tarjeta*
                   </label>
                   <input
                     type="text"
                     id="card_number"
-                    {...register("card_number")}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    {...register("card_number", {
+                      required: "Número de tarjeta es requerido",
+                      pattern: {
+                        value: cardNumberPattern,
+                        message: "Número de tarjeta no válido",
+                      },
+                    })}
+                    className={`bg-gray-50 border ${
+                      errors.card_number ? "border-red-500" : "border-gray-300"
+                    } text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500`}
                     placeholder="xxxx-xxxx-xxxx-xxxx"
-                    required
                   />
+                  {errors.card_number && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.card_number.message}
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -194,6 +213,7 @@ const AgregarTarjetaPage = () => {
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="•••"
                     required
+                    max={999}
                   />
                 </div>
               </div>
