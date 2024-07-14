@@ -9,7 +9,7 @@ export default function NavBar({
 }: NavBarProps) {
   return (
     <main>
-    <nav className="w-64 bg-white dark:bg-gray-100 shadow-md h-screen p-4 rounded-r-2xl">
+    <nav className="w-64 bg-white dark:bg-gray-100 shadow-md p-4 rounded-r-2xl">
       <p className="text-sm font-light text-gray-600 dark:text-gray-600">
         <LinkButton
           title={title}

@@ -1,4 +1,5 @@
 import NavBar from "@/components/NavBar";
+import Image from "next/image";
 
 export default function Profile() {
   const linkbuttons = [
@@ -13,13 +14,26 @@ export default function Profile() {
         nbuttons={2}
         linkbuttons={linkbuttons}
       />
-      <div className="flex-grow flex items-center justify-center">
-        <div className="w-48 bg-white rounded-lg shadow dark:border sm:max-w-md xl:p-0 dark:bg-white dark:border-red-600 text-gray-600">
-          <div className="px-8 py-3 text-center">
-            Vacío
-          </div>
-        </div>
+
+      
+      <div className="flex-grow flex flex-col items-center mt-10">
+        <h1 className="text-black text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+          Bienvenido al Comedor Politécnico
+        </h1>
+        <video
+          width="1000"
+          height="1000"
+          autoPlay
+          loop
+          muted
+          className=""
+        >
+          <source src="/video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+ 
       </div>
+
     </main>
   );
 }

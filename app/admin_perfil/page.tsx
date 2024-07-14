@@ -14,9 +14,26 @@ export default function AdminProfile() {
         nbuttons={3}
         linkbuttons={linkbuttons}
       />
-      <div className="flex-grow flex items-center justify-center text-gray-600">
-        Perfil de administrador
+      
+
+      <div className="flex-grow flex flex-col items-center mt-10">
+        <h1 className="text-black text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+          Bienvenido al Comedor Politécnico
+        </h1>
+        <video
+          width="1000"
+          height="1000"
+          autoPlay
+          loop
+          muted
+          className=""
+        >
+          <source src="/video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+ 
       </div>
+
     </main>
   );
 }
