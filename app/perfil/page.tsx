@@ -16,16 +16,21 @@ export default function Profile() {
       />
 
       
-      <div className="flex-grow flex flex-col items-center mt-10">
-        <h1 className="text-black text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+      <div className="relative w-full h-screen overflow-hidden">
+        <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-2xl md:text-4xl lg:text-5xl font-bold z-10 p-4">
           Bienvenido al Comedor Politécnico
         </h1>
-        
-        <video width="1000" height="1000" autoPlay loop className="rounded-lg shadow-lg">
+        <video
+          width="100%"
+          height="100%"
+          autoPlay
+          loop
+          muted
+          className="absolute top-0 left-0 w-full h-full object-cover"
+        >
           <source src="/video_esp.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
- 
       </div>
 
     </main>
