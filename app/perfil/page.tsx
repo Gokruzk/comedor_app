@@ -20,17 +20,11 @@ export default function Profile() {
         <h1 className="text-black text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
           Bienvenido al Comedor Politécnico
         </h1>
-        <video
-          width="1000"
-          height="1000"
-          autoPlay
-          loop
-          muted
-          className=""
-        >
-          <source src="/video.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        
+        <video width="1000" height="1000" autoPlay loop className="rounded-lg shadow-lg">
+        <source src="/video_esp.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
  
       </div>
 

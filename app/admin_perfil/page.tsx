@@ -14,7 +14,7 @@ export default function AdminProfile() {
         nbuttons={3}
         linkbuttons={linkbuttons}
       />
-      
+
 
       <div className="flex-grow flex flex-col items-center mt-10">
         <h1 className="text-black text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
@@ -28,7 +28,7 @@ export default function AdminProfile() {
           muted
           className=""
         >
-          <source src="/video.mp4" type="video/mp4" />
+          <source src="/video_esp.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
  
