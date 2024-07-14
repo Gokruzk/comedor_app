@@ -22,9 +22,9 @@ export default function Profile() {
         </h1>
         
         <video width="1000" height="1000" autoPlay loop className="rounded-lg shadow-lg">
-        <source src="/video_esp.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+          <source src="/video_esp.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
  
       </div>
 
