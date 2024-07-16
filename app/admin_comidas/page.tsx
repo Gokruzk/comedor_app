@@ -129,7 +129,7 @@ function Comidas() {
     );
   } else if (isError) {
     return (
-      <main className="bg-gray-50 dark:bg-white flex min-h-screen">
+      <main className="bg-white flex min-h-screen">
         <NavBar
           title="<- Perfil"
           href="/admin_perfil"
@@ -145,7 +145,7 @@ function Comidas() {
   }
 
   return (
-    <main className="bg-gray-50 dark:bg-white flex min-h-screen">
+    <main className="bg-white flex min-h-screen">
       <NavBar
         title="<- Volver"
         href="/admin_perfil"

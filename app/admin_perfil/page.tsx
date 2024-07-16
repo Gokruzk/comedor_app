@@ -7,7 +7,7 @@ export default function AdminProfile() {
     { href: "/verificar_reserva", title: "Verificar reservación" },
   ];
   return (
-    <main className="bg-gray-50 dark:bg-white min-h-full flex">
+    <main className="dark:bg-white min-h-full flex">
       <NavBar
         title=""
         href="/admin_perfil"

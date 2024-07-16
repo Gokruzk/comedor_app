@@ -85,7 +85,7 @@ const ViewAllReservations = () => {
   }
 
   return (
-    <main className="bg-white dark:bg-white flex justify-center items-center">
+    <main className="bg-white flex justify-center items-center">
       <div className="flex flex-col  px-20 py-8 mx-auto md:h-screen lg:py-8">
         <div className="w-full  bg-white rounded-lg shadow-2xl dark:border md:mt-0 xl:p-0 dark:bg-gray-100 dark:border-gray-100">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">

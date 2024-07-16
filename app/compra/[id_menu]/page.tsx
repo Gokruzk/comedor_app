@@ -137,7 +137,7 @@ const CompraMenu = ({ id_menu }: MenuForm) => {
             <div className="flex justify-center items-center mt-2">
               <LinkButton
                 href={"/comidas"}
-                style="bg-blue-500 hover:bg-blue-700 w-2xl text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                style="bg-blue-500 hover:bg-blue-700 w-2xl text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-red-600 hover:bg-red-700 dark:focus:ring-red-800"
                 title="Cancelar y volver"
               />
             </div>

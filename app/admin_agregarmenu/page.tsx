@@ -148,7 +148,7 @@ const AgregarMenu = () => {
                     />
                     <label
                       htmlFor="6am-12-am"
-                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-white dark:hover:gray-500 bg-white dark:bg-whiteborder shadow-xl rounded-xl cursor-pointer text-gray-800 border-gray-200 dark:border-gray-700 dark:hover:border-gray-600 dark:peer-checked:text-white  hover:bg-gray-100 dark:text-gray-500 dark:hover:bg-gray-400 dark:peer-checked:bg-gray-600"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-white dark:hover:gray-500 bg-white dark:bg-whiteborder shadow-xl rounded-xl cursor-pointer border-gray-200 dark:border-gray-700 hover:border-gray-600 peer-checked:text-white  hover:bg-gray-700 text-gray-500 peer-checked:bg-gray-600"
                     >
                       Desayuno
                     </label>
@@ -163,7 +163,7 @@ const AgregarMenu = () => {
                     />
                     <label
                       htmlFor="12am-13pm"
-                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-white dark:hover:gray-500 bg-white dark:bg-whiteborder shadow-xl rounded-xl cursor-pointer text-gray-800 border-gray-200 dark:border-gray-700 dark:hover:border-gray-600 dark:peer-checked:text-white  hover:bg-gray-100 dark:text-gray-500 dark:hover:bg-gray-400 dark:peer-checked:bg-gray-600"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-white dark:hover:gray-500 bg-white dark:bg-whiteborder shadow-xl rounded-xl cursor-pointer border-gray-200 dark:border-gray-700 hover:border-gray-600 peer-checked:text-white  hover:bg-gray-700 text-gray-500 peer-checked:bg-gray-600"
                     >
                       Almuerzo
                     </label>
@@ -178,7 +178,7 @@ const AgregarMenu = () => {
                     />
                     <label
                       htmlFor="18-21-pm"
-                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-white dark:hover:gray-500 bg-white dark:bg-whiteborder shadow-xl rounded-xl cursor-pointer text-gray-800 border-gray-200 dark:border-gray-700 dark:hover:border-gray-600 dark:peer-checked:text-white  hover:bg-gray-100 dark:text-gray-500 dark:hover:bg-gray-400 dark:peer-checked:bg-gray-600"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-white dark:hover:gray-500 bg-white dark:bg-whiteborder shadow-xl rounded-xl cursor-pointer border-gray-200 dark:border-gray-700 hover:border-gray-600 peer-checked:text-white  hover:bg-gray-700 text-gray-500 peer-checked:bg-gray-600"
                     >
                       Merienda
                     </label>
@@ -198,7 +198,7 @@ const AgregarMenu = () => {
               <div className="flex justify-center items-center">
                 <LinkButton
                   href={"/admin_comidas"}
-                  style="bg-blue-500 hover:bg-blue-700 w-2xl text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                  style=" w-2xl text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-red-600 hover:bg-red-700 dark:focus:ring-red-800"
                   title="Cancelar y volver"
                 />
               </div>

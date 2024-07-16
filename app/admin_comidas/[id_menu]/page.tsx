@@ -122,7 +122,7 @@ const UpdateMenu = ({ id_menu }: MenuForm) => {
     );
   } else if (isError)
     return (
-      <main className="bg-gray-50 dark:bg-gray-900">
+      <main className="bg-white">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           Error {error.message}
         </div>
@@ -130,7 +130,7 @@ const UpdateMenu = ({ id_menu }: MenuForm) => {
     );
 
   return (
-    <main className="bg-gray-50 dark:bg-gray-100">
+    <main className="bg-white">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="w-full bg-white rounded-lg shadow-2xl dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-white dark:border-white">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -245,7 +245,7 @@ const UpdateMenu = ({ id_menu }: MenuForm) => {
                     />
                     <label
                       htmlFor="6am-12-am"
-                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-white dark:hover:gray-500 bg-white dark:bg-whiteborder shadow-xl rounded-xl cursor-pointer text-gray-800 border-gray-200 dark:border-gray-700 dark:hover:border-gray-600 dark:peer-checked:text-white  hover:bg-gray-100 dark:text-gray-500 dark:hover:bg-gray-400 dark:peer-checked:bg-gray-600"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-white dark:hover:gray-500 bg-white dark:bg-whiteborder shadow-xl rounded-xl cursor-pointer border-gray-200 dark:border-gray-700 hover:border-gray-600 peer-checked:text-white  hover:bg-gray-700 text-gray-500 peer-checked:bg-gray-600"
                     >
                       Desayuno
                     </label>
@@ -261,7 +261,7 @@ const UpdateMenu = ({ id_menu }: MenuForm) => {
                     />
                     <label
                       htmlFor="12am-13pm"
-                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-white dark:hover:gray-500 bg-white dark:bg-whiteborder shadow-xl rounded-xl cursor-pointer text-gray-800 border-gray-200 dark:border-gray-700 dark:hover:border-gray-600 dark:peer-checked:text-white  hover:bg-gray-100 dark:text-gray-500 dark:hover:bg-gray-400 dark:peer-checked:bg-gray-600"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-white dark:hover:gray-500 bg-white dark:bg-whiteborder shadow-xl rounded-xl cursor-pointer border-gray-200 dark:border-gray-700 hover:border-gray-600 peer-checked:text-white  hover:bg-gray-700 text-gray-500 peer-checked:bg-gray-600"
                     >
                       Almuerzo
                     </label>
@@ -277,7 +277,7 @@ const UpdateMenu = ({ id_menu }: MenuForm) => {
                     />
                     <label
                       htmlFor="18-21-pm"
-                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-white dark:hover:gray-500 bg-white dark:bg-whiteborder shadow-xl rounded-xl cursor-pointer text-gray-800 border-gray-200 dark:border-gray-700 dark:hover:border-gray-600 dark:peer-checked:text-white  hover:bg-gray-100 dark:text-gray-500 dark:hover:bg-gray-400 dark:peer-checked:bg-gray-600"
+                      className="inline-flex items-center justify-center w-full px-2 py-1 text-sm font-medium text-center hover:text-white dark:hover:gray-500 bg-white dark:bg-whiteborder shadow-xl rounded-xl cursor-pointer border-gray-200 dark:border-gray-700 hover:border-gray-600 peer-checked:text-white  hover:bg-gray-700 text-gray-500 peer-checked:bg-gray-600"
                     >
                       Merienda
                     </label>
@@ -296,7 +296,7 @@ const UpdateMenu = ({ id_menu }: MenuForm) => {
               <div className="flex justify-center items-center">
                 <LinkButton
                   href={"/admin_comidas"}
-                  style="bg-blue-500 hover:bg-blue-700 w-2xl text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" title="Cancelar y volver"
+                  style="w-2xl text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-red-600 hover:bg-red-700 focus:ring-red-800" title="Cancelar y volver"
                 />
               </div>
             </form>
