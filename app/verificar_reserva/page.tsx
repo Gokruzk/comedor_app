@@ -64,6 +64,13 @@ const VerifyR = () => {
     }
   };
 
+  const handleReload = () => {
+    setIsScanning(false); // Detiene el escáner
+    setTimeout(() => {
+      setIsScanning(true); // Reinicia el escáner después de un breve retraso
+    }, 100); // Retraso de 100ms para asegurar el reinicio del componente
+  };
+
   return (
     <main className="bg-gray dark:bg-white no-scroll">
       <div className="flex flex-col items-center px-8 py-8 mx-auto md:h-screen lg:py-0 m-32">
@@ -77,6 +84,12 @@ const VerifyR = () => {
               />
             </p>
             {isScanning && <Scanner onScan={handleScan} />}
+            <button
+              onClick={handleReload}
+              className="w-40 align-center bg-red-900 block py-2 text-white rounded-xl hover:bg-red-700 md:border-0 dark:text-white md:bg-red-600"
+            >
+              Recargar
+            </button>
           </div>
         </div>
       </div>
