@@ -26,7 +26,7 @@ export default function MenuCard({
       <div className="flex space-x-2">
         <LinkButton
           href={`/compra/${menu.menu.id_menu}`}
-          style="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+          style="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg focus:outline-none focus:ring-blue-300 bg-green-600 hover:bg-green-700 focus:ring-green-800"
           title="Comprar"
         />
       </div>

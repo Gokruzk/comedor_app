@@ -54,22 +54,20 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main>
       <header>
-        {/*SCRIPT PARA LA BARRA DE NAVEGACION */}
-
-        <nav className="bg-white border-gray-200 dark:bg-white dark:border-white my-4">
+        <nav className="bg-white  my-4">
           <div className="max-w-screen-xl mx-auto">
             <div className="max-w-6xl w-full mx-auto bg-red-600 rounded-2xl p-4">
               <div className="flex flex-wrap items-center justify-between">
                 <LinkButton
-                  href="/perfil"
-                  style=" flex items-center space-x-3 rtl:space-x-reverse self-center text-3xl font-bold whitespace-nowrap dark:text-white"
+                  href="/admin_perfil"
+                  style=" flex items-center space-x-3 rtl:space-x-reverse self-center text-3xl font-bold whitespace-nowrap text-white"
                   title={APP_NAME}
                 />
                 {/*script para el boton en pantallas pequenias*/}
                 <button
                   onClick={toggleMenu} // Toggle menu visibility
                   type="button"
-                  className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                  className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-white"
                   aria-controls="navbar-dropdown"
                   aria-expanded={menuOpen ? "true" : "false"} // Toggle aria-expanded attribute
                 >
@@ -96,10 +94,10 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
                   } w-full md:w-auto`}
                   id="navbar-dropdown"
                 >
-                  <ul className="flex flex-col font-medium p-4 px-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-red-900 md:dark:bg-red-600 dark:border-red-700">
+                  <ul className="flex flex-col font-medium p-4 px-4 md:p-0 mt-4 rounded-lg bg-red-600 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-red-600  md:dark:bg-red-600 dark:border-red-700">
                     <li>
                       <LinkButton
-                        href="/nosotros"
+                        href="/nosotros2"
                         style="w-40 align-center bg-red-900 block py-2 text-white rounded-xl bg-red-600 hover:bg-red-700 md:border-0 dark:text-white md:bg-red-600"
                         title="Acerca de"
                       />

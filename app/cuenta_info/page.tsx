@@ -143,7 +143,7 @@ function CuentaInfo() {
   }
 
   return (
-    <main className="bg-gray-50 dark:bg-white min-h-screen flex">
+    <main className="bg-white min-h-screen flex">
       <NavBar
         title="<- Volver"
         href="/perfil"
@@ -196,7 +196,7 @@ function CuentaInfo() {
               <form onSubmit={handleSubmit(handleAddBalance)}>
                 <div className="mt-6 sm:mt-8 lg:flex lg:items-start lg:gap-12">
                   <div className="mt-6 grow sm:mt-8 lg:mt-0">
-                    <div className="space-y-4 rounded-2xl border border-gray-100 bg-gray-50 p-6 dark:border-green-600 dark:bg-white">
+                    <div className="space-y-4 rounded-2xl border bg-gray-50 p-6 border-green-600 shadow-2xl shadow-green-200">
                       <div className="space-y-2">
                         <dl className="flex items-center justify-between gap-4">
                           <dt className="text-base font-normal text-gray-500 dark:text-gray-400">
