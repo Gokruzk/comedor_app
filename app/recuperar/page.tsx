@@ -1,6 +1,65 @@
+"use client";
+import {
+  QueryClient,
+  QueryClientProvider,
+  useMutation,
+} from "@tanstack/react-query";
 import LinkButton from "@/components/LinkButton";
+import { ToastContainer, toast } from "react-toastify";
+import { useForm } from "react-hook-form";
+import "react-toastify/dist/ReactToastify.css";
+import { UserLogin } from "@/types";
+import { recoverPassword } from "@/api/userAPI";
 
-export default function Recovery() {
+const queryClient = new QueryClient();
+
+export default function RecoveryForm() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Recovery />
+    </QueryClientProvider>
+  );
+}
+
+function Recovery() {
+  const { register, handleSubmit } = useForm();
+  const recoverPwd = async (formdata: any) => {
+    const email = formdata.email;
+    const pwd = formdata.password;
+
+    const user: UserLogin = {
+      email: email,
+      password: pwd,
+    };
+
+    recPwd.mutate({
+      ...user,
+    });
+  };
+
+  const showToastMessage = (mensaje: string, type: "success" | "error") => {
+    if (type === "success") {
+      toast.success(mensaje);
+    } else {
+      toast.error(mensaje);
+    }
+  };
+
+  const recPwd = useMutation({
+    mutationFn: recoverPassword,
+    onSuccess: (data) => {
+      // console.log(data);
+      if (data.status === 200) {
+        showToastMessage(`${data.detail}`, "success");
+      } else {
+        showToastMessage(`${data.detail}`, "error");
+      }
+    },
+    onError: (error) => {
+      showToastMessage(`${error}`, "error");
+    },
+  });
+
   return (
     <main className="bg-gray-50 dark:bg-gray-100  h-screen">
       <div className="flex flex-col items-center justify-center px-6 py-4 mx-auto md:h-screen lg:py-5">
@@ -20,14 +79,26 @@ export default function Recovery() {
             <p>Ingresa tu correo para poder recuperar tu contraseña</p>
           </div>
 
-          <form className="flex items-center px-6 space-x-4 sm:p-8 mx-auto w-full">
+          <form
+            className="flex items-center px-6 space-x-4 sm:p-8 mx-auto w-full"
+            onSubmit={handleSubmit(recoverPwd)}
+          >
             <div className="relative w-2/3">
               <input
                 type="text"
-                id="voice-search"
+                id="email"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Ingresa tu correo electrónico"
                 required
+                {...register("email")}
+              />
+              <input
+                type="text"
+                id="password"
+                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full mt-4 p-4 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Ingresa nueva contraseña"
+                required
+                {...register("password")}
               />
             </div>
 
@@ -40,6 +111,7 @@ export default function Recovery() {
           </form>
         </div>
       </div>
+      <ToastContainer />
     </main>
   );
 }

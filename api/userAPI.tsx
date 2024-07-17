@@ -98,6 +98,24 @@ export const addUser = async (user: User) => {
   return { status: 401, error: "Error en el registro del usuario" };
 };
 
+//add user
+export const recoverPassword = async (user: UserLogin) => {
+  try {
+    const res = await userAPI.post("/recoverys", user);
+    if (res.status == 200) {
+      return { status: 200, detail: res.data.detail };
+    } else {
+      return { status: 401, detail: res.data.detail };
+    }
+  } catch (error) {
+    console.error("Error cambiando contraseña", error);
+  }
+  return {
+    data: "Error cambiando contraseña",
+    detail: "Error cambiando contraseña",
+  };
+};
+
 // export const updateUser = async (usuario: string, user: User) => {
 //   try {
 //     console.log(user);

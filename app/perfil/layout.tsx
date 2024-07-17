@@ -9,7 +9,6 @@ import { APP_NAME } from "@/constants";
 import userStore from "@/store/auth/userStore";
 import { logout } from "@/api/userAPI";
 import { getUserSession } from "@/utils";
-import { NavBarProps, LinkButtonProps } from "@/types";
 
 const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
