@@ -31,7 +31,7 @@ function CuentaInfo() {
   const [user_email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const { register, handleSubmit, watch } = useForm();
+  const { register, handleSubmit, watch, reset } = useForm();
 
   const fetchCard = useCallback(async () => {
     try {
@@ -90,6 +90,8 @@ function CuentaInfo() {
     setBalanceMutation.mutate({
       ...newUserBalance,
     });
+
+    reset({ newBalance: "" });
   };
 
   const showToastMessage = (mensaje: string, type: "success" | "error") => {
@@ -150,9 +152,8 @@ function CuentaInfo() {
         nbuttons={2}
         linkbuttons={linkbuttons}
       />
-      
+
       <div className="flex-1 p-8">
-        
         <h2 className="text-xl font-normal mb-4 text-gray-600">
           Información de la tarjeta
         </h2>
@@ -188,7 +189,6 @@ function CuentaInfo() {
           </div>
 
           <div className="flex-1">
-            
             <div className="mx-auto max-w-2xl">
               <h2 className="text-xl font-normal mb-4 text-gray-600">
                 Agrega saldo a tu cuenta
@@ -201,7 +201,7 @@ function CuentaInfo() {
                         <dl className="flex items-center justify-between gap-4">
                           <dt className="text-base font-normal text-gray-500 dark:text-gray-400">
                             Saldo que quieres agregar
-                          </dt>       
+                          </dt>
                           <dd className="text-base font-medium text-green-500">
                             +${watch("newBalance") || 0}
                           </dd>
@@ -225,10 +225,11 @@ function CuentaInfo() {
                       </div>
                       <dl className="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
                         <dt className="text-base font-bold text-gray-900 dark:text-black">
-                          Total
+                          Tu nuevo saldo sería:
                         </dt>
                         <dd className="text-base font-bold text-gray-900 dark:text-black">
-                          ${userBalance + (parseFloat(watch("newBalance")) || 0)}
+                          $
+                          {userBalance + (parseFloat(watch("newBalance")) || 0)}
                         </dd>
                       </dl>
                       <button
@@ -245,8 +246,6 @@ function CuentaInfo() {
           </div>
         </div>
       </div>
-
-
 
       <ToastContainer />
     </main>
