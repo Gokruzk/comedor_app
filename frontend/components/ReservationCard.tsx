@@ -13,7 +13,7 @@ export default function ReservationCard({
             <div className="flex flex-col sm:flex-row items-center sm:justify-between">
               <div className="flex-1 sm:ms-4 text-center sm:text-left">
                 <p className="text-sm font-semibold  truncate text-white">
-                  Usuario: {reservations.user.user.user_name}
+                  Usuario: {reservations.user.user.name}
                 </p>
                 <p className="text-sm font-semibold  truncate text-white">
                   Email: {reservations.user.user.email}

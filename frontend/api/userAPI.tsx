@@ -16,6 +16,7 @@ const userAPI = axios.create({
 export const auth = async (user: UserLogin) => {
   try {
     const data = await userAPI.post("/login", user);
+    console.log(data)
     if (data.data.status != 401) {
       const token = data.data.access_token;
       cookies().set({
@@ -31,6 +32,7 @@ export const auth = async (user: UserLogin) => {
       return { status: 404, error: "Usuario o contraseña incorrecta" };
     }
   } catch (error) {
+    console.log(error)
     console.error("Error during authentication");
   }
   return { status: 404, error: "Usuario o contraseña incorrecta" };

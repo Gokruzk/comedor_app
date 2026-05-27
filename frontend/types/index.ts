@@ -3,7 +3,7 @@ import { AxiosError } from "axios";
 export interface User {
   id_user?: number;
   id_user_type: number;
-  user_name: string;
+  name: string;
   user_last_name: string;
   cedula: string;
   email: string;
@@ -15,11 +15,11 @@ export interface User {
   card?: Card;
 }
 
-export interface UserInfo{
-  user: User
+export interface UserInfo {
+  user: User;
 }
 export interface UserReservation extends User {
-  user: UserInfo
+  user: UserInfo;
   reservation: DiningReservationBase;
   menu: MenuItem;
   reservestatus: ReserveStatus;

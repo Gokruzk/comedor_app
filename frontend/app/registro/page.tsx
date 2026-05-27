@@ -35,7 +35,7 @@ const RegisterForm = () => {
 
     const user: User = {
       id_user_type: Number(tipo_usuario),
-      user_name: nombre,
+      name: nombre,
       user_last_name: apellido,
       cedula: cedula,
       email: correo,
