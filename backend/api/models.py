@@ -23,12 +23,12 @@ class User(Base):
 
     id_user = Column(Integer, primary_key=True)
     id_user_type = Column(Integer, ForeignKey("user_type.id_user_type"))
-    user_name = Column(String(100))
-    user_last_name = Column(String(100))
-    cedula = Column(CHAR(10), unique=True)
+    name = Column(String(100))
+    last_name = Column(String(100))
+    dni = Column(CHAR(10), unique=True)
     email = Column(String(100), unique=True)
-    hash_password = Column(String(200))
-    cellphone = Column(CHAR(10), unique=True)
+    password = Column(String(200))
+    phone = Column(CHAR(10), unique=True)
     balance = Column(DECIMAL(10, 2))
     created_date = Column(TIMESTAMP)
 
@@ -38,13 +38,13 @@ class User(Base):
     codes = relationship("Code", back_populates="user")
 
     def set_password(self, password):
-        self.hash_password = bcrypt.hashpw(
+        self.password = bcrypt.hashpw(
             password.encode("utf-8"), bcrypt.gensalt()
         ).decode("utf-8")
 
     def check_password(self, password):
         return bcrypt.checkpw(
-            password.encode("utf-8"), self.hash_password.encode("utf-8")
+            password.encode("utf-8"), self.password.encode("utf-8")
         )
 
 
@@ -75,7 +75,7 @@ class Suggest(Base):
 
     id_suggest = Column(Integer, primary_key=True)
     suggestion = Column(Text)
-    created_date = Column(TIMESTAMP)
+    created_date = Column(Date)  # DATE in SQL, not TIMESTAMP
 
 
 class DiningReservation(Base):

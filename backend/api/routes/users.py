@@ -20,15 +20,15 @@ async def create_user(user: sch_user.UserCreate, db: Session = Depends(get_db)):
     if db_user:
         raise HTTPException(status_code=400, detail="Email already registered")
 
-    db_user = crd_user.get_user_by_cellphone(db, cell=user.cellphone)
+    db_user = crd_user.get_user_by_cellphone(db, cell=user.phone)
     if db_user:
         raise HTTPException(status_code=400, detail="Cellphone already registered")
 
-    db_user = crd_user.get_user_cedula(db, ced=user.cedula)
+    db_user = crd_user.get_user_cedula(db, ced=user.dni)
     if db_user:
         raise HTTPException(status_code=400, detail="Cedula already registered")
 
-    if check_cedula(user.cedula) is False:
+    if check_cedula(user.dni) is False:
         raise HTTPException(status_code=400, detail="Cedula is invalid")
     return crd_user.create_user(db=db, user=user)
 
@@ -64,15 +64,15 @@ async def get_balance(user_id: int, db: Session = Depends(get_db)):
     return {"balance": balance}
 
 
-@router.get("/id/{user_id}", response_model=sch_user.UserWithType)
-async def read_user(
-    user_id: int,
-    db: Session = Depends(get_db),
-):
-    db_user = crd_user.get_user_by_id(db, user_id=user_id)
-    if db_user is None:
-        raise HTTPException(status_code=404, detail="[]")
-    return db_user
+# @router.get("/id/{user_id}", response_model=sch_user.UserWithType)
+# async def read_user(
+#     user_id: int,
+#     db: Session = Depends(get_db),
+# ):
+#     db_user = crd_user.get_user_by_id(db, user_id=user_id)
+#     if db_user is None:
+#         raise HTTPException(status_code=404, detail="[]")
+#     return db_user
 
 
 @router.get("/email/{user_email}", response_model=sch_user.UserWithType)

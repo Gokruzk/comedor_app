@@ -4,15 +4,15 @@ from datetime import datetime
 
 class UserBase(BaseModel):
     id_user_type: int
-    user_name: str
-    user_last_name: str
+    name: str
+    last_name: str
     email: EmailStr
-    cellphone: str
-    cedula: str
+    phone: str
+    dni: str
 
 
 class UserCreate(UserBase):
-    hash_password: str
+    password: str
 
     class Config:
         from_attributes = True

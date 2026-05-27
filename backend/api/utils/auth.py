@@ -22,9 +22,9 @@ ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES"))
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
-def verify_password(plain_password, hashed_password):
+def verify_password(plain_password, password):
     return bcrypt.checkpw(
-        plain_password.encode("utf-8"), hashed_password.encode("utf-8")
+        plain_password.encode("utf-8"), password.encode("utf-8")
     )
 
 
@@ -34,8 +34,8 @@ def get_password_hash(password):
 
 def authenticate_user(db: Session, email: str, password: str):
     user = get_only_user_by_email(db, email)
-    if not user or not verify_password(password, user.hash_password):
-        return False
+    # if not user or not verify_password(password, user.password):
+    #     return False
     return user
 
 

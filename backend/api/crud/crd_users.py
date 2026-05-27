@@ -83,7 +83,7 @@ def get_user_by_cellphone(db: Session, cell: str):
     user = (
         db.query(mod_user)
         .join(mod_user_type, mod_user.id_user_type == mod_user_type.id_user_type)
-        .filter(mod_user.cellphone == cell)
+        .filter(mod_user.phone == cell)
         .first()
     )
 
@@ -94,7 +94,7 @@ def get_user_cedula(db: Session, ced: str):
     user = (
         db.query(mod_user)
         .join(mod_user_type, mod_user.id_user_type == mod_user_type.id_user_type)
-        .filter(mod_user.cedula == ced)
+        .filter(mod_user.dni == ced)
         .first()
     )
 
@@ -121,24 +121,24 @@ def get_users(db: Session):
 
 def create_user(db: Session, user: sch_user.UserCreate):
     hashed_password = bcrypt.hashpw(
-        user.hash_password.encode("utf-8"), bcrypt.gensalt()
+        user.password.encode("utf-8"), bcrypt.gensalt()
     ).decode("utf-8")
     db_user = mod_user(
-        user_name=user.user_name,
+        name=user.name,
         id_user_type=user.id_user_type,
-        user_last_name=user.user_last_name,
+        last_name=user.last_name,
         email=user.email,
-        hash_password=hashed_password,
-        cellphone=user.cellphone,
+        password=hashed_password,
+        phone=user.phone,
         balance=0,
         created_date=datetime.now(),
-        cedula=user.cedula,
+        dni=user.dni,
     )
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
 
-    send_email(db_user.email, db_user.user_name + " " + db_user.user_last_name)
+    send_email(db_user.email, db_user.name + " " + db_user.last_name)
 
     return db_user
 

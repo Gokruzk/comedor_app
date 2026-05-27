@@ -18,9 +18,9 @@ IVA = float(os.getenv("IVA"))
 
 def send_email(reservation: sch_dining):
     nombre = (
-        reservation["user"]["user"]["user_name"]
+        reservation["user"]["user"]["name"]
         + " "
-        + reservation["user"]["user"]["user_last_name"]
+        + reservation["user"]["user"]["last_name"]
     )
     reservation_date = reservation["reservation"]["reservation_date"]
     reservation_hour = reservation["reservation"]["reservation_hour"]
