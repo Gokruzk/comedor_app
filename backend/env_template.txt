@@ -1,0 +1,12 @@
+DB_NAME=comedor
+DB_HOST=[]
+DB_PASSWORD=[]
+DB_DIALECT=[]
+DB_USER=comex
+SECRET_KEY=mi_key
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+PASSWORD=Contraseña_de_encriptación
+EMAIL_SENDER=ferchon123443@gmail.com
+EMAIL_PASSWORD=tuhw uauo hwck smlq
+IVA=0.15
